@@ -15,7 +15,7 @@ namespace StatisticDistribution
 		public double Middle { get {
 				return Left + (Right - Left) / 2.0; } }
 
-		public Range(double left, double right)
+		public Range(double left, double right)  :this()
 		{
 			Left = left;
 			Right = right;
