@@ -290,8 +290,8 @@ namespace StatisticDistribution
 
 				//Файл открыт, но не разделен. Можно смотреть только статистические ряды
 				case GUIState.OPENED:
-					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq);
-					setElementEnabled(false, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic);
+					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnCharasteristic);
+					setElementEnabled(false, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq);
                     break;
 
 				//Файл открыт и разделен. Можно выполнять все операции
