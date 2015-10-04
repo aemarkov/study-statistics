@@ -12,7 +12,7 @@ namespace StatisticDistribution
 	public partial class MainForm : Form
 	{
 
-		const int accuracy = 2;		//Точность округления относительной частоты
+		const int accuracy = 5;		//Точность округления относительной частоты
 
 		//------------------ ДАННЫЕ ---------------------------------------
 		List<double> data;												//Выборка
@@ -74,6 +74,7 @@ namespace StatisticDistribution
 				try
 				{
 					data = new List<double>();
+					stringIntervals = null;
 
 					//Меняем состояние
 					setupGUIState(GUIState.OPENED);
@@ -106,6 +107,7 @@ namespace StatisticDistribution
 		private void btnInterval_Click(object sender, EventArgs e)
 		{
 			resetData();
+			data = null;
 			setupGUIState(GUIState.INTERVAL_ONLY);
 			intervalFreq = new Dictionary<Range, double>();
 
@@ -278,18 +280,24 @@ namespace StatisticDistribution
 		}
 
 		
-		
+		Dictionary<Range, double> calcIntervalRelFreq()
+		{
+			if (intervalFreq == null) intervalFreq = calcIntervalFreq();
+			if (intervalFreq == null) return null;
+
+			intervalRelFreq = new Dictionary<Range, double>();
+			foreach (var x in intervalFreq) intervalRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
+
+			return intervalRelFreq;
+		}
 
 		//Показать интервальный ряд относительных частот
 		private void btnIntervalRelFreq_Click(object sender, EventArgs e)
 		{
 			if (intervalRelFreq == null)
 			{
-				if (intervalFreq == null) intervalFreq = calcIntervalFreq();
-				if (intervalFreq == null) return;
-
-				intervalRelFreq = new Dictionary<Range, double>();
-				foreach (var x in intervalFreq) intervalRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
+				intervalRelFreq = calcIntervalRelFreq();
+				if (intervalRelFreq == null) return;
 			}
 
 			DisplayForm.DisplayIntervalRelFreq(intervalRelFreq);
@@ -313,19 +321,6 @@ namespace StatisticDistribution
 			return groupFreq;
 		}
 
-		Dictionary<double, double> calcGroupRelFreq()
-		{
-			if (groupFreq == null)
-			{
-				groupFreq = calcGroupFreq();
-				if (groupFreq == null) return null;
-			}
-
-			groupRelFreq = new Dictionary<double, double>();
-			foreach (var x in groupFreq) groupRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
-			return groupRelFreq;
-		}
-
 		//Показать группированный ряд частот
 		private void btnGroupFreq_Click(object sender, EventArgs e)
 		{
@@ -343,8 +338,13 @@ namespace StatisticDistribution
 		{
 			if (groupRelFreq == null)
 			{
-				groupRelFreq = calcGroupRelFreq();
-				if (groupRelFreq == null) return;
+				if (groupFreq == null)
+				{
+					groupFreq = calcGroupFreq();
+					if (groupFreq == null) return;
+				}
+				groupRelFreq = new Dictionary<double, double>();
+				foreach (var x in groupFreq) groupRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
 			}
 
 			DisplayForm.DisplayGroupRelFreq(groupRelFreq);
@@ -376,8 +376,8 @@ namespace StatisticDistribution
 			}
 			else if(stringIntervals != null)
 			{
-				if (groupRelFreq == null) groupFreq = calcGroupRelFreq();
-				EmpiricFunction.ShowEmpiricFunction(groupRelFreq);
+				if (intervalRelFreq == null) intervalRelFreq = calcIntervalRelFreq();
+				EmpiricFunction.ShowEmpiricFunction(intervalRelFreq);
 			}
 		}
 
@@ -430,6 +430,7 @@ namespace StatisticDistribution
 			groupFreq = null; groupRelFreq = null;
 			intervalFreq = null; intervalRelFreq = null;
 			interval = 0;
+			dataSize = 0;
 		}
 
 		#endregion
