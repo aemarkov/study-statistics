@@ -14,53 +14,48 @@ namespace StatisticDistribution
 {
 	public partial class DisplayForm : Form
 	{
+
 #region STATIC_CALL
 
 		//Отображение ряда частот
 		public static void DisplayStatFreq(Dictionary<double, double> data)
 		{
-			var frm = new DisplayForm(data, "Xi", "Ni");
-			frm.setupForm("Статистический ряд частот", "Ni");
+			var frm = new DisplayForm(data, "Полигон частот", "Xi", "Ni");
 			frm.Show();
 		}
 
 		//Отображение ряда относительных частот
 		public static void DisplayStatRelFreq(Dictionary<double, double> data)
 		{
-			var frm = new DisplayForm(data, "Xi", "Wi");
-			frm.setupForm("Статистический ряд относительных частот", "Wi");
+			var frm = new DisplayForm(data, "Полигон относительных частот",  "Xi", "Wi");
 			frm.Show();
 		}
 
 		//Отображение интервального ряда относительных частот
 		public static void DisplayIntervalFreq(Dictionary<Range, double> data)
 		{
-			var frm = new DisplayForm(data, "Xi", "Ni*");
-			frm.setupForm("Интервальный ряд частот", "Ni*");
+			var frm = new DisplayForm(data, "Гистограмма для интервального ряда частот", "Xi", "Ni*");
 			frm.Show();
 		}
 
 		//Отображение интервального ряда относительных частот
 		public static void DisplayIntervalRelFreq(Dictionary<Range, double> data)
 		{
-			var frm = new DisplayForm(data, "Xi", "Wi*");
-			frm.setupForm("Интервальный ряд относительных частот", "Wi*");
+			var frm = new DisplayForm(data, "Гистограмма для интервального ряда относительных частот", "Xi", "Wi*");
 			frm.Show();
 		}
 
 		//Отображение группированного ряда частот
 		public static void DisplayGroupFreq(Dictionary<double, double> data)
 		{
-			var frm = new DisplayForm(data, "Xi*", "Ni*");
-			frm.setupForm("Гурппированный ряд частот", "Ni*");
+			var frm = new DisplayForm(data, "Полигон для группированного ряда частот", "Xi*", "Ni*");
 			frm.Show();
 		}
 
 		//Отображение группированного ряда относительных частот
 		public static void DisplayGroupRelFreq(Dictionary<double, double> data)
 		{
-			var frm = new DisplayForm(data, "Xi*", "Wi*");
-			frm.setupForm("Гурппированный ряд относительных частот", "Wi*");
+			var frm = new DisplayForm(data, "Полигон для группированного ряда относительных частот", "Xi*", "Wi*");
 			frm.Show();
 		}
 
@@ -78,12 +73,13 @@ namespace StatisticDistribution
 #region POLYGON
 
 		//Построение стат. ряда частот
-		public DisplayForm(Dictionary<double, double> data, string xName, string valName)
+		public DisplayForm(Dictionary<double, double> data, string title, string xName, string valName)
 		{
 			InitializeComponent();
 
 			//Вывод таблицы
 			SetupDataSource<double, double>(data,xName,  valName);
+			setupForm(title, valName);
 
 			//Построение полигона
 			var pane = graph.GraphPane;
@@ -104,12 +100,13 @@ namespace StatisticDistribution
 
 #region HISTOGRAM
 
-		public DisplayForm(Dictionary<Range, double> data,string xName, string valName)
+		public DisplayForm(Dictionary<Range, double> data, string title, string xName, string valName)
 		{
 			InitializeComponent();
 
 			//Вывод таблицы
 			SetupDataSource<Range, double>(data, xName, valName);
+			setupForm(title, valName);
 
 			//Вывод графика
 			var pane = graph.GraphPane;
