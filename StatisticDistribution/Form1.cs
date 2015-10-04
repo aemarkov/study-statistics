@@ -156,7 +156,7 @@ namespace StatisticDistribution
 		//=======================================================
 
 		//Высчитывает статистический ряд частот - он базовый для остальных
-		Dictionary<double, double> calcStatFreq(List<double> data)
+		Dictionary<double, double> calcStatFreq()
 		{
 			var statFreq = new Dictionary<double, double>();
 			foreach (var d in data)
@@ -167,10 +167,19 @@ namespace StatisticDistribution
 			return statFreq;
 		}
 
+		//Вычисляет статистический ряд относительных частот
+		Dictionary<double, double> calcStatRelFreq()
+		{
+			if (statFreq == null) statFreq = calcStatFreq();
+			statRelFreq = new Dictionary<double, double>();
+			foreach (var x in statFreq) statRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
+			return statRelFreq;
+		}
+
 		//Показать статистический ряд частот
 		private void btnStatFreq_Click(object sender, EventArgs e)
 		{
-			if (statFreq == null) statFreq = calcStatFreq(data);
+			if (statFreq == null) statFreq = calcStatFreq();
 			DisplayForm.DisplayStatFreq(statFreq);
 
 		}
@@ -180,11 +189,8 @@ namespace StatisticDistribution
 		{
 			if (statRelFreq == null)
 			{
-				if (statFreq == null) statFreq =  calcStatFreq(data);
-				statRelFreq = new Dictionary<double, double>();
-				foreach (var x in statFreq) statRelFreq.Add(x.Key, Math.Round(x.Value / dataSize,accuracy));
+				statRelFreq = calcStatRelFreq();
 			}
-
 			DisplayForm.DisplayStatRelFreq(statRelFreq);
 		}
 
@@ -197,7 +203,7 @@ namespace StatisticDistribution
 			var intervalFreq = new Dictionary<Range, double>();
 
 			//Если стат. ряд частот еще не вычислен
-			if (statFreq == null) statFreq = calcStatFreq(data);
+			if (statFreq == null) statFreq = calcStatFreq();
 			if (statFreq.Count == 0)
 			{
 				MessageBox.Show("Нет данных в статистическом ряду частот", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -307,6 +313,19 @@ namespace StatisticDistribution
 			return groupFreq;
 		}
 
+		Dictionary<double, double> calcGroupRelFreq()
+		{
+			if (groupFreq == null)
+			{
+				groupFreq = calcGroupFreq();
+				if (groupFreq == null) return null;
+			}
+
+			groupRelFreq = new Dictionary<double, double>();
+			foreach (var x in groupFreq) groupRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
+			return groupRelFreq;
+		}
+
 		//Показать группированный ряд частот
 		private void btnGroupFreq_Click(object sender, EventArgs e)
 		{
@@ -324,14 +343,8 @@ namespace StatisticDistribution
 		{
 			if (groupRelFreq == null)
 			{
-				if (groupFreq == null)
-				{
-					groupFreq = calcGroupFreq();
-					if (groupFreq == null) return;
-				}
-
-				groupRelFreq = new Dictionary<double, double>();
-				foreach (var x in groupFreq) groupRelFreq.Add(x.Key, Math.Round(x.Value / dataSize,accuracy));
+				groupRelFreq = calcGroupRelFreq();
+				if (groupRelFreq == null) return;
 			}
 
 			DisplayForm.DisplayGroupRelFreq(groupRelFreq);
@@ -343,7 +356,7 @@ namespace StatisticDistribution
 		{
 			if (data != null)
 			{
-				if (statFreq == null) statFreq = calcStatFreq(data);
+				if (statFreq == null) statFreq = calcStatFreq();
 				NumCharacteristics.CalcAndShowNumCharact(statFreq);
 			}
 			else if(stringIntervals!=null)
@@ -353,10 +366,25 @@ namespace StatisticDistribution
 			}
 		}
 
-        #endregion
+		//Показать эмпирическую функцию распределения
+		private void btnEmpFunction_Click(object sender, EventArgs e)
+		{
+			if (data != null)
+			{
+				if (statRelFreq == null) statRelFreq = calcStatRelFreq();
+				EmpiricFunction.ShowEmpiricFunction(statRelFreq);
+			}
+			else if(stringIntervals != null)
+			{
+				if (groupRelFreq == null) groupFreq = calcGroupRelFreq();
+				EmpiricFunction.ShowEmpiricFunction(groupRelFreq);
+			}
+		}
 
-        #region GUI_STATEMACHINE
-        /////////////////////////////////////////////////////////////////////////////////////////////////
+		#endregion
+
+		#region GUI_STATEMACHINE
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 		/////////                            УПРАВЛЕНИЕ СОСТОЯНИЯМИ                             /////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -368,12 +396,12 @@ namespace StatisticDistribution
 			{
 				//Файл не открыт, нельзя производить никакие операции
 				case GUIState.NOT_OPENED:
-					setElementEnabled(false, numIntervals, btnSeparate, btnStatFreq,  btnStatRelFreq, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic);
+					setElementEnabled(false, numIntervals, btnSeparate, btnStatFreq,  btnStatRelFreq, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic, btnEmpFunction);
 					break;
 
 				//Файл открыт, но не разделен. Можно смотреть только статистические ряды
 				case GUIState.OPENED:
-					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnCharasteristic);
+					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnCharasteristic, btnEmpFunction);
 					setElementEnabled(false, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq);
                     break;
 
@@ -383,7 +411,7 @@ namespace StatisticDistribution
 					break;
 				case GUIState.INTERVAL_ONLY:
 					setElementEnabled(false, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq);
-					setElementEnabled(true, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic);
+					setElementEnabled(true, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic, btnEmpFunction);
 					break;
 			};
 		}
