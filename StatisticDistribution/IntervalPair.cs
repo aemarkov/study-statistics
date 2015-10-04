@@ -37,8 +37,8 @@ namespace StatisticDistribution
 
 				//Вырезаем начальную и конечную скобку
 				numbers[0] = numbers[0].Substring(1);
-				numbers[1] = numbers[1].Substring(0, numbers.Length - 2);
-				return new Range(Double.Parse(numbers[0]), Double.Parse(numbers[0]));
+				numbers[1] = numbers[1].Substring(0, numbers[1].Length - 1);
+				return new Range(Double.Parse(numbers[0]), Double.Parse(numbers[1]));
 			}
 			else
 				return null;

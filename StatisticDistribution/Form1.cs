@@ -15,9 +15,9 @@ namespace StatisticDistribution
 		const int accuracy = 2;		//Точность округления относительной частоты
 
 		//------------------ ДАННЫЕ ---------------------------------------
-		List<double> data;										//Выборка
+		List<double> data;												//Выборка
 		BindingList<IntervalPair> stringIntervals { get; set; }			//Введенный пользователем интервальный ряд частот
-		double interval;
+		double interval;												//Длина интервала
 
 		int dataSize;											//Число элементов в выборке
 		Dictionary<double, double> statFreq;					//Стат. ряд частот
@@ -134,12 +134,19 @@ namespace StatisticDistribution
 		//Разбивка на интервалы
 		private void btnSeparate_Click(object sender, EventArgs e)
 		{
+			if ((numIntervals.Value < 4) || (numIntervals.Value > 10))
+			{
+				MessageBox.Show("Число интервалов должно быть от 4 до 10", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return;
+			}
+
 			//Обнуляем
 			groupFreq = null; groupRelFreq = null;
 			intervalFreq = null; intervalRelFreq = null;
 
 			//Просто вызываем функцию построения интервального ряда частот
-			interval = (double)numIntervals.Value;
+			interval = (data.Last()-data.First())/(double)numIntervals.Value;
+
 			btnIntervalFreq_Click(sender, e);
 			setupGUIState(GUIState.SEPARATE);
 		}
@@ -196,27 +203,56 @@ namespace StatisticDistribution
 				return null;
 			}
 
-			//Разбиваем на интервалы
-			double left = 0;            //Значение левой границы
-			double ni = 0;              //Частота интервала
+			var xi = statFreq.GetEnumerator();	//Перечислитель для обхода словаря
+			double intervalStart;               //Начало интервала
+			double ni;                          //Суммарная частота на интервале
+			bool isNotEnd = false;				//Пришли ли к концу списка
+			bool isAdded = false;				//Добавлен ли текущий элемент
 
-			left = statFreq.First().Key;//Получаем первую границу
+			//[x0; x1]; (x1; x2]; (x2; x3]; ... (xn-1; xn];
 
-			//Разбиваем на интервалы
-			foreach (var x in statFreq)
+			//Добавляем первый интервал (обе границы включаются)
+			intervalStart = statFreq.First().Key;
+			ni = 0;
+			do
 			{
-				if ((x.Key - left) < interval)
-					ni += x.Value;
-				else
-				{
-					//Интервал получен - сохраняем
-					intervalFreq.Add(new Range(left, x.Key), ni);
-					ni = x.Value;
-					left = x.Key;
-				}
-			}
+				ni += xi.Current.Value;
+			} while ((isNotEnd = xi.MoveNext()) && (xi.Current.Key - intervalStart <= interval));
 
-			intervalFreq.Add(new Range(left, left + interval), ni);
+			intervalFreq.Add(new Range(intervalStart, intervalStart+interval, true, true), ni);
+
+			//Добавляем остальные интервалы (левая - не включается, правая - включается)
+			//Нужна проверка, что остались элементы
+			if (isNotEnd)
+			{
+				//В качестве начала интервала берем конец первого интервала
+				intervalStart += interval;
+				ni = 0;
+				do
+				{
+					//Накапливаем сумму частот
+					if (xi.Current.Key - intervalStart <= interval)
+					{
+						ni += xi.Current.Value;
+						isAdded = false;
+					}
+					else
+					{
+						isAdded = true;
+						//Добавляем интервал
+						intervalFreq.Add(new Range(intervalStart, intervalStart + interval, false, true), ni);
+						intervalStart += interval;
+						ni = xi.Current.Value;
+					}
+				} while (xi.MoveNext());
+			}			
+
+			if(!isAdded)
+			{
+				//Если список завершился раньше, чем кончился интервал
+				//ni уже накоплен, надо лишь установить правую границу
+				intervalFreq.Add(new Range(intervalStart, intervalStart + interval, false, true), ni);
+			}
 
 			return intervalFreq;
 		}

@@ -10,15 +10,18 @@ namespace StatisticDistribution
 	/// </summary>
 	public struct Range
 	{
-		public double Left { get; set; }		//Левая граница диапазона
-		public double Right { get; set; }		//Правая граница диапазона
-		public double Middle                    //Середина диапазона
+		private bool leftIncluded, rightIncluded;	//Включенность границ
+
+		public double Left { get; set; }			//Левая граница диапазона
+		public double Right { get; set; }			//Правая граница диапазона
+		public double Middle						//Середина диапазона
 		{
 			get
 			{
 				return Left + (Right - Left) / 2.0;
 			}
 		}
+
 		public double Length					//Длина интервала
 		{
 			get
@@ -27,15 +30,19 @@ namespace StatisticDistribution
 			}
 		}
 
-		public Range(double left, double right)  :this()
+		//Конструктор
+		public Range(double left, double right, bool leftIncluded=false, bool rightIncluded=false)  :this()
 		{
 			Left = left;
 			Right = right;
+			this.leftIncluded = leftIncluded;
+			this.rightIncluded = rightIncluded;
 		}
 
+		//Перевод к строке
 		public override string ToString()
 		{
-			return "[" + Left.ToString() + "; " + Right.ToString() + ")";
+			return (leftIncluded ?  "[" : "(") + Left.ToString() + "; " + Right.ToString() + (rightIncluded ? "]": ")");
 		}
 	}
 }
