@@ -36,15 +36,15 @@
 			this.tbDispersion = new System.Windows.Forms.TextBox();
 			this.tbStandartDeviation = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnCentralMoment = new System.Windows.Forms.Button();
+			this.tbCentralMoment = new System.Windows.Forms.TextBox();
+			this.btnStartMoment = new System.Windows.Forms.Button();
+			this.tbStartMoment = new System.Windows.Forms.TextBox();
 			this.tbSDispersion = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.numStartMoment = new System.Windows.Forms.NumericUpDown();
-			this.tbStartMoment = new System.Windows.Forms.TextBox();
-			this.btnStartMoment = new System.Windows.Forms.Button();
 			this.numCentralMoment = new System.Windows.Forms.NumericUpDown();
 			this.label6 = new System.Windows.Forms.Label();
-			this.btnCentralMoment = new System.Windows.Forms.Button();
-			this.tbCentralMoment = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numStartMoment)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCentralMoment)).BeginInit();
@@ -136,6 +136,48 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Значения характеристик";
 			// 
+			// btnCentralMoment
+			// 
+			this.btnCentralMoment.Location = new System.Drawing.Point(170, 303);
+			this.btnCentralMoment.Name = "btnCentralMoment";
+			this.btnCentralMoment.Size = new System.Drawing.Size(57, 20);
+			this.btnCentralMoment.TabIndex = 7;
+			this.btnCentralMoment.Text = "Расчет";
+			this.btnCentralMoment.UseVisualStyleBackColor = true;
+			this.btnCentralMoment.Click += new System.EventHandler(this.btnCentralMoment_Click);
+			// 
+			// tbCentralMoment
+			// 
+			this.tbCentralMoment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbCentralMoment.Location = new System.Drawing.Point(6, 303);
+			this.tbCentralMoment.Name = "tbCentralMoment";
+			this.tbCentralMoment.ReadOnly = true;
+			this.tbCentralMoment.Size = new System.Drawing.Size(157, 20);
+			this.tbCentralMoment.TabIndex = 6;
+			// 
+			// btnStartMoment
+			// 
+			this.btnStartMoment.Location = new System.Drawing.Point(170, 227);
+			this.btnStartMoment.Name = "btnStartMoment";
+			this.btnStartMoment.Size = new System.Drawing.Size(57, 20);
+			this.btnStartMoment.TabIndex = 5;
+			this.btnStartMoment.Text = "Расчет";
+			this.btnStartMoment.UseVisualStyleBackColor = true;
+			this.btnStartMoment.Click += new System.EventHandler(this.btnStartMoment_Click);
+			// 
+			// tbStartMoment
+			// 
+			this.tbStartMoment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbStartMoment.Location = new System.Drawing.Point(6, 227);
+			this.tbStartMoment.Name = "tbStartMoment";
+			this.tbStartMoment.ReadOnly = true;
+			this.tbStartMoment.Size = new System.Drawing.Size(157, 20);
+			this.tbStartMoment.TabIndex = 4;
+			// 
 			// tbSDispersion
 			// 
 			this.tbSDispersion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -177,27 +219,6 @@
             0,
             0});
 			// 
-			// tbStartMoment
-			// 
-			this.tbStartMoment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbStartMoment.Location = new System.Drawing.Point(6, 227);
-			this.tbStartMoment.Name = "tbStartMoment";
-			this.tbStartMoment.ReadOnly = true;
-			this.tbStartMoment.Size = new System.Drawing.Size(157, 20);
-			this.tbStartMoment.TabIndex = 4;
-			// 
-			// btnStartMoment
-			// 
-			this.btnStartMoment.Location = new System.Drawing.Point(170, 227);
-			this.btnStartMoment.Name = "btnStartMoment";
-			this.btnStartMoment.Size = new System.Drawing.Size(57, 20);
-			this.btnStartMoment.TabIndex = 5;
-			this.btnStartMoment.Text = "Расчет";
-			this.btnStartMoment.UseVisualStyleBackColor = true;
-			this.btnStartMoment.Click += new System.EventHandler(this.btnStartMoment_Click);
-			// 
 			// numCentralMoment
 			// 
 			this.numCentralMoment.Location = new System.Drawing.Point(11, 337);
@@ -215,7 +236,7 @@
 			this.numCentralMoment.Size = new System.Drawing.Size(114, 20);
 			this.numCentralMoment.TabIndex = 6;
 			this.numCentralMoment.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -226,28 +247,7 @@
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(113, 42);
 			this.label6.TabIndex = 5;
-			this.label6.Text = "Начальный выборочный момент порядка";
-			// 
-			// btnCentralMoment
-			// 
-			this.btnCentralMoment.Location = new System.Drawing.Point(170, 303);
-			this.btnCentralMoment.Name = "btnCentralMoment";
-			this.btnCentralMoment.Size = new System.Drawing.Size(57, 20);
-			this.btnCentralMoment.TabIndex = 7;
-			this.btnCentralMoment.Text = "Расчет";
-			this.btnCentralMoment.UseVisualStyleBackColor = true;
-			this.btnCentralMoment.Click += new System.EventHandler(this.btnCentralMoment_Click);
-			// 
-			// tbCentralMoment
-			// 
-			this.tbCentralMoment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbCentralMoment.Location = new System.Drawing.Point(6, 303);
-			this.tbCentralMoment.Name = "tbCentralMoment";
-			this.tbCentralMoment.ReadOnly = true;
-			this.tbCentralMoment.Size = new System.Drawing.Size(157, 20);
-			this.tbCentralMoment.TabIndex = 6;
+			this.label6.Text = "Центральный выборочный момент порядка";
 			// 
 			// NumCharacteristics
 			// 

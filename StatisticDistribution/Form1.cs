@@ -46,7 +46,6 @@ namespace StatisticDistribution
 			setupGUIState(GUIState.NOT_OPENED);
 
 			//Создаем объект данных
-			data = new List<double>();
 			stringIntervals = new BindingList<IntervalPair>();
 
 
@@ -74,6 +73,8 @@ namespace StatisticDistribution
 			{
 				try
 				{
+					data = new List<double>();
+
 					//Меняем состояние
 					setupGUIState(GUIState.OPENED);
 
@@ -191,7 +192,7 @@ namespace StatisticDistribution
 		//=======================================================
 
 		//Высисление интервального ряда частот - он базовый для всех интервальных и группированных 
-		Dictionary<Range, double> calcIntervalFreq(List<double> data)
+		Dictionary<Range, double> calcIntervalFreq()
 		{
 			var intervalFreq = new Dictionary<Range, double>();
 
@@ -262,7 +263,7 @@ namespace StatisticDistribution
 		{
 			if (intervalFreq == null)
 			{
-				intervalFreq = calcIntervalFreq(data);
+				intervalFreq = calcIntervalFreq();
 				if (intervalFreq == null) return;
 			}
 
@@ -278,7 +279,7 @@ namespace StatisticDistribution
 		{
 			if (intervalRelFreq == null)
 			{
-				if (intervalFreq == null) intervalFreq = calcIntervalFreq(data);
+				if (intervalFreq == null) intervalFreq = calcIntervalFreq();
 				if (intervalFreq == null) return;
 
 				intervalRelFreq = new Dictionary<Range, double>();
@@ -293,10 +294,10 @@ namespace StatisticDistribution
 		//=======================================================
 
 		//Построить группированный ряд частот
-		Dictionary<double, double> calcGroupFreq(List<double> data)
+		Dictionary<double, double> calcGroupFreq()
 		{
 
-			if (intervalFreq == null) intervalFreq = calcIntervalFreq(data);
+			if (intervalFreq == null) intervalFreq = calcIntervalFreq();
 			if (intervalFreq == null) return null;
 
 			var groupFreq = new Dictionary<double, double>();
@@ -311,7 +312,7 @@ namespace StatisticDistribution
 		{
 			if(groupFreq==null)
 			{
-				groupFreq = calcGroupFreq(data);
+				groupFreq = calcGroupFreq();
 				if (groupFreq == null) return;
 			}
 
@@ -325,7 +326,7 @@ namespace StatisticDistribution
 			{
 				if (groupFreq == null)
 				{
-					groupFreq = calcGroupFreq(data);
+					groupFreq = calcGroupFreq();
 					if (groupFreq == null) return;
 				}
 
@@ -340,8 +341,16 @@ namespace StatisticDistribution
 		//Показать числовые характеристики
 		private void btnCharasteristic_Click(object sender, EventArgs e)
 		{
-            if (statFreq == null) statFreq = calcStatFreq(data);
-            NumCharacteristics.CalcAndShowNumCharact(statFreq);
+			if (data != null)
+			{
+				if (statFreq == null) statFreq = calcStatFreq(data);
+				NumCharacteristics.CalcAndShowNumCharact(statFreq);
+			}
+			else if(stringIntervals!=null)
+			{
+				if (groupFreq == null) groupFreq = calcGroupFreq();
+				NumCharacteristics.CalcAndShowNumCharact(groupFreq);
+			}
 		}
 
         #endregion
