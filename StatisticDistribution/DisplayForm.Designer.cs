@@ -73,7 +73,7 @@ namespace StatisticDistribution
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 
-			graph.GraphPane.XAxis.Title = "X";
+			graph.GraphPane.XAxis.Title.Text = "X";
 		}
 
 		#endregion

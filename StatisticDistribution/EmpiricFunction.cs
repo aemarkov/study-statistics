@@ -58,9 +58,26 @@ namespace StatisticDistribution
 		private void show(Dictionary<Range, double> data)
 		{
 			var pane = graph.GraphPane;
-			pane.YAxis.Title = "F*(x)";
-			pane.XAxis.Title = "x";
-			pane.Title = "График эмпирической функции распределения";
+			pane.YAxis.Title.Text = "F*(x)";
+			pane.XAxis.Title.Text = "x";
+			pane.Title.Text = "График эмпирической функции распределения";
+
+			//Настраиваем пересечение осей
+			pane.XAxis.Cross = 0.0;
+			pane.YAxis.Cross = 0.0;
+			pane.XAxis.Scale.IsSkipFirstLabel = true;
+			pane.XAxis.Scale.IsSkipLastLabel = true;
+			pane.XAxis.Scale.IsSkipCrossLabel = true;
+			pane.YAxis.Scale.IsSkipFirstLabel = true;
+			pane.YAxis.Scale.IsSkipLastLabel = true;
+			pane.YAxis.Scale.IsSkipCrossLabel = true;
+
+			//Убираем засечки сверху и снизу
+			pane.XAxis.MinorTic.IsOpposite = false;
+			pane.XAxis.MajorTic.IsOpposite = false;
+			pane.YAxis.MinorTic.IsOpposite = false;
+			pane.YAxis.MajorTic.IsOpposite = false;
+
 
 			int top = lblA0.Bottom;                     //Координата низа предыдущей записи
 			int step = 10;                              //Расстояние между записями
@@ -92,7 +109,7 @@ namespace StatisticDistribution
 					p.Line.IsVisible = false;
 
 					//Добавляем пункты в функцию
-					var lbl = new Label();
+					var lbl = new System.Windows.Forms.Label();
 					lbl.Text = x.Value.ToString("G6") + ", " + x.Key.Left + " < x <= " + x.Key.Right;
 					lbl.Left = lblA0.Left;
 					lbl.Top = top + step;
@@ -115,7 +132,7 @@ namespace StatisticDistribution
 			pane.AddCurve("", new double[] { data.Last().Key.Right, data.Last().Key.Right + interval }, new double[] { 1, 1 }, Color.Red, SymbolType.None);
 
 			//Функция
-			var label = new Label();
+			var label = new System.Windows.Forms.Label();
 			label.Text = "1, x > " + data.Last().Key.Right;
 			label.Left = lblA0.Left;
 			label.Top = top + step;

@@ -60,26 +60,46 @@ namespace StatisticDistribution
 		}
 
 		// Настройка текста формы
-		void setupForm(string title, string axisY)
+		void setupForm(string title, string xName, string yName)
 		{
 			Text = title;
 			var pane = graph.GraphPane;
-			pane.YAxis.Title = axisY;
-			pane.Title = Text;
+			pane.YAxis.Title.Text = yName;
+			pane.X2Axis.Title.Text = xName;
+			pane.Title.Text = Text;
+
+			//Настраиваем пересечение осей
+			pane.XAxis.Cross = 0.0;
+			pane.YAxis.Cross = 0.0;
+			pane.XAxis.Scale.IsSkipFirstLabel = true;
+			pane.XAxis.Scale.IsSkipLastLabel = true;
+			pane.XAxis.Scale.IsSkipCrossLabel = true;
+			pane.YAxis.Scale.IsSkipFirstLabel = true;
+			pane.YAxis.Scale.IsSkipLastLabel = true;
+			pane.YAxis.Scale.IsSkipCrossLabel = true;
+
+			//Убираем засечки сверху и снизу
+			pane.XAxis.MinorTic.IsOpposite = false;
+			pane.XAxis.MajorTic.IsOpposite = false;
+			pane.YAxis.MinorTic.IsOpposite = false;
+			pane.YAxis.MajorTic.IsOpposite = false;
+
+			graph.AxisChange();
+			graph.Invalidate();
 		}
 
-#endregion
+		#endregion
 
-#region POLYGON
+		#region POLYGON
 
 		//Построение стат. ряда частот
-		public DisplayForm(Dictionary<double, double> data, string title, string xName, string valName)
+		public DisplayForm(Dictionary<double, double> data, string title, string xName, string yName)
 		{
 			InitializeComponent();
 
 			//Вывод таблицы
-			SetupDataSource<double, double>(data,xName,  valName);
-			setupForm(title, valName);
+			SetupDataSource<double, double>(data,xName, yName);
+			setupForm(title, xName, yName);
 
 			//Построение полигона
 			var pane = graph.GraphPane;
@@ -100,13 +120,13 @@ namespace StatisticDistribution
 
 #region HISTOGRAM
 
-		public DisplayForm(Dictionary<Range, double> data, string title, string xName, string valName)
+		public DisplayForm(Dictionary<Range, double> data, string title, string xName, string yName)
 		{
 			InitializeComponent();
 
 			//Вывод таблицы
-			SetupDataSource<Range, double>(data, xName, valName);
-			setupForm(title, valName);
+			SetupDataSource<Range, double>(data, xName, yName);
+			setupForm(title, xName, yName);
 
 			//Вывод графика
 			var pane = graph.GraphPane;
@@ -134,18 +154,19 @@ namespace StatisticDistribution
 			//Рисуем гистограмму
 			for (i = 0; i < height.Length; i++)
 			{
-				var box = new BoxItem(new RectangleF((float)xi[i], (float)height[i], (float)intervals[i], (float)height[i]), Color.Black, Color.FromArgb(255, 39, 174, 96));
-				pane.GraphItemList.Add(box);
+				var box = new BoxObj((float)xi[i], (float)height[i], (float)intervals[i], (float)height[i], Color.Black, Color.FromArgb(255, 39, 174, 96));
+
+				pane.GraphObjList.Add(box);
 				if (height[i] > maxY) maxY = height[i];
 			}
 
 
 
 			//Настраиваем масштаб
-			pane.XAxis.Min = 0;
-			pane.XAxis.Max = data.Last().Key.Right*1.1;
-			pane.YAxis.Min = 0;
-			pane.YAxis.Max = maxY * 1.1;
+			pane.XAxis.Scale.Min = 0;
+			pane.XAxis.Scale.Max = data.Last().Key.Right*1.1;
+			pane.YAxis.Scale.Min = 0;
+			pane.YAxis.Scale.Max = maxY * 1.1;
 			
 			graph.AxisChange();
 			graph.Invalidate();
