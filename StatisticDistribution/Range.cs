@@ -10,10 +10,22 @@ namespace StatisticDistribution
 	/// </summary>
 	public struct Range
 	{
-		public double Left { get; set; }
-		public double Right { get; set; }
-		public double Middle { get {
-				return Left + (Right - Left) / 2.0; } }
+		public double Left { get; set; }		//Левая граница диапазона
+		public double Right { get; set; }		//Правая граница диапазона
+		public double Middle                    //Середина диапазона
+		{
+			get
+			{
+				return Left + (Right - Left) / 2.0;
+			}
+		}
+		public double Length					//Длина интервала
+		{
+			get
+			{
+				return Right - Left;
+			}
+		}
 
 		public Range(double left, double right)  :this()
 		{

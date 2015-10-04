@@ -28,9 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panelData = new System.Windows.Forms.Panel();
-			this.btnOpen = new System.Windows.Forms.Button();
-			this.gridData = new System.Windows.Forms.DataGridView();
 			this.panelControls = new System.Windows.Forms.Panel();
 			this.btnCharasteristic = new System.Windows.Forms.Button();
 			this.groupBoxData = new System.Windows.Forms.GroupBox();
@@ -43,56 +40,25 @@
 			this.groupBoxInterval = new System.Windows.Forms.GroupBox();
 			this.btnSeparate = new System.Windows.Forms.Button();
 			this.numIntervals = new System.Windows.Forms.NumericUpDown();
-			this.panelData.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.btnOpen = new System.Windows.Forms.Button();
+			this.gridData = new System.Windows.Forms.DataGridView();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.btnInterval = new System.Windows.Forms.Button();
+			this.gridIntervalData = new System.Windows.Forms.DataGridView();
+			this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panelControls.SuspendLayout();
 			this.groupBoxData.SuspendLayout();
 			this.groupBoxInterval.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numIntervals)).BeginInit();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
+			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridIntervalData)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// panelData
-			// 
-			this.panelData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.panelData.Controls.Add(this.btnOpen);
-			this.panelData.Controls.Add(this.gridData);
-			this.panelData.Location = new System.Drawing.Point(13, 13);
-			this.panelData.Name = "panelData";
-			this.panelData.Size = new System.Drawing.Size(297, 566);
-			this.panelData.TabIndex = 0;
-			// 
-			// btnOpen
-			// 
-			this.btnOpen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btnOpen.Location = new System.Drawing.Point(3, 3);
-			this.btnOpen.Name = "btnOpen";
-			this.btnOpen.Size = new System.Drawing.Size(291, 37);
-			this.btnOpen.TabIndex = 2;
-			this.btnOpen.Text = "Открыть выборку";
-			this.btnOpen.UseVisualStyleBackColor = true;
-			this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
-			// 
-			// gridData
-			// 
-			this.gridData.AllowUserToAddRows = false;
-			this.gridData.AllowUserToDeleteRows = false;
-			this.gridData.AllowUserToResizeColumns = false;
-			this.gridData.AllowUserToResizeRows = false;
-			this.gridData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.gridData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.gridData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-			this.gridData.Location = new System.Drawing.Point(3, 46);
-			this.gridData.Name = "gridData";
-			this.gridData.RowHeadersVisible = false;
-			this.gridData.Size = new System.Drawing.Size(291, 517);
-			this.gridData.TabIndex = 0;
 			// 
 			// panelControls
 			// 
@@ -100,7 +66,7 @@
 			this.panelControls.Controls.Add(this.btnCharasteristic);
 			this.panelControls.Controls.Add(this.groupBoxData);
 			this.panelControls.Controls.Add(this.groupBoxInterval);
-			this.panelControls.Location = new System.Drawing.Point(317, 13);
+			this.panelControls.Location = new System.Drawing.Point(324, 13);
 			this.panelControls.Name = "panelControls";
 			this.panelControls.Size = new System.Drawing.Size(221, 568);
 			this.panelControls.TabIndex = 1;
@@ -227,32 +193,135 @@
             0,
             0});
 			// 
+			// tabControl1
+			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(313, 581);
+			this.tabControl1.TabIndex = 2;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.btnOpen);
+			this.tabPage1.Controls.Add(this.gridData);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(305, 555);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Выборка";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// btnOpen
+			// 
+			this.btnOpen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btnOpen.Location = new System.Drawing.Point(6, 9);
+			this.btnOpen.Name = "btnOpen";
+			this.btnOpen.Size = new System.Drawing.Size(291, 37);
+			this.btnOpen.TabIndex = 4;
+			this.btnOpen.Text = "Открыть выборку";
+			this.btnOpen.UseVisualStyleBackColor = true;
+			this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click_1);
+			// 
+			// gridData
+			// 
+			this.gridData.AllowUserToAddRows = false;
+			this.gridData.AllowUserToDeleteRows = false;
+			this.gridData.AllowUserToResizeColumns = false;
+			this.gridData.AllowUserToResizeRows = false;
+			this.gridData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.gridData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+			this.gridData.Location = new System.Drawing.Point(6, 52);
+			this.gridData.Name = "gridData";
+			this.gridData.RowHeadersVisible = false;
+			this.gridData.Size = new System.Drawing.Size(291, 497);
+			this.gridData.TabIndex = 3;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.btnInterval);
+			this.tabPage2.Controls.Add(this.gridIntervalData);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(305, 555);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Интервальный ряд";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// btnInterval
+			// 
+			this.btnInterval.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btnInterval.Location = new System.Drawing.Point(9, 512);
+			this.btnInterval.Name = "btnInterval";
+			this.btnInterval.Size = new System.Drawing.Size(291, 37);
+			this.btnInterval.TabIndex = 5;
+			this.btnInterval.Text = "Ввод";
+			this.btnInterval.UseVisualStyleBackColor = true;
+			this.btnInterval.Click += new System.EventHandler(this.btnInterval_Click);
+			// 
+			// gridIntervalData
+			// 
+			this.gridIntervalData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.gridIntervalData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridIntervalData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Key,
+            this.Value});
+			this.gridIntervalData.Location = new System.Drawing.Point(9, 21);
+			this.gridIntervalData.MultiSelect = false;
+			this.gridIntervalData.Name = "gridIntervalData";
+			this.gridIntervalData.Size = new System.Drawing.Size(290, 485);
+			this.gridIntervalData.TabIndex = 0;
+			// 
+			// Key
+			// 
+			this.Key.HeaderText = "Интервал";
+			this.Key.Name = "Key";
+			// 
+			// Value
+			// 
+			this.Value.HeaderText = "Частота";
+			this.Value.Name = "Value";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(549, 591);
+			this.ClientSize = new System.Drawing.Size(556, 591);
+			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.panelControls);
-			this.Controls.Add(this.panelData);
 			this.MinimumSize = new System.Drawing.Size(565, 630);
 			this.Name = "MainForm";
 			this.Text = "Статистическое распределение";
-			this.panelData.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
 			this.panelControls.ResumeLayout(false);
 			this.groupBoxData.ResumeLayout(false);
 			this.groupBoxInterval.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.numIntervals)).EndInit();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
+			this.tabPage2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.gridIntervalData)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Panel panelData;
-		private System.Windows.Forms.DataGridView gridData;
-		private System.Windows.Forms.Button btnOpen;
 		private System.Windows.Forms.Panel panelControls;
 		private System.Windows.Forms.Button btnCharasteristic;
 		private System.Windows.Forms.GroupBox groupBoxData;
@@ -265,6 +334,15 @@
 		private System.Windows.Forms.GroupBox groupBoxInterval;
 		private System.Windows.Forms.Button btnSeparate;
 		private System.Windows.Forms.NumericUpDown numIntervals;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.Button btnOpen;
+		private System.Windows.Forms.DataGridView gridData;
+		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.Button btnInterval;
+		private System.Windows.Forms.DataGridView gridIntervalData;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Key;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Value;
 	}
 }
 

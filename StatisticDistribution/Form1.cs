@@ -8,21 +8,24 @@ using System.IO;
 
 namespace StatisticDistribution
 {
+
 	public partial class MainForm : Form
 	{
 
 		const int accuracy = 2;		//Точность округления относительной частоты
 
 		//------------------ ДАННЫЕ ---------------------------------------
-		List<double> data;
+		List<double> data;										//Выборка
+		BindingList<IntervalPair> stringIntervals { get; set; }			//Введенный пользователем интервальный ряд частот
 		double interval;
 
+		int dataSize;											//Число элементов в выборке
 		Dictionary<double, double> statFreq;					//Стат. ряд частот
 		Dictionary<double, double> statRelFreq;					//Стат. ряд относительных частот
 		Dictionary<Range, double> intervalFreq;					//Интервальный ряд частот
 		Dictionary<Range, double> intervalRelFreq;				//Интервальный ряд относительных частот
 		Dictionary<double, double> groupFreq;					//Группированны ряд частот
-		Dictionary<double, double> groupRelFreq;				//Группированный ряд относительных частот
+		Dictionary<double, double> groupRelFreq;                //Группированный ряд относительных частот
 
 
 		//------------------ СОСТОЯНИЕ GUI --------------------------------
@@ -32,7 +35,7 @@ namespace StatisticDistribution
 			- файл открыт, но на интервалы не разбит
 			- данные разбиты на интервалы.
 		   Это нужно, чтобы управлять активностью кнопок */
-		enum GUIState { NOT_OPENED, OPENED, SEPARATE};
+		enum GUIState { NOT_OPENED, OPENED, SEPARATE, INTERVAL_ONLY};
 		GUIState state;
 
 		public MainForm()
@@ -44,6 +47,17 @@ namespace StatisticDistribution
 
 			//Создаем объект данных
 			data = new List<double>();
+			stringIntervals = new BindingList<IntervalPair>();
+
+
+			//Настраиваем таблицу ввода интервального ряда
+			foreach (DataGridViewColumn col in gridIntervalData.Columns)
+				col.DataPropertyName = col.Name;
+
+			stringIntervals.AllowNew = true;
+			stringIntervals.AllowEdit = true;
+			stringIntervals.AllowRemove = true;
+			gridIntervalData.DataSource = stringIntervals;
 		}
 
 		#region GUI_EVENTS
@@ -52,7 +66,7 @@ namespace StatisticDistribution
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//Открытие выборки
-		private void btnOpen_Click(object sender, EventArgs e)
+		private void btnOpen_Click_1(object sender, EventArgs e)
 		{
 			var dlg = new OpenFileDialog();
 			dlg.Filter = "Таблица в формате CSV|*.csv";
@@ -60,23 +74,21 @@ namespace StatisticDistribution
 			{
 				try
 				{
+					//Меняем состояние
+					setupGUIState(GUIState.OPENED);
+
+					//Сбрасываем значения рядов
+					resetData();
+
 					//Парсим файл
 					data = parseCSV(dlg.FileName, ';');
 					data.Sort();
+					dataSize = data.Count;
 
 					//Какой-то странный костыль
 					var bs = new BindingSource();
 					bs.DataSource = data.Select(x => new { Xi = x }).ToList();
 					gridData.DataSource = bs;
-
-					//Меняем состояние
-					setupGUIState(GUIState.OPENED);
-
-					//Сбрасываем значения рядов
-					statFreq = null; statRelFreq = null;
-					groupFreq = null; groupRelFreq = null;
-					intervalFreq = null; intervalRelFreq = null;
-					interval = 0;
 				}
 				catch(System.FormatException)
 				{
@@ -85,23 +97,49 @@ namespace StatisticDistribution
 				catch(System.IO.IOException)
 				{
 					MessageBox.Show("Не удается открыть файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-
-
-
-				
+				}	
 			}
 		}
+
+		//Ввод интервального ряда распределения
+		private void btnInterval_Click(object sender, EventArgs e)
+		{
+			resetData();
+			setupGUIState(GUIState.INTERVAL_ONLY);
+			intervalFreq = new Dictionary<Range, double>();
+
+			//Переводим в ряд относительных частот
+			foreach(var interval in stringIntervals)
+			{
+				Range? range;
+				if((range=interval.GetRange())==null)
+				{
+					MessageBox.Show("Неверное значение: " + interval.Key,"Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+
+				dataSize += interval.Value;
+				intervalFreq.Add((Range)range, interval.Value);
+			}
+		}
+
+		#endregion
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////                       ОБРАБОТКА ДАННЫХ                                        /////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////
+
+		#region CALC
 
 		//Разбивка на интервалы
 		private void btnSeparate_Click(object sender, EventArgs e)
 		{
-			//Просто вызываем функцию построения интервального ряда частот
-			interval = (double)numIntervals.Value;
-
+			//Обнуляем
 			groupFreq = null; groupRelFreq = null;
 			intervalFreq = null; intervalRelFreq = null;
 
+			//Просто вызываем функцию построения интервального ряда частот
+			interval = (double)numIntervals.Value;
 			btnIntervalFreq_Click(sender, e);
 			setupGUIState(GUIState.SEPARATE);
 		}
@@ -136,7 +174,7 @@ namespace StatisticDistribution
 			{
 				if (statFreq == null) statFreq =  calcStatFreq(data);
 				statRelFreq = new Dictionary<double, double>();
-				foreach (var x in statFreq) statRelFreq.Add(x.Key, Math.Round(x.Value / data.Count,accuracy));
+				foreach (var x in statFreq) statRelFreq.Add(x.Key, Math.Round(x.Value / dataSize,accuracy));
 			}
 
 			DisplayForm.DisplayStatRelFreq(statRelFreq);
@@ -208,14 +246,14 @@ namespace StatisticDistribution
 				if (intervalFreq == null) return;
 
 				intervalRelFreq = new Dictionary<Range, double>();
-				foreach (var x in intervalFreq) intervalRelFreq.Add(x.Key, Math.Round(x.Value / data.Count, accuracy));
+				foreach (var x in intervalFreq) intervalRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
 			}
 
 			DisplayForm.DisplayIntervalRelFreq(intervalRelFreq);
 
 		}
 
-		//                 Групповой ряд
+		//                 Группированный ряд
 		//=======================================================
 
 		//Построить группированный ряд частот
@@ -256,7 +294,7 @@ namespace StatisticDistribution
 				}
 
 				groupRelFreq = new Dictionary<double, double>();
-				foreach (var x in groupFreq) groupRelFreq.Add(x.Key, Math.Round(x.Value / data.Count,accuracy));
+				foreach (var x in groupFreq) groupRelFreq.Add(x.Key, Math.Round(x.Value / dataSize,accuracy));
 			}
 
 			DisplayForm.DisplayGroupRelFreq(groupRelFreq);
@@ -298,6 +336,10 @@ namespace StatisticDistribution
 				case GUIState.SEPARATE:
 					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic);
 					break;
+				case GUIState.INTERVAL_ONLY:
+					setElementEnabled(false, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq);
+					setElementEnabled(true, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic);
+					break;
 			};
 		}
 
@@ -305,6 +347,16 @@ namespace StatisticDistribution
 		private void setElementEnabled(bool enabled, params Control[] controls)
 		{
 			controls.All(c => {c.Enabled=enabled; return true; });
+		}
+
+
+		//Сбрасывает значения рядов
+		private void resetData()
+		{
+			statFreq = null; statRelFreq = null;
+			groupFreq = null; groupRelFreq = null;
+			intervalFreq = null; intervalRelFreq = null;
+			interval = 0;
 		}
 
 		#endregion
@@ -329,10 +381,7 @@ namespace StatisticDistribution
 		}
 
 
-		#endregion
 
-		/////////////////////////////////////////////////////////////////////////////////////////////////
-		/////////                       ОБРАБОТКА ДАННЫХ                                        /////////
-		/////////////////////////////////////////////////////////////////////////////////////////////////
+		#endregion
 	}
 }
