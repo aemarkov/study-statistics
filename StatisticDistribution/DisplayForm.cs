@@ -17,7 +17,7 @@ namespace StatisticDistribution
 
 #region STATIC_CALL
 
-		//Отображение ряда частот 
+		//Отображение ряда частот                
 		public static void DisplayStatFreq(Dictionary<double, double> data)
 		{
 			var frm = new DisplayForm(data, "Полигон частот", "Xi", "Ni");
