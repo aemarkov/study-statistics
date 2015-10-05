@@ -163,8 +163,8 @@ namespace StatisticDistribution
 
 
 			//Настраиваем масштаб
-			pane.XAxis.Scale.Min = 0;
-			pane.XAxis.Scale.Max = data.Last().Key.Right*1.1;
+			pane.XAxis.Scale.Min = data.First().Key.Left;
+			pane.XAxis.Scale.Max = data.Last().Key.Right;
 			pane.YAxis.Scale.Min = 0;
 			pane.YAxis.Scale.Max = maxY * 1.1;
 			
@@ -186,6 +186,7 @@ namespace StatisticDistribution
 			var bs = new BindingSource();
 			bs.DataSource = data.Select(x => new { x = x.Key, y = x.Value }).ToList();
 			dataGridView1.DataSource = bs;
+			dataGridView1.Columns["x"].DefaultCellStyle.Format = "N2";
 		}
 	}
 }

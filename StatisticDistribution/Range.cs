@@ -42,7 +42,7 @@ namespace StatisticDistribution
 		//Перевод к строке
 		public override string ToString()
 		{
-			return (leftIncluded ?  "[" : "(") + Left.ToString() + "; " + Right.ToString() + (rightIncluded ? "]": ")");
+			return (leftIncluded ?  "[" : "(") + Left.ToString("N2") + "; " + Right.ToString("N2") + (rightIncluded ? "]": ")");
 		}
 	}
 }

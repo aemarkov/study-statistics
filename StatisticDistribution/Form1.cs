@@ -12,7 +12,7 @@ namespace StatisticDistribution
 	public partial class MainForm : Form
 	{
 
-		const int accuracy = 5;		//Точность округления относительной частоты
+		const int accuracy = 2;		//Точность округления относительной частоты
 
 		//------------------ ДАННЫЕ ---------------------------------------
 		List<double> data;												//Выборка
@@ -57,7 +57,12 @@ namespace StatisticDistribution
 			stringIntervals.AllowEdit = true;
 			stringIntervals.AllowRemove = true;
 			gridIntervalData.DataSource = stringIntervals;
+
+			gridIntervalData.CellValidating += GridIntervalData_CellValidating;
+			gridIntervalData.CellEndEdit += GridIntervalData_CellEndEdit;
 		}
+
+		
 
 		#region GUI_EVENTS
 		/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,6 +131,23 @@ namespace StatisticDistribution
 			}
 		}
 
+		//Валидация ввода интервального ряда
+		private void GridIntervalData_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+		{
+			double res;
+			if((e.ColumnIndex==1) && !double.TryParse((string)e.FormattedValue, out res))
+			{
+				e.Cancel = true;
+			}
+		}
+
+		private void GridIntervalData_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+		{
+			// Clear the row error in case the user presses ESC.   
+			gridIntervalData.Rows[e.RowIndex].ErrorText = String.Empty;
+		}
+
+
 		#endregion
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,7 +196,7 @@ namespace StatisticDistribution
 		{
 			if (statFreq == null) statFreq = calcStatFreq();
 			statRelFreq = new Dictionary<double, double>();
-			foreach (var x in statFreq) statRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
+			foreach (var x in statFreq) statRelFreq.Add(x.Key, x.Value / dataSize);
 			return statRelFreq;
 		}
 
@@ -286,7 +308,7 @@ namespace StatisticDistribution
 			if (intervalFreq == null) return null;
 
 			intervalRelFreq = new Dictionary<Range, double>();
-			foreach (var x in intervalFreq) intervalRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
+			foreach (var x in intervalFreq) intervalRelFreq.Add(x.Key, x.Value / dataSize);
 
 			return intervalRelFreq;
 		}
@@ -344,7 +366,7 @@ namespace StatisticDistribution
 					if (groupFreq == null) return;
 				}
 				groupRelFreq = new Dictionary<double, double>();
-				foreach (var x in groupFreq) groupRelFreq.Add(x.Key, Math.Round(x.Value / dataSize, accuracy));
+				foreach (var x in groupFreq) groupRelFreq.Add(x.Key,x.Value / dataSize);
 			}
 
 			DisplayForm.DisplayGroupRelFreq(groupRelFreq);
@@ -371,8 +393,11 @@ namespace StatisticDistribution
 		{
 			if (data != null)
 			{
-				if (statRelFreq == null) statRelFreq = calcStatRelFreq();
-				EmpiricFunction.ShowEmpiricFunction(statRelFreq);
+				//if (statRelFreq == null) statRelFreq = calcStatRelFreq();
+				//EmpiricFunction.ShowEmpiricFunction(statRelFreq);
+
+				if (intervalRelFreq == null) intervalRelFreq = calcIntervalRelFreq();
+				EmpiricFunction.ShowEmpiricFunction(intervalRelFreq);
 			}
 			else if(stringIntervals != null)
 			{
@@ -401,13 +426,13 @@ namespace StatisticDistribution
 
 				//Файл открыт, но не разделен. Можно смотреть только статистические ряды
 				case GUIState.OPENED:
-					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnCharasteristic, btnEmpFunction);
-					setElementEnabled(false, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq);
+					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnCharasteristic);
+					setElementEnabled(false, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnEmpFunction);
                     break;
 
 				//Файл открыт и разделен. Можно выполнять все операции
 				case GUIState.SEPARATE:
-					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic);
+					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic, btnEmpFunction);
 					break;
 				case GUIState.INTERVAL_ONLY:
 					setElementEnabled(false, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq);

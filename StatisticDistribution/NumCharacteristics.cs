@@ -52,24 +52,23 @@ namespace StatisticDistribution
 		// Записывает расчитанные значения во вьюху
 		private void SetNumericCharacteristicsToView()
 		{
-			tbMean.Text = mean.ToString("G6");
-			tbDispersion.Text = dispersion.ToString("G6");
-			tbStandartDeviation.Text = standard_deviation.ToString("G6");
-			tbSDispersion.Text = s_dispersion.ToString("G6");
+			tbMean.Text = mean.ToString("N2");
+			tbDispersion.Text = dispersion.ToString("N2");
+			tbStandartDeviation.Text = standard_deviation.ToString("N2");
 		}
 
 		//Расчет начального выборочного момента
 		private void btnStartMoment_Click(object sender, EventArgs e)
 		{
 			int r = (int)numStartMoment.Value;
-			tbStartMoment.Text = StartMoment(r).ToString("G6");
+			tbStartMoment.Text = StartMoment(r).ToString("N2");
 		}
 
 		//Расчет центрального выборочного момента
 		private void btnCentralMoment_Click(object sender, EventArgs e)
 		{
 			int r = (int)numCentralMoment.Value;
-			tbCentralMoment.Text = CentralMoment(r).ToString("G6");
+			tbCentralMoment.Text = CentralMoment(r).ToString("N2");
 		}
 
 		#region NUMERIC_CHARACTERISTICS

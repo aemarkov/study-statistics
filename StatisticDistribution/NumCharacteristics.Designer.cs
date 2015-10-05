@@ -31,7 +31,6 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
 			this.tbMean = new System.Windows.Forms.TextBox();
 			this.tbDispersion = new System.Windows.Forms.TextBox();
 			this.tbStandartDeviation = new System.Windows.Forms.TextBox();
@@ -40,7 +39,6 @@
 			this.tbCentralMoment = new System.Windows.Forms.TextBox();
 			this.btnStartMoment = new System.Windows.Forms.Button();
 			this.tbStartMoment = new System.Windows.Forms.TextBox();
-			this.tbSDispersion = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.numStartMoment = new System.Windows.Forms.NumericUpDown();
 			this.numCentralMoment = new System.Windows.Forms.NumericUpDown();
@@ -61,27 +59,19 @@
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(12, 57);
+			this.label2.Location = new System.Drawing.Point(13, 57);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(115, 42);
+			this.label2.Size = new System.Drawing.Size(113, 20);
 			this.label2.TabIndex = 0;
-			this.label2.Text = "Смещенная оценка генеральной дисперсии";
+			this.label2.Text = "Дисперсия";
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(12, 109);
+			this.label3.Location = new System.Drawing.Point(13, 86);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(114, 48);
 			this.label3.TabIndex = 0;
 			this.label3.Text = "Выборочное среднее квадратическое отклонение";
-			// 
-			// label4
-			// 
-			this.label4.Location = new System.Drawing.Point(12, 163);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(127, 41);
-			this.label4.TabIndex = 0;
-			this.label4.Text = "Несмещенная оценка генеральной дисперсии";
 			// 
 			// tbMean
 			// 
@@ -91,7 +81,7 @@
 			this.tbMean.Location = new System.Drawing.Point(6, 19);
 			this.tbMean.Name = "tbMean";
 			this.tbMean.ReadOnly = true;
-			this.tbMean.Size = new System.Drawing.Size(221, 20);
+			this.tbMean.Size = new System.Drawing.Size(215, 20);
 			this.tbMean.TabIndex = 1;
 			// 
 			// tbDispersion
@@ -102,7 +92,7 @@
 			this.tbDispersion.Location = new System.Drawing.Point(6, 45);
 			this.tbDispersion.Name = "tbDispersion";
 			this.tbDispersion.ReadOnly = true;
-			this.tbDispersion.Size = new System.Drawing.Size(221, 20);
+			this.tbDispersion.Size = new System.Drawing.Size(215, 20);
 			this.tbDispersion.TabIndex = 1;
 			// 
 			// tbStandartDeviation
@@ -110,10 +100,10 @@
 			this.tbStandartDeviation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbStandartDeviation.Location = new System.Drawing.Point(6, 97);
+			this.tbStandartDeviation.Location = new System.Drawing.Point(6, 71);
 			this.tbStandartDeviation.Name = "tbStandartDeviation";
 			this.tbStandartDeviation.ReadOnly = true;
-			this.tbStandartDeviation.Size = new System.Drawing.Size(221, 20);
+			this.tbStandartDeviation.Size = new System.Drawing.Size(215, 20);
 			this.tbStandartDeviation.TabIndex = 1;
 			// 
 			// groupBox1
@@ -125,20 +115,19 @@
 			this.groupBox1.Controls.Add(this.tbCentralMoment);
 			this.groupBox1.Controls.Add(this.btnStartMoment);
 			this.groupBox1.Controls.Add(this.tbStartMoment);
-			this.groupBox1.Controls.Add(this.tbSDispersion);
 			this.groupBox1.Controls.Add(this.tbStandartDeviation);
 			this.groupBox1.Controls.Add(this.tbMean);
 			this.groupBox1.Controls.Add(this.tbDispersion);
 			this.groupBox1.Location = new System.Drawing.Point(145, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(227, 354);
+			this.groupBox1.Size = new System.Drawing.Size(227, 275);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Значения характеристик";
 			// 
 			// btnCentralMoment
 			// 
-			this.btnCentralMoment.Location = new System.Drawing.Point(170, 303);
+			this.btnCentralMoment.Location = new System.Drawing.Point(164, 208);
 			this.btnCentralMoment.Name = "btnCentralMoment";
 			this.btnCentralMoment.Size = new System.Drawing.Size(57, 20);
 			this.btnCentralMoment.TabIndex = 7;
@@ -151,7 +140,7 @@
 			this.tbCentralMoment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbCentralMoment.Location = new System.Drawing.Point(6, 303);
+			this.tbCentralMoment.Location = new System.Drawing.Point(6, 208);
 			this.tbCentralMoment.Name = "tbCentralMoment";
 			this.tbCentralMoment.ReadOnly = true;
 			this.tbCentralMoment.Size = new System.Drawing.Size(157, 20);
@@ -159,9 +148,9 @@
 			// 
 			// btnStartMoment
 			// 
-			this.btnStartMoment.Location = new System.Drawing.Point(170, 227);
+			this.btnStartMoment.Location = new System.Drawing.Point(169, 127);
 			this.btnStartMoment.Name = "btnStartMoment";
-			this.btnStartMoment.Size = new System.Drawing.Size(57, 20);
+			this.btnStartMoment.Size = new System.Drawing.Size(52, 20);
 			this.btnStartMoment.TabIndex = 5;
 			this.btnStartMoment.Text = "Расчет";
 			this.btnStartMoment.UseVisualStyleBackColor = true;
@@ -172,26 +161,15 @@
 			this.tbStartMoment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbStartMoment.Location = new System.Drawing.Point(6, 227);
+			this.tbStartMoment.Location = new System.Drawing.Point(6, 127);
 			this.tbStartMoment.Name = "tbStartMoment";
 			this.tbStartMoment.ReadOnly = true;
 			this.tbStartMoment.Size = new System.Drawing.Size(157, 20);
 			this.tbStartMoment.TabIndex = 4;
 			// 
-			// tbSDispersion
-			// 
-			this.tbSDispersion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbSDispersion.Location = new System.Drawing.Point(6, 151);
-			this.tbSDispersion.Name = "tbSDispersion";
-			this.tbSDispersion.ReadOnly = true;
-			this.tbSDispersion.Size = new System.Drawing.Size(221, 20);
-			this.tbSDispersion.TabIndex = 3;
-			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(13, 217);
+			this.label5.Location = new System.Drawing.Point(14, 139);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(113, 42);
 			this.label5.TabIndex = 3;
@@ -199,7 +177,7 @@
 			// 
 			// numStartMoment
 			// 
-			this.numStartMoment.Location = new System.Drawing.Point(12, 261);
+			this.numStartMoment.Location = new System.Drawing.Point(16, 184);
 			this.numStartMoment.Maximum = new decimal(new int[] {
             5,
             0,
@@ -221,7 +199,7 @@
 			// 
 			// numCentralMoment
 			// 
-			this.numCentralMoment.Location = new System.Drawing.Point(11, 337);
+			this.numCentralMoment.Location = new System.Drawing.Point(15, 265);
 			this.numCentralMoment.Maximum = new decimal(new int[] {
             5,
             0,
@@ -243,7 +221,7 @@
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(12, 293);
+			this.label6.Location = new System.Drawing.Point(17, 220);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(113, 42);
 			this.label6.TabIndex = 5;
@@ -253,16 +231,18 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(384, 376);
+			this.BackColor = System.Drawing.Color.White;
+			this.ClientSize = new System.Drawing.Size(384, 297);
 			this.Controls.Add(this.numCentralMoment);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.numStartMoment);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MaximizeBox = false;
 			this.Name = "NumCharacteristics";
 			this.Text = "Числовые характеристики ряда распределения";
 			this.groupBox1.ResumeLayout(false);
@@ -279,12 +259,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbMean;
         private System.Windows.Forms.TextBox tbDispersion;
         private System.Windows.Forms.TextBox tbStandartDeviation;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox tbSDispersion;
 		private System.Windows.Forms.Button btnCentralMoment;
 		private System.Windows.Forms.TextBox tbCentralMoment;
 		private System.Windows.Forms.Button btnStartMoment;

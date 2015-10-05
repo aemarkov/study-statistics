@@ -90,11 +90,12 @@ namespace StatisticDistribution
 
 			//Рисуем график
 			double interval = data.First().Key.Length * 2;
+			var a = data.First();
 			pane.AddCurve("", new double[] { data.First().Key.Length - interval, data.First().Key.Left }, new double[] { 0, 0 }, Color.Red, SymbolType.None);
 			prevF = 0;
 
 			//Пишем функцию
-			lblA0.Text = "0, x <= " + data.First().Key.Length;
+			lblA0.Text = "0; x <= " + data.First().Key.Left;
 
 			//Серединные интервалы
 			//(a0; a1] - (a1; a2] - ... - (an-1; an];
@@ -110,9 +111,10 @@ namespace StatisticDistribution
 
 					//Добавляем пункты в функцию
 					var lbl = new System.Windows.Forms.Label();
-					lbl.Text = x.Value.ToString("G6") + ", " + x.Key.Left + " < x <= " + x.Key.Right;
+					lbl.Text = x.Value.ToString("N4") + "; " + x.Key.Left + " < x <= " + x.Key.Right;
 					lbl.Left = lblA0.Left;
 					lbl.Top = top + step;
+					lbl.Width=200;
 					top += lbl.Height;
 					panelFunc.Controls.Add(lbl);
 				}
