@@ -134,8 +134,8 @@ namespace StatisticDistribution
 		//Валидация ввода интервального ряда
 		private void GridIntervalData_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
 		{
-			double res;
-			if((e.ColumnIndex==1) && !double.TryParse((string)e.FormattedValue, out res))
+			int res;
+			if((e.ColumnIndex==1) && !int.TryParse((string)e.FormattedValue, out res))
 			{
 				e.Cancel = true;
 			}

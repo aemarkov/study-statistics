@@ -187,6 +187,7 @@ namespace StatisticDistribution
 			bs.DataSource = data.Select(x => new { x = x.Key, y = x.Value }).ToList();
 			dataGridView1.DataSource = bs;
 			dataGridView1.Columns["x"].DefaultCellStyle.Format = "N2";
+			dataGridView1.Columns["y"].DefaultCellStyle.Format = "N2";
 		}
 	}
 }
