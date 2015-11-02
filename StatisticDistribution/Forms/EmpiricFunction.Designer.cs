@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.graph = new ZedGraph.ZedGraphControl();
 			this.imgBracket = new System.Windows.Forms.PictureBox();
 			this.lblFX = new System.Windows.Forms.Label();
@@ -43,28 +44,9 @@
 			this.graph.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.graph.IsAutoScrollRange = false;
-			this.graph.IsEnableHPan = true;
-			this.graph.IsEnableHZoom = true;
-			this.graph.IsEnableVPan = true;
-			this.graph.IsEnableVZoom = true;
-			this.graph.IsPrintFillPage = true;
-			this.graph.IsPrintKeepAspectRatio = true;
-			this.graph.IsScrollY2 = false;
-			this.graph.IsShowContextMenu = true;
-			this.graph.IsShowCopyMessage = true;
-			this.graph.IsShowCursorValues = false;
-			this.graph.IsShowHScrollBar = false;
-			this.graph.IsShowPointValues = false;
-			this.graph.IsShowVScrollBar = false;
-			this.graph.IsZoomOnMouseCenter = false;
 			this.graph.Location = new System.Drawing.Point(12, 12);
 			this.graph.Name = "graph";
-			this.graph.PanButtons = System.Windows.Forms.MouseButtons.Left;
-			this.graph.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-			this.graph.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-			this.graph.PointDateFormat = "g";
-			this.graph.PointValueFormat = "G";
+			this.graph.ScrollGrace = 0D;
 			this.graph.ScrollMaxX = 0D;
 			this.graph.ScrollMaxY = 0D;
 			this.graph.ScrollMaxY2 = 0D;
@@ -73,11 +55,7 @@
 			this.graph.ScrollMinY2 = 0D;
 			this.graph.Size = new System.Drawing.Size(573, 488);
 			this.graph.TabIndex = 0;
-			this.graph.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-			this.graph.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-			this.graph.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-			this.graph.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-			this.graph.ZoomStepFraction = 0.1D;
+			this.graph.UseExtendedPrintDialog = true;
 			// 
 			// imgBracket
 			// 

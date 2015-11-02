@@ -80,27 +80,39 @@ namespace StatisticDistribution
 			int top = lblA0.Bottom;                     //Координата низа предыдущей записи
 			int step = 10;                              //Расстояние между записями
 
-			double prevF = 0;							//Предущее значение функции, используется, чтобы не рисовать кружки
+			double prevF = 0;                           //Предущее значение функции, используется, чтобы не рисовать кружки
 														//Если на двух отрезках одинаковые значения
 
+			//Схема интервалов
+			//(a0; a1] - (a1; a2] - ... - (an-1; an];
+
 			//Первый интервал
-			//(-inf; a0] => 0
+			//(-inf; a1] => 0
 
 			//Рисуем график
-			double interval = data.First().Key.Length * 2;
-			var a = data.First();
-			pane.AddCurve("", new double[] { data.First().Key.Length - interval, data.First().Key.Left }, new double[] { 0, 0 }, Color.Red, SymbolType.None);
+			double interval = data.First().Key.Length;
+
+			//Определяем величину, чтобы она была чуть-больше 0, чтобы не сливалась с осью
+			double first_val;
+			if (data.Count >= 2)
+				first_val = data.ElementAt(1).Value / 10;
+			else if (data.First().Value != 0)
+				first_val = data.First().Value / 10.0;
+			else
+				first_val = 0.1;
+
+			pane.AddCurve("", new double[] { data.First().Key.Right-interval*100, data.First().Key.Right }, new double[] { first_val, first_val }, Color.Red, SymbolType.None);
 			prevF = 0;
 
 			//Пишем функцию
-			lblA0.Text = "0; x <= " + data.First().Key.Left;
+			lblA0.Text = "0; x <= " + data.First().Key.Right;
 
 			//Серединные интервалы
 			//(a0; a1] - (a1; a2] - ... - (an-1; an];
 
+			bool fucking_spank = true;
 			foreach (var x in data)
 			{
-					
 				if (x.Value != prevF)
 				{ 
 					//Рисуем кружки
@@ -117,10 +129,17 @@ namespace StatisticDistribution
 					panelFunc.Controls.Add(lbl);
 				}
 
-				//Рисуем график
-				pane.AddCurve("", new double[] { x.Key.Left, x.Key.Right }, new double[] { x.Value, x.Value }, Color.Red, SymbolType.None);
-				prevF = x.Value;
-				
+				if (!fucking_spank)
+				{
+					//Чтобы не рисовать первый интервал. Ведь интервал 
+					//(a0;a1] входит в (-inf; a1]
+
+					//Рисуем график
+					pane.AddCurve("", new double[] { x.Key.Left, x.Key.Right }, new double[] { x.Value, x.Value }, Color.Red, SymbolType.None);
+					prevF = x.Value;
+				}
+				fucking_spank = false;
+
 			}
 
 			//Последний интервал
@@ -129,7 +148,7 @@ namespace StatisticDistribution
 			//Рисуем график
 			var pt = pane.AddCurve("", new double[] { data.Last().Key.Right }, new double[] { 1 }, Color.Red, SymbolType.Circle);
 			pt.Line.IsVisible = false;
-			pane.AddCurve("", new double[] { data.Last().Key.Right, data.Last().Key.Right + interval }, new double[] { 1, 1 }, Color.Red, SymbolType.None);
+			pane.AddCurve("", new double[] { data.Last().Key.Right, data.Last().Key.Right + interval*100 }, new double[] { 1, 1 }, Color.Red, SymbolType.None);
 
 			//Функция
 			var label = new System.Windows.Forms.Label();
@@ -144,6 +163,11 @@ namespace StatisticDistribution
 			lblFX.Top = top / 2 - 9;
 
 			//Масштабируем график
+
+			//Вручную задаем масштаб по оси X, т.к у нас там большие "хвосты" при 0 и 1
+			pane.XAxis.Scale.Min = data.First().Key.Left - interval;
+			pane.XAxis.Scale.Max = data.Last().Key.Right + interval;
+
 			graph.AxisChange();
 			graph.Invalidate();
 		}

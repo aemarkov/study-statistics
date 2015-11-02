@@ -224,7 +224,7 @@ namespace StatisticDistribution
 			/*if (data != null)
 			{
 				//if (statRelFreq == null) statRelFreq = calcStatRelFreq();
-				//EmpiricFunction.ShowEmpiricFunction(statRelFreq);
+				//
 
 				if (intervalRelFreq == null) intervalRelFreq = calcIntervalRelFreq();
 				EmpiricFunction.ShowEmpiricFunction(intervalRelFreq);
@@ -232,8 +232,14 @@ namespace StatisticDistribution
 			else if(stringIntervals != null)
 			{
 				if (intervalRelFreq == null) intervalRelFreq = calcIntervalRelFreq();
-				EmpiricFunction.ShowEmpiricFunction(intervalRelFreq);
+				
 			}*/
+
+			//if(state!=GUIState.INTERVAL_ONLY)
+			//	EmpiricFunction.ShowEmpiricFunction(distribution.StatRelFreq);
+			//else
+				EmpiricFunction.ShowEmpiricFunction(distribution.IntervalRelFreq);
+
 		}
 
 		#endregion
