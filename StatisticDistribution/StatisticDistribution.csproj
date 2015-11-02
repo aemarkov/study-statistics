@@ -48,7 +48,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DistributionCheck\BinomialDistribution.cs" />
+    <Compile Include="DistributionCheck\DistributionChecker.cs" />
+    <Compile Include="DistributionCheck\AbstractDistribution.cs" />
+    <Compile Include="DistributionCheck\NormalDistribution.cs" />
     <Compile Include="Distribution\NumericSolver.cs" />
+    <Compile Include="Forms\CheckDistributionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CheckDistributionForm.Designer.cs">
+      <DependentUpon>CheckDistributionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +88,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Range.cs" />
+    <EmbeddedResource Include="Forms\CheckDistributionForm.resx">
+      <DependentUpon>CheckDistributionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DisplayForm.resx">
       <DependentUpon>DisplayForm.cs</DependentUpon>
     </EmbeddedResource>

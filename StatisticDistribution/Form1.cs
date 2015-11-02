@@ -7,6 +7,7 @@ using System.IO;
 
 using Statistics.Utils;
 using Statistics.Distribution;
+using Statistics.DistributionCheck;
 
 namespace StatisticDistribution
 {
@@ -223,7 +224,8 @@ namespace StatisticDistribution
 		//Проверка закона о нормальном распределении
 		private void menuCheckNormal_Click(object sender, EventArgs e)
 		{
-
+			var frm = new CheckDistributionForm(new NormalDistribution(distribution));
+			frm.Show();
 		}
 
 		//Проверка закона о биномиальном распределении
