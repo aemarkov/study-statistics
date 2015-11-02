@@ -159,11 +159,11 @@ namespace StatisticDistribution
 		//Разбивка на интервалы
 		private void btnSeparate_Click(object sender, EventArgs e)
 		{
-			if ((numIntervals.Value < 4) || (numIntervals.Value > 10))
+			/*if ((numIntervals.Value < 4) || (numIntervals.Value > 10))
 			{
 				MessageBox.Show("Число интервалов должно быть от 4 до 10", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
-			}
+			}*/
 
 			//Обнуляем
 			groupFreq = null; groupRelFreq = null;

@@ -197,11 +197,6 @@
 			// 
 			this.numIntervals.DecimalPlaces = 2;
 			this.numIntervals.Location = new System.Drawing.Point(7, 26);
-			this.numIntervals.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
 			this.numIntervals.Minimum = new decimal(new int[] {
             4,
             0,
@@ -279,19 +274,19 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(310, 619);
+			this.tabPage2.Size = new System.Drawing.Size(305, 606);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Интервальный ряд";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
 			// btnInterval
 			// 
-			this.btnInterval.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.btnInterval.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btnInterval.Location = new System.Drawing.Point(9, 512);
+			this.btnInterval.Location = new System.Drawing.Point(9, 556);
 			this.btnInterval.Name = "btnInterval";
-			this.btnInterval.Size = new System.Drawing.Size(291, 37);
+			this.btnInterval.Size = new System.Drawing.Size(290, 37);
 			this.btnInterval.TabIndex = 5;
 			this.btnInterval.Text = "Ввод";
 			this.btnInterval.UseVisualStyleBackColor = true;
@@ -299,6 +294,9 @@
 			// 
 			// gridIntervalData
 			// 
+			this.gridIntervalData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.gridIntervalData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.gridIntervalData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gridIntervalData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -307,7 +305,7 @@
 			this.gridIntervalData.Location = new System.Drawing.Point(9, 21);
 			this.gridIntervalData.MultiSelect = false;
 			this.gridIntervalData.Name = "gridIntervalData";
-			this.gridIntervalData.Size = new System.Drawing.Size(290, 485);
+			this.gridIntervalData.Size = new System.Drawing.Size(290, 529);
 			this.gridIntervalData.TabIndex = 0;
 			// 
 			// Key
