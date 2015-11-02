@@ -48,17 +48,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DisplayForm.cs">
+    <Compile Include="Distribution\NumericSolver.cs" />
+    <Compile Include="Forms\DisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DisplayForm.Designer.cs">
+    <Compile Include="Forms\DisplayForm.Designer.cs">
       <DependentUpon>DisplayForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Distribution\Distribution.cs" />
-    <Compile Include="EmpiricFunction.cs">
+    <Compile Include="Forms\EmpiricFunction.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmpiricFunction.Designer.cs">
+    <Compile Include="Forms\EmpiricFunction.Designer.cs">
       <DependentUpon>EmpiricFunction.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
@@ -68,25 +69,25 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\IntervalPair.cs" />
-    <Compile Include="NumCharacteristics.cs">
+    <Compile Include="Forms\NumCharacteristics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NumCharacteristics.Designer.cs">
+    <Compile Include="Forms\NumCharacteristics.Designer.cs">
       <DependentUpon>NumCharacteristics.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Range.cs" />
-    <EmbeddedResource Include="DisplayForm.resx">
+    <EmbeddedResource Include="Forms\DisplayForm.resx">
       <DependentUpon>DisplayForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmpiricFunction.resx">
+    <EmbeddedResource Include="Forms\EmpiricFunction.resx">
       <DependentUpon>EmpiricFunction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NumCharacteristics.resx">
+    <EmbeddedResource Include="Forms\NumCharacteristics.resx">
       <DependentUpon>NumCharacteristics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

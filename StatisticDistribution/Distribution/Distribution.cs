@@ -14,7 +14,7 @@ namespace Statistics.Distribution
 	/// - группированный ряд
 	/// и обеспечивает их отложенное вычисление
 	/// </summary>
-	class Distribution
+	public class Distribution
 	{
 		
 		#region ROWS

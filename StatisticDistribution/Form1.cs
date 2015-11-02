@@ -182,9 +182,6 @@ namespace StatisticDistribution
 			DisplayForm.DisplayStatRelFreq(distribution.StatRelFreq);
 		}
 
-		//               Интервальный ряд
-		//=======================================================
-
 		//Показать интервальный ряд частот
 		private void btnIntervalFreq_Click(object sender, EventArgs e)
 		{
@@ -198,9 +195,6 @@ namespace StatisticDistribution
 			DisplayForm.DisplayIntervalRelFreq(distribution.IntervalRelFreq);
 
 		}
-
-		//                 Группированный ряд
-		//========================================================
 
 		//Показать группированный ряд частот
 		private void btnGroupFreq_Click(object sender, EventArgs e)
@@ -218,16 +212,10 @@ namespace StatisticDistribution
 		//Показать числовые характеристики
 		private void btnCharasteristic_Click(object sender, EventArgs e)
 		{
-			/*if (data != null)
-			{
-				if (statFreq == null) statFreq = calcStatFreq();
-				NumCharacteristics.CalcAndShowNumCharact(statFreq);
-			}
-			else if(stringIntervals!=null)
-			{
-				if (groupFreq == null) groupFreq = calcGroupFreq();
-				NumCharacteristics.CalcAndShowNumCharact(groupFreq);
-			}*/
+			if (state != GUIState.INTERVAL_ONLY)
+				NumCharacteristics.CalcAndShowNumCharact(distribution.StatFreq);
+			else
+				NumCharacteristics.CalcAndShowNumCharact(distribution.GroupFreq);
 		}
 
 		//Показать эмпирическую функцию распределения
