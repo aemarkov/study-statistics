@@ -197,6 +197,11 @@
 			// 
 			this.numIntervals.DecimalPlaces = 2;
 			this.numIntervals.Location = new System.Drawing.Point(7, 26);
+			this.numIntervals.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
 			this.numIntervals.Minimum = new decimal(new int[] {
             4,
             0,

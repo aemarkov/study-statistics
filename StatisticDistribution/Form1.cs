@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 
+using Statistics.Utils;
+using Statistics.Distribution;
 
 namespace StatisticDistribution
 {
@@ -18,15 +20,9 @@ namespace StatisticDistribution
 		List<double> data;												//Выборка
 		BindingList<IntervalPair> stringIntervals { get; set; }			//Введенный пользователем интервальный ряд частот
 		double interval;												//Длина интервала
+		int dataSize;                                                   //Число элементов в выборке
 
-		int dataSize;											//Число элементов в выборке
-		Dictionary<double, double> statFreq;					//Стат. ряд частот
-		Dictionary<double, double> statRelFreq;					//Стат. ряд относительных частот
-		Dictionary<Range, double> intervalFreq;					//Интервальный ряд частот
-		Dictionary<Range, double> intervalRelFreq;				//Интервальный ряд относительных частот
-		Dictionary<double, double> groupFreq;					//Группированны ряд частот
-		Dictionary<double, double> groupRelFreq;                //Группированный ряд относительных частот
-
+		Distribution distribution;										//Ряды
 
 		//------------------ СОСТОЯНИЕ GUI --------------------------------
 
@@ -96,6 +92,9 @@ namespace StatisticDistribution
 					var bs = new BindingSource();
 					bs.DataSource = data.Select(x => new { Xi = x }).ToList();
 					gridData.DataSource = bs;
+
+					//Создаем ряд
+					distribution = new Distribution(data);
 				}
 				catch(System.FormatException)
 				{
@@ -114,9 +113,9 @@ namespace StatisticDistribution
 			resetData();
 			data = null;
 			setupGUIState(GUIState.INTERVAL_ONLY);
-			intervalFreq = new Dictionary<Range, double>();
+			var intervalFreq = new Dictionary<Range, double>();
 
-			//Переводим в ряд относительных частот
+			//Переводим в ряд частот
 			foreach(var interval in stringIntervals)
 			{
 				Range? range;
@@ -129,6 +128,9 @@ namespace StatisticDistribution
 				dataSize += interval.Value;
 				intervalFreq.Add((Range)range, interval.Value);
 			}
+
+			//Создаем ряд
+			distribution = new Distribution(intervalFreq, interval);
 		}
 
 		//Валидация ввода интервального ряда
@@ -159,224 +161,64 @@ namespace StatisticDistribution
 		//Разбивка на интервалы
 		private void btnSeparate_Click(object sender, EventArgs e)
 		{
-			/*if ((numIntervals.Value < 4) || (numIntervals.Value > 10))
-			{
-				MessageBox.Show("Число интервалов должно быть от 4 до 10", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				return;
-			}*/
-
-			//Обнуляем
-			groupFreq = null; groupRelFreq = null;
-			intervalFreq = null; intervalRelFreq = null;
-
-			//Просто вызываем функцию построения интервального ряда частот
 			interval = (data.Last()-data.First())/(double)numIntervals.Value;
-
-			btnIntervalFreq_Click(sender, e);
+			DisplayForm.DisplayIntervalFreq(distribution.Separate(interval));
 			setupGUIState(GUIState.SEPARATE);
 		}
 
 		//                 Статистический ряд
 		//=======================================================
 
-		//Высчитывает статистический ряд частот - он базовый для остальных
-		Dictionary<double, double> calcStatFreq()
-		{
-			var statFreq = new Dictionary<double, double>();
-			foreach (var d in data)
-				if (statFreq.ContainsKey(d))
-					statFreq[d]++;
-				else
-					statFreq.Add(d, 1);
-			return statFreq;
-		}
-
-		//Вычисляет статистический ряд относительных частот
-		Dictionary<double, double> calcStatRelFreq()
-		{
-			if (statFreq == null) statFreq = calcStatFreq();
-			statRelFreq = new Dictionary<double, double>();
-			foreach (var x in statFreq) statRelFreq.Add(x.Key, x.Value / dataSize);
-			return statRelFreq;
-		}
-
 		//Показать статистический ряд частот
 		private void btnStatFreq_Click(object sender, EventArgs e)
 		{
-			if (statFreq == null) statFreq = calcStatFreq();
-			DisplayForm.DisplayStatFreq(statFreq);
+			DisplayForm.DisplayStatFreq(distribution.StatFreq);
 
 		}
 
 		//Показать статистический ряд относительных частот
 		private void btnStatRelFreq_Click(object sender, EventArgs e)
 		{
-			if (statRelFreq == null)
-			{
-				statRelFreq = calcStatRelFreq();
-			}
-			DisplayForm.DisplayStatRelFreq(statRelFreq);
+			DisplayForm.DisplayStatRelFreq(distribution.StatRelFreq);
 		}
 
 		//               Интервальный ряд
 		//=======================================================
 
-		//Высисление интервального ряда частот - он базовый для всех интервальных и группированных 
-		Dictionary<Range, double> calcIntervalFreq()
-		{
-			var intervalFreq = new Dictionary<Range, double>();
-
-			//Если стат. ряд частот еще не вычислен
-			if (statFreq == null) statFreq = calcStatFreq();
-			if (statFreq.Count == 0)
-			{
-				MessageBox.Show("Нет данных в статистическом ряду частот", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return null;
-			}
-
-			var xi = statFreq.GetEnumerator();	//Перечислитель для обхода словаря
-			double intervalStart;               //Начало интервала
-			double ni;                          //Суммарная частота на интервале
-			bool isNotEnd = false;				//Пришли ли к концу списка
-			bool isAdded = false;				//Добавлен ли текущий элемент
-
-			//[x0; x1]; (x1; x2]; (x2; x3]; ... (xn-1; xn];
-
-			//Добавляем первый интервал (обе границы включаются)
-			intervalStart = statFreq.First().Key;
-			ni = 0;
-			do
-			{
-				ni += xi.Current.Value;
-			} while ((isNotEnd = xi.MoveNext()) && (xi.Current.Key - intervalStart <= interval));
-
-			intervalFreq.Add(new Range(intervalStart, intervalStart+interval, true, true), ni);
-
-			//Добавляем остальные интервалы (левая - не включается, правая - включается)
-			//Нужна проверка, что остались элементы
-			if (isNotEnd)
-			{
-				//В качестве начала интервала берем конец первого интервала
-				intervalStart += interval;
-				ni = 0;
-				do
-				{
-					//Накапливаем сумму частот
-					if (xi.Current.Key - intervalStart <= interval)
-					{
-						ni += xi.Current.Value;
-						isAdded = false;
-					}
-					else
-					{
-						isAdded = true;
-						//Добавляем интервал
-						intervalFreq.Add(new Range(intervalStart, intervalStart + interval, false, true), ni);
-						intervalStart += interval;
-						ni = xi.Current.Value;
-					}
-				} while (xi.MoveNext());
-			}			
-
-			if(!isAdded)
-			{
-				//Если список завершился раньше, чем кончился интервал
-				//ni уже накоплен, надо лишь установить правую границу
-				intervalFreq.Add(new Range(intervalStart, intervalStart + interval, false, true), ni);
-			}
-
-			return intervalFreq;
-		}
-
 		//Показать интервальный ряд частот
 		private void btnIntervalFreq_Click(object sender, EventArgs e)
 		{
-			if (intervalFreq == null)
-			{
-				intervalFreq = calcIntervalFreq();
-				if (intervalFreq == null) return;
-			}
-
-			//Отображаем гистограмму
-			DisplayForm.DisplayIntervalFreq(intervalFreq);
+			DisplayForm.DisplayIntervalFreq(distribution.IntervalFreq);
 		}
 
-		
-		Dictionary<Range, double> calcIntervalRelFreq()
-		{
-			if (intervalFreq == null) intervalFreq = calcIntervalFreq();
-			if (intervalFreq == null) return null;
-
-			intervalRelFreq = new Dictionary<Range, double>();
-			foreach (var x in intervalFreq) intervalRelFreq.Add(x.Key, x.Value / dataSize);
-
-			return intervalRelFreq;
-		}
 
 		//Показать интервальный ряд относительных частот
 		private void btnIntervalRelFreq_Click(object sender, EventArgs e)
 		{
-			if (intervalRelFreq == null)
-			{
-				intervalRelFreq = calcIntervalRelFreq();
-				if (intervalRelFreq == null) return;
-			}
-
-			DisplayForm.DisplayIntervalRelFreq(intervalRelFreq);
+			DisplayForm.DisplayIntervalRelFreq(distribution.IntervalRelFreq);
 
 		}
 
 		//                 Группированный ряд
-		//=======================================================
-
-		//Построить группированный ряд частот
-		Dictionary<double, double> calcGroupFreq()
-		{
-
-			if (intervalFreq == null) intervalFreq = calcIntervalFreq();
-			if (intervalFreq == null) return null;
-
-			var groupFreq = new Dictionary<double, double>();
-
-			foreach (var x in intervalFreq) groupFreq.Add(x.Key.Middle, x.Value);
-
-			return groupFreq;
-		}
+		//========================================================
 
 		//Показать группированный ряд частот
 		private void btnGroupFreq_Click(object sender, EventArgs e)
 		{
-			if(groupFreq==null)
-			{
-				groupFreq = calcGroupFreq();
-				if (groupFreq == null) return;
-			}
-
-			DisplayForm.DisplayGroupFreq(groupFreq);
+			DisplayForm.DisplayGroupFreq(distribution.GroupFreq);
 		}
 
 		////Показать группированный ряд относительных частот
 		private void btnGroupRelFreq_Click(object sender, EventArgs e)
 		{
-			if (groupRelFreq == null)
-			{
-				if (groupFreq == null)
-				{
-					groupFreq = calcGroupFreq();
-					if (groupFreq == null) return;
-				}
-				groupRelFreq = new Dictionary<double, double>();
-				foreach (var x in groupFreq) groupRelFreq.Add(x.Key,x.Value / dataSize);
-			}
-
-			DisplayForm.DisplayGroupRelFreq(groupRelFreq);
+			DisplayForm.DisplayGroupRelFreq(distribution.GroupRelFreq);
 
 		}
 
 		//Показать числовые характеристики
 		private void btnCharasteristic_Click(object sender, EventArgs e)
 		{
-			if (data != null)
+			/*if (data != null)
 			{
 				if (statFreq == null) statFreq = calcStatFreq();
 				NumCharacteristics.CalcAndShowNumCharact(statFreq);
@@ -385,13 +227,13 @@ namespace StatisticDistribution
 			{
 				if (groupFreq == null) groupFreq = calcGroupFreq();
 				NumCharacteristics.CalcAndShowNumCharact(groupFreq);
-			}
+			}*/
 		}
 
 		//Показать эмпирическую функцию распределения
 		private void btnEmpFunction_Click(object sender, EventArgs e)
 		{
-			if (data != null)
+			/*if (data != null)
 			{
 				//if (statRelFreq == null) statRelFreq = calcStatRelFreq();
 				//EmpiricFunction.ShowEmpiricFunction(statRelFreq);
@@ -403,7 +245,7 @@ namespace StatisticDistribution
 			{
 				if (intervalRelFreq == null) intervalRelFreq = calcIntervalRelFreq();
 				EmpiricFunction.ShowEmpiricFunction(intervalRelFreq);
-			}
+			}*/
 		}
 
 		#endregion
@@ -451,9 +293,6 @@ namespace StatisticDistribution
 		//Сбрасывает значения рядов
 		private void resetData()
 		{
-			statFreq = null; statRelFreq = null;
-			groupFreq = null; groupRelFreq = null;
-			intervalFreq = null; intervalRelFreq = null;
 			interval = 0;
 			dataSize = 0;
 		}

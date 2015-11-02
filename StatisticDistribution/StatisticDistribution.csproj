@@ -54,6 +54,7 @@
     <Compile Include="DisplayForm.Designer.cs">
       <DependentUpon>DisplayForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Distribution\Distribution.cs" />
     <Compile Include="EmpiricFunction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,7 +67,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IntervalPair.cs" />
+    <Compile Include="Utils\IntervalPair.cs" />
     <Compile Include="NumCharacteristics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,7 +76,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Range.cs" />
+    <Compile Include="Utils\Range.cs" />
     <EmbeddedResource Include="DisplayForm.resx">
       <DependentUpon>DisplayForm.cs</DependentUpon>
     </EmbeddedResource>
