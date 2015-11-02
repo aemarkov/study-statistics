@@ -28,16 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panelControls = new System.Windows.Forms.Panel();
-			this.btnEmpFunction = new System.Windows.Forms.Button();
-			this.btnCharasteristic = new System.Windows.Forms.Button();
-			this.groupBoxData = new System.Windows.Forms.GroupBox();
-			this.btnGroupRelFreq = new System.Windows.Forms.Button();
-			this.btnGroupFreq = new System.Windows.Forms.Button();
-			this.btnIntervalRelFreq = new System.Windows.Forms.Button();
-			this.btnIntervalFreq = new System.Windows.Forms.Button();
-			this.btnStatRelFreq = new System.Windows.Forms.Button();
-			this.btnStatFreq = new System.Windows.Forms.Button();
 			this.groupBoxInterval = new System.Windows.Forms.GroupBox();
 			this.btnSeparate = new System.Windows.Forms.Button();
 			this.numIntervals = new System.Windows.Forms.NumericUpDown();
@@ -50,8 +40,20 @@
 			this.gridIntervalData = new System.Windows.Forms.DataGridView();
 			this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.panelControls.SuspendLayout();
-			this.groupBoxData.SuspendLayout();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.обработкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.построениеРядаToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuStatFreq = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuStatRelFreq = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuIntervalFreq = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuIntervalRelFreq = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuGroupFreq = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuGroupRelFreq = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuEmpiricFunction = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuNumericCharacteristics = new System.Windows.Forms.ToolStripMenuItem();
+			this.проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuCheckNormal = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuCheckBinomial = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBoxInterval.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numIntervals)).BeginInit();
 			this.tabControl1.SuspendLayout();
@@ -59,135 +61,28 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
 			this.tabPage2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridIntervalData)).BeginInit();
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// panelControls
-			// 
-			this.panelControls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.panelControls.Controls.Add(this.btnEmpFunction);
-			this.panelControls.Controls.Add(this.btnCharasteristic);
-			this.panelControls.Controls.Add(this.groupBoxData);
-			this.panelControls.Controls.Add(this.groupBoxInterval);
-			this.panelControls.Location = new System.Drawing.Point(324, 13);
-			this.panelControls.Name = "panelControls";
-			this.panelControls.Size = new System.Drawing.Size(221, 631);
-			this.panelControls.TabIndex = 1;
-			// 
-			// btnEmpFunction
-			// 
-			this.btnEmpFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btnEmpFunction.Location = new System.Drawing.Point(11, 566);
-			this.btnEmpFunction.Name = "btnEmpFunction";
-			this.btnEmpFunction.Size = new System.Drawing.Size(202, 58);
-			this.btnEmpFunction.TabIndex = 10;
-			this.btnEmpFunction.Text = "Эмпирическая функция распределения";
-			this.btnEmpFunction.UseVisualStyleBackColor = true;
-			this.btnEmpFunction.Click += new System.EventHandler(this.btnEmpFunction_Click);
-			// 
-			// btnCharasteristic
-			// 
-			this.btnCharasteristic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btnCharasteristic.Location = new System.Drawing.Point(11, 502);
-			this.btnCharasteristic.Name = "btnCharasteristic";
-			this.btnCharasteristic.Size = new System.Drawing.Size(202, 58);
-			this.btnCharasteristic.TabIndex = 9;
-			this.btnCharasteristic.Text = "Расчет числовых характиристик";
-			this.btnCharasteristic.UseVisualStyleBackColor = true;
-			this.btnCharasteristic.Click += new System.EventHandler(this.btnCharasteristic_Click);
-			// 
-			// groupBoxData
-			// 
-			this.groupBoxData.Controls.Add(this.btnGroupRelFreq);
-			this.groupBoxData.Controls.Add(this.btnGroupFreq);
-			this.groupBoxData.Controls.Add(this.btnIntervalRelFreq);
-			this.groupBoxData.Controls.Add(this.btnIntervalFreq);
-			this.groupBoxData.Controls.Add(this.btnStatRelFreq);
-			this.groupBoxData.Controls.Add(this.btnStatFreq);
-			this.groupBoxData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.groupBoxData.Location = new System.Drawing.Point(5, 74);
-			this.groupBoxData.Name = "groupBoxData";
-			this.groupBoxData.Size = new System.Drawing.Size(215, 422);
-			this.groupBoxData.TabIndex = 8;
-			this.groupBoxData.TabStop = false;
-			this.groupBoxData.Text = "Построение рядов";
-			// 
-			// btnGroupRelFreq
-			// 
-			this.btnGroupRelFreq.Location = new System.Drawing.Point(6, 356);
-			this.btnGroupRelFreq.Name = "btnGroupRelFreq";
-			this.btnGroupRelFreq.Size = new System.Drawing.Size(202, 58);
-			this.btnGroupRelFreq.TabIndex = 5;
-			this.btnGroupRelFreq.Text = "Группированный ряд относительных частот";
-			this.btnGroupRelFreq.UseVisualStyleBackColor = true;
-			this.btnGroupRelFreq.Click += new System.EventHandler(this.btnGroupRelFreq_Click);
-			// 
-			// btnGroupFreq
-			// 
-			this.btnGroupFreq.Location = new System.Drawing.Point(6, 292);
-			this.btnGroupFreq.Name = "btnGroupFreq";
-			this.btnGroupFreq.Size = new System.Drawing.Size(202, 58);
-			this.btnGroupFreq.TabIndex = 4;
-			this.btnGroupFreq.Text = "Группированный ряд частот";
-			this.btnGroupFreq.UseVisualStyleBackColor = true;
-			this.btnGroupFreq.Click += new System.EventHandler(this.btnGroupFreq_Click);
-			// 
-			// btnIntervalRelFreq
-			// 
-			this.btnIntervalRelFreq.Location = new System.Drawing.Point(6, 228);
-			this.btnIntervalRelFreq.Name = "btnIntervalRelFreq";
-			this.btnIntervalRelFreq.Size = new System.Drawing.Size(202, 58);
-			this.btnIntervalRelFreq.TabIndex = 3;
-			this.btnIntervalRelFreq.Text = "Интервальный ряд относительных частот";
-			this.btnIntervalRelFreq.UseVisualStyleBackColor = true;
-			this.btnIntervalRelFreq.Click += new System.EventHandler(this.btnIntervalRelFreq_Click);
-			// 
-			// btnIntervalFreq
-			// 
-			this.btnIntervalFreq.Location = new System.Drawing.Point(6, 164);
-			this.btnIntervalFreq.Name = "btnIntervalFreq";
-			this.btnIntervalFreq.Size = new System.Drawing.Size(202, 58);
-			this.btnIntervalFreq.TabIndex = 2;
-			this.btnIntervalFreq.Text = "Интервальный ряд частот";
-			this.btnIntervalFreq.UseVisualStyleBackColor = true;
-			this.btnIntervalFreq.Click += new System.EventHandler(this.btnIntervalFreq_Click);
-			// 
-			// btnStatRelFreq
-			// 
-			this.btnStatRelFreq.Location = new System.Drawing.Point(7, 100);
-			this.btnStatRelFreq.Name = "btnStatRelFreq";
-			this.btnStatRelFreq.Size = new System.Drawing.Size(202, 58);
-			this.btnStatRelFreq.TabIndex = 1;
-			this.btnStatRelFreq.Text = "Статистический ряд относительных частот";
-			this.btnStatRelFreq.UseVisualStyleBackColor = true;
-			this.btnStatRelFreq.Click += new System.EventHandler(this.btnStatRelFreq_Click);
-			// 
-			// btnStatFreq
-			// 
-			this.btnStatFreq.Location = new System.Drawing.Point(7, 36);
-			this.btnStatFreq.Name = "btnStatFreq";
-			this.btnStatFreq.Size = new System.Drawing.Size(202, 58);
-			this.btnStatFreq.TabIndex = 0;
-			this.btnStatFreq.Text = "Статистический ряд частот";
-			this.btnStatFreq.UseVisualStyleBackColor = true;
-			this.btnStatFreq.Click += new System.EventHandler(this.btnStatFreq_Click);
 			// 
 			// groupBoxInterval
 			// 
+			this.groupBoxInterval.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBoxInterval.Controls.Add(this.btnSeparate);
 			this.groupBoxInterval.Controls.Add(this.numIntervals);
 			this.groupBoxInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.groupBoxInterval.Location = new System.Drawing.Point(4, 4);
+			this.groupBoxInterval.Location = new System.Drawing.Point(6, 536);
 			this.groupBoxInterval.Name = "groupBoxInterval";
-			this.groupBoxInterval.Size = new System.Drawing.Size(216, 64);
+			this.groupBoxInterval.Size = new System.Drawing.Size(291, 64);
 			this.groupBoxInterval.TabIndex = 7;
 			this.groupBoxInterval.TabStop = false;
 			this.groupBoxInterval.Text = "Разбиение на интервалы";
 			// 
 			// btnSeparate
 			// 
-			this.btnSeparate.Location = new System.Drawing.Point(106, 26);
+			this.btnSeparate.Location = new System.Drawing.Point(106, 25);
 			this.btnSeparate.Name = "btnSeparate";
-			this.btnSeparate.Size = new System.Drawing.Size(104, 26);
+			this.btnSeparate.Size = new System.Drawing.Size(179, 26);
 			this.btnSeparate.TabIndex = 1;
 			this.btnSeparate.Text = "Разбить";
 			this.btnSeparate.UseVisualStyleBackColor = true;
@@ -223,7 +118,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(5, 12);
+			this.tabControl1.Location = new System.Drawing.Point(5, 27);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(313, 632);
@@ -233,6 +128,7 @@
 			// 
 			this.tabPage1.Controls.Add(this.btnOpen);
 			this.tabPage1.Controls.Add(this.gridData);
+			this.tabPage1.Controls.Add(this.groupBoxInterval);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -269,7 +165,7 @@
 			this.gridData.Location = new System.Drawing.Point(6, 52);
 			this.gridData.Name = "gridData";
 			this.gridData.RowHeadersVisible = false;
-			this.gridData.Size = new System.Drawing.Size(291, 548);
+			this.gridData.Size = new System.Drawing.Size(291, 478);
 			this.gridData.TabIndex = 3;
 			// 
 			// tabPage2
@@ -323,19 +219,131 @@
 			this.Value.HeaderText = "Частота";
 			this.Value.Name = "Value";
 			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.обработкаToolStripMenuItem});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(324, 24);
+			this.menuStrip1.TabIndex = 3;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// обработкаToolStripMenuItem
+			// 
+			this.обработкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.построениеРядаToolStripMenuItem1,
+            this.menuEmpiricFunction,
+            this.menuNumericCharacteristics,
+            this.проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem});
+			this.обработкаToolStripMenuItem.Name = "обработкаToolStripMenuItem";
+			this.обработкаToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+			this.обработкаToolStripMenuItem.Text = "Обработка";
+			// 
+			// построениеРядаToolStripMenuItem1
+			// 
+			this.построениеРядаToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStatFreq,
+            this.menuStatRelFreq,
+            this.menuIntervalFreq,
+            this.menuIntervalRelFreq,
+            this.menuGroupFreq,
+            this.menuGroupRelFreq});
+			this.построениеРядаToolStripMenuItem1.Name = "построениеРядаToolStripMenuItem1";
+			this.построениеРядаToolStripMenuItem1.Size = new System.Drawing.Size(347, 22);
+			this.построениеРядаToolStripMenuItem1.Text = "Построение ряда";
+			// 
+			// menuStatFreq
+			// 
+			this.menuStatFreq.Name = "menuStatFreq";
+			this.menuStatFreq.Size = new System.Drawing.Size(318, 22);
+			this.menuStatFreq.Text = "Статистический ряд частот";
+			this.menuStatFreq.Click += new System.EventHandler(this.menuStatFreq_Click);
+			// 
+			// menuStatRelFreq
+			// 
+			this.menuStatRelFreq.Name = "menuStatRelFreq";
+			this.menuStatRelFreq.Size = new System.Drawing.Size(318, 22);
+			this.menuStatRelFreq.Text = "Статистический ряд относительных частот";
+			this.menuStatRelFreq.Click += new System.EventHandler(this.menuStatRelFreq_Click);
+			// 
+			// menuIntervalFreq
+			// 
+			this.menuIntervalFreq.Name = "menuIntervalFreq";
+			this.menuIntervalFreq.Size = new System.Drawing.Size(318, 22);
+			this.menuIntervalFreq.Text = "Интервальный ряд частот";
+			this.menuIntervalFreq.Click += new System.EventHandler(this.menuIntervalFreq_Click);
+			// 
+			// menuIntervalRelFreq
+			// 
+			this.menuIntervalRelFreq.Name = "menuIntervalRelFreq";
+			this.menuIntervalRelFreq.Size = new System.Drawing.Size(318, 22);
+			this.menuIntervalRelFreq.Text = "Интервальный ряд относительных частот";
+			this.menuIntervalRelFreq.Click += new System.EventHandler(this.menuIntervalRelFreq_Click);
+			// 
+			// menuGroupFreq
+			// 
+			this.menuGroupFreq.Name = "menuGroupFreq";
+			this.menuGroupFreq.Size = new System.Drawing.Size(318, 22);
+			this.menuGroupFreq.Text = "Группированный ряд частот";
+			this.menuGroupFreq.Click += new System.EventHandler(this.menuGroupFreq_Click);
+			// 
+			// menuGroupRelFreq
+			// 
+			this.menuGroupRelFreq.Name = "menuGroupRelFreq";
+			this.menuGroupRelFreq.Size = new System.Drawing.Size(318, 22);
+			this.menuGroupRelFreq.Text = "Группированный ряд относительных частот";
+			this.menuGroupRelFreq.Click += new System.EventHandler(this.menuGroupRelFreq_Click);
+			// 
+			// menuEmpiricFunction
+			// 
+			this.menuEmpiricFunction.Name = "menuEmpiricFunction";
+			this.menuEmpiricFunction.Size = new System.Drawing.Size(347, 22);
+			this.menuEmpiricFunction.Text = "Эмпирическая функция распределения";
+			this.menuEmpiricFunction.Click += new System.EventHandler(this.menuEmpiricFunction_Click);
+			// 
+			// menuNumericCharacteristics
+			// 
+			this.menuNumericCharacteristics.Name = "menuNumericCharacteristics";
+			this.menuNumericCharacteristics.Size = new System.Drawing.Size(347, 22);
+			this.menuNumericCharacteristics.Text = "Расчет числовых характеристик";
+			this.menuNumericCharacteristics.Click += new System.EventHandler(this.menuNumericCharacteristics_Click);
+			// 
+			// проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem
+			// 
+			this.проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuCheckNormal,
+            this.menuCheckBinomial});
+			this.проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem.Name = "проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem";
+			this.проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem.Size = new System.Drawing.Size(347, 22);
+			this.проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem.Text = "Проверка гипотезы о виде закона распределения";
+			// 
+			// menuCheckNormal
+			// 
+			this.menuCheckNormal.Name = "menuCheckNormal";
+			this.menuCheckNormal.Size = new System.Drawing.Size(244, 22);
+			this.menuCheckNormal.Text = "Нормальное распределение";
+			this.menuCheckNormal.Click += new System.EventHandler(this.menuCheckNormal_Click);
+			// 
+			// menuCheckBinomial
+			// 
+			this.menuCheckBinomial.Name = "menuCheckBinomial";
+			this.menuCheckBinomial.Size = new System.Drawing.Size(244, 22);
+			this.menuCheckBinomial.Text = "Биномиальное распределение";
+			this.menuCheckBinomial.Click += new System.EventHandler(this.menuCheckBinomial_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(556, 655);
+			this.ClientSize = new System.Drawing.Size(324, 661);
 			this.Controls.Add(this.tabControl1);
-			this.Controls.Add(this.panelControls);
-			this.MinimumSize = new System.Drawing.Size(565, 630);
+			this.Controls.Add(this.menuStrip1);
+			this.MainMenuStrip = this.menuStrip1;
+			this.MinimumSize = new System.Drawing.Size(340, 700);
 			this.Name = "MainForm";
 			this.Text = "Статистическое распределение";
-			this.panelControls.ResumeLayout(false);
-			this.groupBoxData.ResumeLayout(false);
 			this.groupBoxInterval.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.numIntervals)).EndInit();
 			this.tabControl1.ResumeLayout(false);
@@ -343,20 +351,14 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
 			this.tabPage2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridIntervalData)).EndInit();
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
-		private System.Windows.Forms.Panel panelControls;
-		private System.Windows.Forms.Button btnCharasteristic;
-		private System.Windows.Forms.GroupBox groupBoxData;
-		private System.Windows.Forms.Button btnGroupRelFreq;
-		private System.Windows.Forms.Button btnGroupFreq;
-		private System.Windows.Forms.Button btnIntervalRelFreq;
-		private System.Windows.Forms.Button btnIntervalFreq;
-		private System.Windows.Forms.Button btnStatRelFreq;
-		private System.Windows.Forms.Button btnStatFreq;
 		private System.Windows.Forms.GroupBox groupBoxInterval;
 		private System.Windows.Forms.Button btnSeparate;
 		private System.Windows.Forms.NumericUpDown numIntervals;
@@ -369,7 +371,20 @@
 		private System.Windows.Forms.DataGridView gridIntervalData;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Key;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Value;
-		private System.Windows.Forms.Button btnEmpFunction;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem обработкаToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem построениеРядаToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem menuStatFreq;
+		private System.Windows.Forms.ToolStripMenuItem menuStatRelFreq;
+		private System.Windows.Forms.ToolStripMenuItem menuIntervalFreq;
+		private System.Windows.Forms.ToolStripMenuItem menuIntervalRelFreq;
+		private System.Windows.Forms.ToolStripMenuItem menuGroupFreq;
+		private System.Windows.Forms.ToolStripMenuItem menuGroupRelFreq;
+		private System.Windows.Forms.ToolStripMenuItem menuEmpiricFunction;
+		private System.Windows.Forms.ToolStripMenuItem menuNumericCharacteristics;
+		private System.Windows.Forms.ToolStripMenuItem проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem menuCheckNormal;
+		private System.Windows.Forms.ToolStripMenuItem menuCheckBinomial;
 	}
 }
 

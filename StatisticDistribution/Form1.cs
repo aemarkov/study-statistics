@@ -152,11 +152,10 @@ namespace StatisticDistribution
 
 		#endregion
 
+		#region CALC
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		/////////                       ОБРАБОТКА ДАННЫХ                                        /////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////
-
-		#region CALC
 
 		//Разбивка на интервалы
 		private void btnSeparate_Click(object sender, EventArgs e)
@@ -170,47 +169,49 @@ namespace StatisticDistribution
 		//=======================================================
 
 		//Показать статистический ряд частот
-		private void btnStatFreq_Click(object sender, EventArgs e)
+		private void menuStatFreq_Click(object sender, EventArgs e)
 		{
 			DisplayForm.DisplayStatFreq(distribution.StatFreq);
-
 		}
 
 		//Показать статистический ряд относительных частот
-		private void btnStatRelFreq_Click(object sender, EventArgs e)
+		private void menuStatRelFreq_Click(object sender, EventArgs e)
 		{
 			DisplayForm.DisplayStatRelFreq(distribution.StatRelFreq);
 		}
 
 		//Показать интервальный ряд частот
-		private void btnIntervalFreq_Click(object sender, EventArgs e)
+		private void menuIntervalFreq_Click(object sender, EventArgs e)
 		{
 			DisplayForm.DisplayIntervalFreq(distribution.IntervalFreq);
 		}
 
-
 		//Показать интервальный ряд относительных частот
-		private void btnIntervalRelFreq_Click(object sender, EventArgs e)
+		private void menuIntervalRelFreq_Click(object sender, EventArgs e)
 		{
 			DisplayForm.DisplayIntervalRelFreq(distribution.IntervalRelFreq);
-
 		}
 
 		//Показать группированный ряд частот
-		private void btnGroupFreq_Click(object sender, EventArgs e)
+		private void menuGroupFreq_Click(object sender, EventArgs e)
 		{
 			DisplayForm.DisplayGroupFreq(distribution.GroupFreq);
 		}
 
 		////Показать группированный ряд относительных частот
-		private void btnGroupRelFreq_Click(object sender, EventArgs e)
+		private void menuGroupRelFreq_Click(object sender, EventArgs e)
 		{
 			DisplayForm.DisplayGroupRelFreq(distribution.GroupRelFreq);
-
 		}
 
 		//Показать числовые характеристики
-		private void btnCharasteristic_Click(object sender, EventArgs e)
+		private void menuEmpiricFunction_Click(object sender, EventArgs e)
+		{
+			EmpiricFunction.ShowEmpiricFunction(distribution.IntervalRelFreq);
+		}
+
+		//Показать эмпирическую функцию распределения
+		private void menuNumericCharacteristics_Click(object sender, EventArgs e)
 		{
 			if (state != GUIState.INTERVAL_ONLY)
 				NumCharacteristics.CalcAndShowNumCharact(distribution.StatFreq);
@@ -218,29 +219,19 @@ namespace StatisticDistribution
 				NumCharacteristics.CalcAndShowNumCharact(distribution.GroupFreq);
 		}
 
-		//Показать эмпирическую функцию распределения
-		private void btnEmpFunction_Click(object sender, EventArgs e)
+
+		//Проверка закона о нормальном распределении
+		private void menuCheckNormal_Click(object sender, EventArgs e)
 		{
-			/*if (data != null)
-			{
-				//if (statRelFreq == null) statRelFreq = calcStatRelFreq();
-				//
-
-				if (intervalRelFreq == null) intervalRelFreq = calcIntervalRelFreq();
-				EmpiricFunction.ShowEmpiricFunction(intervalRelFreq);
-			}
-			else if(stringIntervals != null)
-			{
-				if (intervalRelFreq == null) intervalRelFreq = calcIntervalRelFreq();
-				
-			}*/
-
-			//if(state!=GUIState.INTERVAL_ONLY)
-			//	EmpiricFunction.ShowEmpiricFunction(distribution.StatRelFreq);
-			//else
-				EmpiricFunction.ShowEmpiricFunction(distribution.IntervalRelFreq);
 
 		}
+
+		//Проверка закона о биномиальном распределении
+		private void menuCheckBinomial_Click(object sender, EventArgs e)
+		{
+
+		}
+
 
 		#endregion
 
@@ -257,30 +248,39 @@ namespace StatisticDistribution
 			{
 				//Файл не открыт, нельзя производить никакие операции
 				case GUIState.NOT_OPENED:
-					setElementEnabled(false, numIntervals, btnSeparate, btnStatFreq,  btnStatRelFreq, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic, btnEmpFunction);
+					setElementEnabled(false, menuStatFreq,  menuStatRelFreq, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction);
+					setElementEnabled(false, numIntervals, btnSeparate);
 					break;
 
 				//Файл открыт, но не разделен. Можно смотреть только статистические ряды
 				case GUIState.OPENED:
-					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnCharasteristic);
-					setElementEnabled(false, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnEmpFunction);
+					setElementEnabled(true,  menuStatFreq, menuStatRelFreq, menuNumericCharacteristics);
+					setElementEnabled(true, numIntervals, btnSeparate);
+					setElementEnabled(false, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuEmpiricFunction);
                     break;
 
 				//Файл открыт и разделен. Можно выполнять все операции
 				case GUIState.SEPARATE:
-					setElementEnabled(true, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic, btnEmpFunction);
+					setElementEnabled(true, menuStatFreq, menuStatRelFreq, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction);
+					setElementEnabled(true, numIntervals, btnSeparate);
 					break;
 				case GUIState.INTERVAL_ONLY:
-					setElementEnabled(false, numIntervals, btnSeparate, btnStatFreq, btnStatRelFreq);
-					setElementEnabled(true, btnIntervalFreq, btnIntervalRelFreq, btnGroupFreq, btnGroupRelFreq, btnCharasteristic, btnEmpFunction);
+					setElementEnabled(false, menuStatFreq, menuStatRelFreq);
+					setElementEnabled(false, numIntervals, btnSeparate);
+					setElementEnabled(true, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction);
 					break;
 			};
 		}
 
 		//Задает всем перечисленным элементам свойство Enabled
-		private void setElementEnabled(bool enabled, params Control[] controls)
+		private void setElementEnabled(bool enabled, params ToolStripMenuItem[] controls)
 		{
 			controls.All(c => {c.Enabled=enabled; return true; });
+		}
+
+		private void setElementEnabled(bool enabled, params Control[] controls)
+		{
+			controls.All(c => { c.Enabled = enabled; return true; });
 		}
 
 
@@ -292,7 +292,6 @@ namespace StatisticDistribution
 		}
 
 		#endregion
-
 
 		#region FILE_PARSING
 		/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -315,5 +314,8 @@ namespace StatisticDistribution
 
 
 		#endregion
+
+		
+
 	}
 }
