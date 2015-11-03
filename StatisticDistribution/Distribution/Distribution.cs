@@ -33,16 +33,13 @@ namespace Statistics.Distribution
 		#endregion
 
 		/////////////////////////// ВСПОМОГАТЕЛЬНЫЕ ДАННЫЕ ////////////////////////////////////
-		BindingList<IntervalPair> string_intervals;     //Сырые данные от ввода интервального ряда частот
-
-
 		#region CONSTRUCTORS
 		////////////////////////////////// КОНСТРУКТОРЫ ///////////////////////////////////////
 
 		/// <summary>
 		/// Конструктор по-умолчанию, обнуляет данные
 		/// </summary>
-		public Distribution()
+		Distribution()
 		{
 			stat_freq = null;
 			stat_rel_freq = null;
@@ -71,12 +68,19 @@ namespace Statistics.Distribution
 			this.interval = interval;
 			this.interval_freq = interval_freq;
 			//this.string_intervals = stringIntervals;
+
+            //Определим размер выборки
+            data_size=0;
+            foreach (var el in interval_freq)
+                data_size += (int)el.Value;
 		}
 
 		#endregion
 
 		#region CALCULATIONS
 		//////////////////////////// РАСЧЕТ РЯДОВ ///////////////////////////////////////////
+
+        public int Count { get { return data_size; } }
 
 		//Разбивает ряд
 		public Dictionary<Range, double> Separate(double interval)

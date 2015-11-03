@@ -10,13 +10,16 @@ namespace Statistics.DistributionCheck
 	/// </summary>
 	public class BinomialDistribution : AbstractDistribution
 	{
+		//Название распределения
 		public override string Name { get { return "Биномиальное распределение"; } }
 
+		//Конструктор
 		public BinomialDistribution(Distribution.Distribution distr):base(distr)
 		{
 
 		}
 
+		//Возвращает ряд частот, для построения полигона
 		public override Dictionary<double, double> StatisticsData
 		{
 			get
@@ -25,15 +28,22 @@ namespace Statistics.DistributionCheck
 			}
 		}
 
+		//Возвращает список точек для построения теоретической кривой
+		public override Dictionary<double, double> GetTheoreticalFreq()
+		{
+			throw new NotImplementedException();
+		}
+
+		//Вычисляет вероятности для критерия Пирсона
 		public override List<KeyValuePair<double, double>> CalcProbablities()
 		{
 			throw new NotImplementedException();
 		}
 
-		public override KeyValuePair<double, double> GetPointParams()
-		{
-			throw new NotImplementedException();
-		}
+        public override int Count
+        {
+            get { throw new NotImplementedException(); }
+        }
 
 	}
 }

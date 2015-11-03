@@ -24,10 +24,11 @@ namespace StatisticDistribution
 			this.distr = distr;
 			lblDistrType.Text = distr.Name;
 
-			draw_emp_distribution();
+			draw_distribution(graphEmp, distr.StatisticsData);
+			draw_distribution(graphTheor, distr.GetTheoreticalFreq());
 		}
 
-		//Откланить гипотезу
+		//Отклонить гипотезу
 		private void btnWrong_Click(object sender, EventArgs e)
 		{
 			this.Close();
@@ -36,20 +37,29 @@ namespace StatisticDistribution
 		//Подтвердить гипотезу - дальнейшая проверка по критерию пирсона
 		private void btnCorrect_Click(object sender, EventArgs e)
 		{
+			var probs = distr.CalcProbablities();
+            double pirson = 0;
+            int n = distr.Count;
 
+            foreach(var el in probs)
+            {
+                pirson += (el.Key - n * el.Value) / (n * el.Value);
+            }
+            txtPirsonVis.Text = pirson.ToString("N4");
 		}
 
+		///////////////////////////// ПОСТРОЙКА ГРАФИКОВ //////////////////////////////////////
 
 		//Строит полигон распределения
-		void draw_emp_distribution()
+		void draw_distribution(ZedGraphControl graph, Dictionary<double, double> distr)
 		{
-			setup_graph(graphEmp);
+			setup_graph(graph);
 
 			//Построение полигона
-			var pane = graphEmp.GraphPane;
-			var curve = pane.AddCurve("", dictionaryToList(distr.StatisticsData), Color.FromArgb(255, 39, 174, 96));
-			graphEmp.AxisChange();
-			graphEmp.Invalidate();
+			var pane = graph.GraphPane;
+			var curve = pane.AddCurve("", dictionaryToList(distr), Color.FromArgb(255, 39, 174, 96),SymbolType.None);
+			graph.AxisChange();
+			graph.Invalidate();
 		}
 
 		//Преобразует словарь в набор точек
@@ -87,5 +97,6 @@ namespace StatisticDistribution
 			graph.AxisChange();
 			graph.Invalidate();
 		}
+
 	}
 }

@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-using System.Diagnostics;
 using ZedGraph;
 using Statistics.Utils;
 
@@ -49,7 +48,7 @@ namespace StatisticDistribution
 		private EmpiricFunction(Dictionary<double, double> data)
 		{
 			InitializeComponent();
-			show(calculateEmpiricalFunction(data));
+			//show(Helpers.CalculateEmpiricalFunction(data));
 		}
 
 		//Отобрать функцию
@@ -170,41 +169,6 @@ namespace StatisticDistribution
 
 			graph.AxisChange();
 			graph.Invalidate();
-		}
-
-
-		// Расчет эмпирической функции распределения
-		// F(x) = W(X < x)
-		// * |in|  : statFreq
-		private Dictionary<Range, double> calculateEmpiricalFunction(Dictionary<double, double> statFreq)
-		{
-			var func = new Dictionary<Range, double>();
-
-			double start = statFreq.First().Key;        //Начало интервала
-			double F = 0;                               //Значение функции
-			double prevF = 0;                           //Значенеи функции на предыдушем шаге
-
-			//Серединные интервалы
-			//(a0; a1] - (a1; a2] - ... - (an-1; an];
-			foreach (var x in statFreq)
-			{
-				prevF = F;
-				F += x.Value;
-				
-				//Схлопываем интервалы 
-				if ((x.Value !=0)&&(x.Key!=start))
-				{
-					func.Add(new Range(start, x.Key), prevF);
-					Debug.WriteLine("(" + start + "; " + x.Key + "]: " + prevF);
-					start = x.Key;
-				}
-			}
-
-			//Последний интервал
-			//(an; +inf) => 1
-			Debug.WriteLine("x > " + statFreq.Last().Key + ": " + F);
-
-			return func;
 		}
 	}
 }

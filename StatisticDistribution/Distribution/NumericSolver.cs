@@ -12,12 +12,12 @@ namespace Statistics.Distribution
 	{
 		Dictionary<double, double> distr;			// Распределение, для которого ищем числовые характеристики
 		double summary_frequence;                   // Суммарная частота
-		public double mean,                         // Выборочное среднее
-					  dispersion,                   // Смещенная оценка генеральной дисперсии
-					  standard_deviation,           // Выборочное среднее квадратическое отклонение
-					  s_dispersion,                 // Несмещенная оценка генеральной дисперсии
-					  startMoment,                  // Начальный момент
-					  centralMoment;                // Центральный момент
+		private double? mean,                        // Выборочное среднее
+					    dispersion,                   // Смещенная оценка генеральной дисперсии
+					    standard_deviation,           // Выборочное среднее квадратическое отклонение
+					    s_dispersion,                 // Несмещенная оценка генеральной дисперсии
+					    startMoment,                  // Начальный момент
+					    centralMoment;                // Центральный момент
 
 		/// <summary>
 		/// Создает новый объект NumericSolver на основе ряда распределения
@@ -49,32 +49,43 @@ namespace Statistics.Distribution
 			foreach (var x in distr)
 				range_summ += x.Key * x.Value;
 
-			return range_summ / summary_frequence;
+			mean = range_summ / summary_frequence;
+			return (double)mean;
 		}
 
 		// Смещенная оценка генеральной дисперсии
 		// ВЫБОРОЧНАЯ ДИСПЕРСИЯ
 		public double Dispersion()
 		{
+			if (mean == null) mean = Mean();
+			double dMean = (double)mean;
+
 			double disp_summ = 0;
 			foreach (var x in distr)
-				disp_summ += Math.Pow(x.Key - mean, 2) * x.Value;
+				disp_summ += Math.Pow(x.Key - dMean, 2) * x.Value;
 
-			return disp_summ / summary_frequence;
+			dispersion = disp_summ / summary_frequence;
+			return (double)dispersion;
 		}
 
 		// Выборочное среднее квадратическое отклонение
 		public double StandartDeviation()
 		{
-			return Math.Sqrt(dispersion);
+			if (dispersion == null) dispersion = Dispersion();
+
+			standard_deviation = Math.Sqrt((double)dispersion);
+			return (double)standard_deviation;
 		}
 
 		// Несмещенная оценка генеральной дисперсии
 		// ИСПРАВЛЕННАЯ ВЫБОРОЧНАЯ ДИСПЕРСИЯ
 		public double SDispersion()
 		{
+			if (dispersion == null) dispersion = Dispersion();
+
 			double n = summary_frequence;
-			return (n * dispersion) / (n - 1);
+			s_dispersion= (n * dispersion) / (n - 1);
+			return (double)s_dispersion;
 		}
 
 		//Начальный выборочный момент
@@ -90,9 +101,12 @@ namespace Statistics.Distribution
 		//Центральный выборочный момент
 		public double CentralMoment(int r)
 		{
+			if (mean == null) mean = Mean();
+			double dMean = (double)mean;
+
 			double cm = 0;
 			foreach (var x in distr)
-				cm += Math.Pow(x.Key - mean, r) * x.Value;
+				cm += Math.Pow(x.Key - (double)mean, r) * x.Value;
 
 			return cm / summary_frequence;
 		}

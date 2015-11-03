@@ -25,7 +25,7 @@ namespace Statistics.DistributionCheck
 		/// <summary>
 		/// Картинка с формулой закона распределения
 		/// </summary>
-		public  Bitmap Formula { get; }
+		//public  Bitmap Formula { get; }
 
 		public AbstractDistribution(Distribution.Distribution distr)
 		{
@@ -40,15 +40,16 @@ namespace Statistics.DistributionCheck
 		abstract public List<KeyValuePair<double, double>> CalcProbablities();
 
 		/// <summary>
-		/// Возвращает точетчные оценки
+		/// Возвращает список точек для построения теоретической кривой
 		/// </summary>
 		/// <returns></returns>
-		abstract public KeyValuePair<double, double> GetPointParams();
+		abstract public Dictionary<double, double> GetTheoreticalFreq();
 
 		/// <summary>
 		/// Возвращает либо ряд частот, либо ряд относительных частот
 		/// </summary>
 		/// <returns></returns>
 		abstract public Dictionary<double, double> StatisticsData { get; }
+        abstract public int Count { get; }
 	}
 }

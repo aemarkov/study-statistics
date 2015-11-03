@@ -117,17 +117,17 @@ namespace StatisticDistribution
 			var intervalFreq = new Dictionary<Range, double>();
 
 			//Переводим в ряд частот
-			foreach(var interval in stringIntervals)
+			foreach(var _interval in stringIntervals)
 			{
 				Range? range;
-				if((range=interval.GetRange())==null)
+				if((range=_interval.GetRange())==null)
 				{
-					MessageBox.Show("Неверное значение: " + interval.Key,"Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					MessageBox.Show("Неверное значение: " + _interval.Key,"Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Warning);
 					return;
 				}
 
-				dataSize += interval.Value;
-				intervalFreq.Add((Range)range, interval.Value);
+				dataSize += _interval.Value;
+				intervalFreq.Add((Range)range, _interval.Value);
 			}
 
 			//Создаем ряд
