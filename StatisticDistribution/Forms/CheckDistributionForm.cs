@@ -98,5 +98,10 @@ namespace StatisticDistribution
 			graph.Invalidate();
 		}
 
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
 	}
 }

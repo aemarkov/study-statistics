@@ -45,5 +45,10 @@ namespace Statistics.DistributionCheck
             get { throw new NotImplementedException(); }
         }
 
+        public override KeyValuePair<double, double> PointValues
+        {
+            get { throw new NotImplementedException(); }
+        }
+
 	}
 }

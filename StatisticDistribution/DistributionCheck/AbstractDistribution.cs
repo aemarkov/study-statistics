@@ -25,7 +25,7 @@ namespace Statistics.DistributionCheck
 		/// <summary>
 		/// Картинка с формулой закона распределения
 		/// </summary>
-		//public  Bitmap Formula { get; }
+		//public  Bitmap Formula { get {return Re }
 
 		public AbstractDistribution(Distribution.Distribution distr)
 		{
@@ -44,6 +44,11 @@ namespace Statistics.DistributionCheck
 		/// </summary>
 		/// <returns></returns>
 		abstract public Dictionary<double, double> GetTheoreticalFreq();
+
+        /// <summary>
+        /// Точечные оценки
+        /// </summary>
+        abstract public KeyValuePair<double, double> PointValues { get; }
 
 		/// <summary>
 		/// Возвращает либо ряд частот, либо ряд относительных частот

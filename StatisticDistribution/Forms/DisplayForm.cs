@@ -17,7 +17,7 @@ namespace StatisticDistribution
 	public partial class DisplayForm : Form
 	{
 
-#region STATIC_CALL
+        #region STATIC_CALL
 
 		//Отображение ряда частот                
 		public static void DisplayStatFreq(Dictionary<double, double> data)
@@ -120,7 +120,7 @@ namespace StatisticDistribution
 
 #endregion
 
-#region HISTOGRAM
+        #region HISTOGRAM
 
 		public DisplayForm(Dictionary<Range, double> data, string title, string xName, string yName)
 		{

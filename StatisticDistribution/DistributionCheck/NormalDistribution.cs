@@ -17,7 +17,9 @@ namespace Statistics.DistributionCheck
 		private double expected_value;					//Матожидание
 		private double standart_deviation;				//Среднекв. откланение
 
-		Dictionary<double, double> raw_statisttics;		//Исходный ряд (либо группированный, либо простой)
+		Dictionary<double, double> raw_statistics;		//Исходный ряд (либо группированный, либо простой)
+                                                        //Используется для расчет точечных оценок и построения
+                                                        //теоретической функции
 
 		//Название распределения
 		public override string Name { get { return "Нормальное распределение"; } }
@@ -25,37 +27,39 @@ namespace Statistics.DistributionCheck
 		//Конструктор
 		public NormalDistribution(Distribution.Distribution distr):base(distr)
 		{
+            //Если наш исходный ряд был обычным рядом (либо ввод ряда, либо ввод выборки),
+            //то берем ряд частот. Иначе берем группированный ряд частот как его аналог для
+            //интервального ряда
 			if (distr.StatFreq != null)
-				raw_statisttics = distr.StatFreq;
+				raw_statistics = distr.StatFreq;
 			else
-				raw_statisttics = distr.GroupFreq;
+				raw_statistics = distr.GroupFreq;
 
 
 			//Расчитываем точеченые оценки
 
 			//Мат ожидание = выборочное средние
 			//Дисперсия = выборочная дисперсия
-			NumericSolver solver = new NumericSolver(raw_statisttics);
+			NumericSolver solver = new NumericSolver(raw_statistics);
 			standart_deviation = solver.StandartDeviation();
 			expected_value = solver.Mean();
 		}
 
-		//Возвращает группированный ряд частот для построения полигона
-		public override Dictionary<double, double> StatisticsData
-		{
-			get
-			{
-				return distr.GroupFreq;
-			}
-		}
-
+		//Возвращает группированный ряд относительных частот для построения полигона
+		public override Dictionary<double, double> StatisticsData{ get { return distr.GroupRelFreq; } }
         public override int Count { get { return distr.Count; } }
+
+        //Возвращает мат ожидание и  среднеквадратическое откланенеие
+        public override KeyValuePair<double, double> PointValues
+        {
+            get { return new KeyValuePair<double, double>(expected_value, standart_deviation); }
+        }
 
 		//Возвращает список точек для построения теоретической кривой
 		public override Dictionary<double, double> GetTheoreticalFreq()
 		{
-			double start = raw_statisttics.First().Key;
-			double end = raw_statisttics.Last().Key;
+			double start = raw_statistics.First().Key;
+			double end = raw_statistics.Last().Key;
 
 			var points = new Dictionary<double, double>();
 
@@ -75,7 +79,7 @@ namespace Statistics.DistributionCheck
 			List<KeyValuePair<double, double>> result = new List<KeyValuePair<double, double>>();
 
 			var intervals = distr.IntervalFreq; //интервальный ряд
-			var freq = StatisticsData;          //группированный ряд (для mi)
+			var freq = distr.GroupFreq;          //группированный ряд (для mi)
 			double u1, u2;
 			double x1, x2;
 			double p;
