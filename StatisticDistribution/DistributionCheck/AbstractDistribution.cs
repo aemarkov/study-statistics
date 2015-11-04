@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace Statistics.DistributionCheck
 {
@@ -19,7 +20,7 @@ namespace Statistics.DistributionCheck
 		/// <summary>
 		/// Картинка с формулой закона распределения
 		/// </summary>
-		//public  Bitmap Formula { get {return Re }
+		public virtual Bitmap Funtion { get; }
 
 		public AbstractDistribution(Distribution.Distribution distr)
 		{

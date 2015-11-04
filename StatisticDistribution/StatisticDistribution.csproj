@@ -133,6 +133,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <None Include="Resources\central_moment.png" />
+    <None Include="Resources\binomial_p.png" />
+    <None Include="Resources\binomial_function.png" />
+    <None Include="Resources\normal_standart_deviation.png" />
+    <None Include="Resources\normal_expected_value.png" />
+    <None Include="Resources\normal_function.png" />
+    <None Include="Resources\start_moment.png" />
+    <None Include="Resources\stat_standart_deviation.png" />
+    <None Include="Resources\fixed_dispertion.png" />
+    <None Include="Resources\dispertion.png" />
+    <None Include="Resources\mean.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

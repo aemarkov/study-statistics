@@ -7,13 +7,13 @@ namespace Statistics.DistributionCheck
 	/// </summary>
 	public struct PointValue
 	{
-		public string Name;         //Название параметра
-		public Bitmap Formula;      //Формула точечной оценки
-		public double Value;		//Значение
+		public string ParamName { get; private set;  }   //Название параметра
+		public Bitmap Formula { get; private set; }		 //Формула точечной оценки
+		public double Value { get; private set; }		 //Значение
 
 		public PointValue(string name, Bitmap formula, double value)
 		{
-			Name = name;
+			ParamName = name;
 			Formula = formula;
 			Value = value;
 		}

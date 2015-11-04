@@ -34,6 +34,20 @@ namespace StatisticDistribution
 
 			//Загружает значения уровней значимости в ComboBox
 			cbAlpha.DataSource = CriticalPirsonCriterion.GetSignificanceLevel();
+
+			//Отображаем формулы
+			pboxFunction.BackgroundImage = distr.Funtion;
+
+			foreach (DataGridViewColumn col in gridPointValues.Columns)
+				col.DataPropertyName = col.Name;
+
+			var bs = new BindingSource();
+			gridPointValues.RowTemplate.Height = 68;
+			bs.DataSource = distr.PointValues.Select(x => new { ParamName = x.ParamName, Formula = x.Formula, Value=x.Value }).ToList();
+			gridPointValues.DataSource = bs;
+			gridPointValues.Columns["Value"].DefaultCellStyle.Format = "N2";
+
+			//gridPointValues.DataSource =  distr.PointValues;
 		}
 
 		//Автоматический режим
@@ -180,6 +194,5 @@ namespace StatisticDistribution
 			graph.Invalidate();
 		}
 		#endregion
-
 	}
 }

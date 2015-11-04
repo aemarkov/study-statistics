@@ -95,6 +95,7 @@ namespace Statistics.Distribution
 			foreach (var x in distr)
 				sm += Math.Pow(x.Key, r) * x.Value;
 
+			startMoment = sm;
 			return sm / summary_frequence;
 		}
 
@@ -108,6 +109,7 @@ namespace Statistics.Distribution
 			foreach (var x in distr)
 				cm += Math.Pow(x.Key - (double)mean, r) * x.Value;
 
+			centralMoment = cm;
 			return cm / summary_frequence;
 		}
 	}

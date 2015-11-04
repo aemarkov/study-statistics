@@ -5,6 +5,8 @@ using System.Drawing;
 using Statistics.Distribution;
 using Statistics.Utils;
 
+using StatisticDistribution.Properties;
+
 namespace Statistics.DistributionCheck
 {
 	/// <summary>
@@ -21,8 +23,7 @@ namespace Statistics.DistributionCheck
 
 		List<PointValue> point_values;					//Точечные оценки
 		
-		//Название распределения
-		public override string Name { get { return "Нормальное распределение"; } }
+		
 
 		#region CONSTRUCTORS
 
@@ -54,8 +55,8 @@ namespace Statistics.DistributionCheck
 			//Создаем список с точечными оценками
 			point_values= new List < PointValue >
             {
-				new PointValue("Математическое ожидание", new Bitmap(1, 1), expected_value),
-				new PointValue("Среднеквадратическое откланение", new Bitmap(1, 1), standart_deviation),
+				new PointValue("Математическое ожидание", Resources.normal_expected_value, expected_value),
+				new PointValue("Среднеквадратическое откланение", Resources.normal_standart_deviation, standart_deviation),
 			};
 		}
 
@@ -63,6 +64,16 @@ namespace Statistics.DistributionCheck
 
 		#region STATISTICS_INTERFACE
 		///////////////////////////// ДАННЫЕ О СТАТИСТИЧЕСКОМ РЯДЕ ////////////////////////////////////////
+
+		/// <summary>
+		/// Название распределения
+		/// </summary>
+		public override string Name { get { return "Нормальное распределение"; } }
+
+		/// <summary>
+		/// Картинка с формулой закона распределения
+		/// </summary>
+		public override Bitmap Funtion { get { return Resources.normal_function; } }
 
 		//Возвращает группированный ряд относительных частот
 		public override Dictionary<double, double> StatisticsData{ get { return distr.GroupRelFreq; } }
