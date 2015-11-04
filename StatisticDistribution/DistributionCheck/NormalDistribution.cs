@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
+using System.Drawing;
 using Statistics.Distribution;
 using Statistics.Utils;
 
@@ -14,17 +14,26 @@ namespace Statistics.DistributionCheck
 	/// </summary>
 	public class NormalDistribution : AbstractDistribution
 	{
-		private double expected_value;					//Матожидание
-		private double standart_deviation;				//Среднекв. откланение
+		double expected_value;					//Матожидание
+		double standart_deviation;				//Среднекв. откланение
 
-		Dictionary<double, double> raw_statistics;		//Исходный ряд (либо группированный, либо простой)
-                                                        //Используется для расчет точечных оценок и построения
-                                                        //теоретической функции
+		Dictionary<double, double> raw_statistics;      //Исходный ряд (либо группированный, либо простой)
+														//Используется для расчет точечных оценок и построения
+														//теоретической функции
 
+		List<PointValue> point_values;					//Точечные оценки
+		
 		//Название распределения
 		public override string Name { get { return "Нормальное распределение"; } }
 
-		//Конструктор
+		#region CONSTRUCTORS
+
+		/// <summary>
+		/// Создает новый объект NormalDistribution на основе объекта 
+		/// Distribution, содержащего статистические данные, для которых
+		/// проверяется гипотеза
+		/// </summary>
+		/// <param name="distr"></param>
 		public NormalDistribution(Distribution.Distribution distr):base(distr)
 		{
             //Если наш исходный ряд был обычным рядом (либо ввод ряда, либо ввод выборки),
@@ -43,17 +52,28 @@ namespace Statistics.DistributionCheck
 			NumericSolver solver = new NumericSolver(raw_statistics);
 			standart_deviation = solver.StandartDeviation();
 			expected_value = solver.Mean();
+
+			//Создаем список с точечными оценками
+			point_values= new List < PointValue >
+            {
+				new PointValue("Математическое ожидание", new Bitmap(1, 1), expected_value),
+				new PointValue("Среднеквадратическое откланение", new Bitmap(1, 1), standart_deviation),
+			};
 		}
 
-		//Возвращает группированный ряд относительных частот для построения полигона
+		#endregion
+
+		#region STATISTICS_INTERFACE
+		///////////////////////////// ДАННЫЕ О СТАТИСТИЧЕСКОМ РЯДЕ ////////////////////////////////////////
+
+		//Возвращает группированный ряд относительных частот
 		public override Dictionary<double, double> StatisticsData{ get { return distr.GroupRelFreq; } }
+
+		//Размер исходной выборки
         public override int Count { get { return distr.Count; } }
 
-        //Возвращает мат ожидание и  среднеквадратическое откланенеие
-        public override KeyValuePair<double, double> PointValues
-        {
-            get { return new KeyValuePair<double, double>(expected_value, standart_deviation); }
-        }
+		//Возвращает мат ожидание и  среднеквадратическое откланенеие
+		public override List<PointValue> PointValues { get { return point_values; } }
 
 		//Возвращает список точек для построения теоретической кривой
 		public override Dictionary<double, double> GetTheoreticalFreq()
@@ -69,16 +89,18 @@ namespace Statistics.DistributionCheck
 			return points;
 		}
 
+		#endregion
+
 		//Вычисляет вероятности для критерия Пирсона
-		public override List<KeyValuePair<double, double>> CalcProbablities()
+		public override List<PirsonProbability> CalcProbablities()
 		{
 			//(-inf; a1] (a1; a2] (a2; a3] ... (an-1; +inf)
 			//Ф(inf)=0.5
 
 			//Интервальный ряд распределения
-			List<KeyValuePair<double, double>> result = new List<KeyValuePair<double, double>>();
+			List<PirsonProbability> result = new List<PirsonProbability>();
 
-			var intervals = distr.IntervalFreq; //интервальный ряд
+			var intervals = distr.IntervalFreq;  //интервальный ряд
 			var freq = distr.GroupFreq;          //группированный ряд (для mi)
 			double u1, u2;
 			double x1, x2;
@@ -89,7 +111,7 @@ namespace Statistics.DistributionCheck
 			x2 = intervals.First().Key.Right;
 			u2 = LaplasFunction.Calc(l_arg(x2));
 			p = u2 - u1;
-			result.Add(new KeyValuePair<double, double>(freq.First().Value, p));
+			result.Add(new PirsonProbability((int)freq.First().Value, p));
 			
 			//СТРАШНЫЙ ГОВНОКОД
 			//СЛОЖНОСТЬ КАЖДОЙ ИТЕРАЦИИ O(N)
@@ -104,18 +126,19 @@ namespace Statistics.DistributionCheck
 				u1 = LaplasFunction.Calc(l_arg(x1));
 				u2 = LaplasFunction.Calc(l_arg(x2));
 				p = u2 - u1;
-				result.Add(new KeyValuePair<double, double>(freq.ElementAt(i).Value, p));
+				result.Add(new PirsonProbability((int)freq.ElementAt(i).Value, p));
 			}
 
             //Значение для интервала (an-1; +inf)
             u1 = LaplasFunction.Calc(l_arg(intervals.Last().Key.Left));
             u2 = 0.5;
             p = u2 - u1;
-            result.Add(new KeyValuePair<double,double>(freq.Last().Value, p));
+            result.Add(new PirsonProbability((int)freq.Last().Value, p));
 			return result;
 		}
 
-		///////////////////////////////////////////////////////////////////////////////////////
+		#region HELP_FUNCTIONS
+		/////////////////////  ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ /////////////////////////////////////////////
 
 		//Плотность вероятности
 		double f(double x)
@@ -128,5 +151,7 @@ namespace Statistics.DistributionCheck
 		{
 			return (x - expected_value) / standart_deviation;
 		}
+
+		#endregion
 	}
 }

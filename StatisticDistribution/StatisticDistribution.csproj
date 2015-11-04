@@ -49,9 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DistributionCheck\BinomialDistribution.cs" />
-    <Compile Include="DistributionCheck\DistributionChecker.cs" />
+    <Compile Include="DistributionCheck\CriticalPirsonCriterion.cs" />
     <Compile Include="DistributionCheck\AbstractDistribution.cs" />
     <Compile Include="DistributionCheck\NormalDistribution.cs" />
+    <Compile Include="DistributionCheck\PirsonProbability.cs" />
+    <Compile Include="DistributionCheck\PointValue.cs" />
     <Compile Include="Distribution\NumericSolver.cs" />
     <Compile Include="Forms\CheckDistributionForm.cs">
       <SubType>Form</SubType>

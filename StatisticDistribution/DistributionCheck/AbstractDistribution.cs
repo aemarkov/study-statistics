@@ -37,7 +37,7 @@ namespace Statistics.DistributionCheck
 		/// на интервалах или для значений
 		/// </summary>
 		/// <returns></returns>
-		abstract public List<KeyValuePair<double, double>> CalcProbablities();
+		abstract public List<PirsonProbability> CalcProbablities();
 
 		/// <summary>
 		/// Возвращает список точек для построения теоретической кривой
@@ -45,16 +45,20 @@ namespace Statistics.DistributionCheck
 		/// <returns></returns>
 		abstract public Dictionary<double, double> GetTheoreticalFreq();
 
-        /// <summary>
-        /// Точечные оценки
-        /// </summary>
-        abstract public KeyValuePair<double, double> PointValues { get; }
+		/// <summary>
+		/// Точечные оценки
+		/// </summary>
+		abstract public List<PointValue> PointValues { get; }
 
 		/// <summary>
-		/// Возвращает либо ряд частот, либо ряд относительных частот
+		/// Возвращает группированный ряд относительных частот
 		/// </summary>
 		/// <returns></returns>
 		abstract public Dictionary<double, double> StatisticsData { get; }
+
+		/// <summary>
+		/// Возвращает размер исходной выборки
+		/// </summary>
         abstract public int Count { get; }
 	}
 }

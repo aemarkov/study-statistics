@@ -16,41 +16,86 @@ namespace StatisticDistribution
 {
 	public partial class CheckDistributionForm : Form
 	{
-		AbstractDistribution distr;
+		AbstractDistribution distr;		//Распределение, для которого проверяется гипотеза
 
+		/// <summary>
+		/// Создает новый объект класса CheckDistributionForm с заданным распределением
+		/// </summary>
+		/// <param name="distr">Объект распределения</param>
 		public CheckDistributionForm(AbstractDistribution distr)
 		{
 			InitializeComponent();
 			this.distr = distr;
 			lblDistrType.Text = distr.Name;
 
+			//Отображает полигон относительных частот и график теоретического закона распределения
 			draw_distribution(graphEmp, distr.StatisticsData);
 			draw_distribution(graphTheor, distr.GetTheoreticalFreq());
-		}
 
-		//Отклонить гипотезу
-		private void btnWrong_Click(object sender, EventArgs e)
-		{
-			this.Close();
+			//Загружает значения уровней значимости в ComboBox
+			cbAlpha.DataSource = CriticalPirsonCriterion.GetSignificanceLevel();
 		}
 
 		//Подтвердить гипотезу - дальнейшая проверка по критерию пирсона
 		private void btnCorrect_Click(object sender, EventArgs e)
 		{
-			var probs = distr.CalcProbablities();
-            double pirson = 0;
-            int n = distr.Count;
-
-            foreach(var el in probs)
-            {
-                pirson += (el.Key - n * el.Value) / (n * el.Value);
-            }
-            txtPirsonVis.Text = pirson.ToString("N4");
+			if (rbAuto.Checked)
+				auto_check(distr);
+			else
+				manual_ceck(distr);
 		}
 
-		///////////////////////////// ПОСТРОЙКА ГРАФИКОВ //////////////////////////////////////
+		#region CALC_LOGIN
+		/////////////////////////////////// РАСЧЕТЫ /////////////////////////////////////
 
-		//Строит полигон распределения
+		//Автоматическая проверка гипотезы
+		//Считает критерий, степени свободы, критическое значение 
+		//и сам сравнивает
+		void auto_check(AbstractDistribution distr)
+		{
+			double pirson_vis = calc_pirson(distr);
+			int degrees_of_freedom = calc_degrees_of_freedom(distr);
+			double pirson_crit = CriticalPirsonCriterion.GetCriticalValue((double)cbAlpha.SelectedItem, degrees_of_freedom);
+		}
+
+		//Ручная проверка
+		//Только считает критерий
+		void manual_ceck(AbstractDistribution distr)
+		{
+			txtPirsonVis.Text = calc_pirson(distr).ToString("N4");
+		}
+
+		//Расчитывает наблюдаемое значение критерия
+		double calc_pirson(AbstractDistribution distr)
+		{
+			//Получаем значения теоретических вероятностей и частот
+			var probs = distr.CalcProbablities();
+			double pirson = 0;
+			int n = distr.Count;
+
+			//Расчитываем критерий пирсонаы
+			foreach (var el in probs)
+			{
+				pirson += (el.Mi - n * el.Pi) / (n * el.Pi);
+			}
+
+			return pirson;
+		}
+
+		//Расчитывает число степеней свободы
+		int calc_degrees_of_freedom(AbstractDistribution distr)
+		{
+			return distr.StatisticsData.Count -   //Число элементов группированного ряда == число интервалов
+				   distr.PointValues.Count -	  //число точечных значений - число элементов, которые мы оцениваем по выборке
+				   1;
+		}
+
+		#endregion
+
+		#region GRAPHICS
+		///////////////////////////// ПОСТРОЙКА ГРАФИКОВ ////////////////////////////////
+
+		//Строит график
 		void draw_distribution(ZedGraphControl graph, Dictionary<double, double> distr)
 		{
 			setup_graph(graph);
@@ -97,11 +142,7 @@ namespace StatisticDistribution
 			graph.AxisChange();
 			graph.Invalidate();
 		}
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
+		#endregion
 
 	}
 }

@@ -19,6 +19,9 @@ namespace Statistics.DistributionCheck
 
 		}
 
+		#region STATISTICS_INTERFACE
+		///////////////////////////// ДАННЫЕ О СТАТИСТИЧЕСКОМ РЯДЕ ////////////////////////////////////////
+
 		//Возвращает ряд частот, для построения полигона
 		public override Dictionary<double, double> StatisticsData
 		{
@@ -34,21 +37,28 @@ namespace Statistics.DistributionCheck
 			throw new NotImplementedException();
 		}
 
-		//Вычисляет вероятности для критерия Пирсона
-		public override List<KeyValuePair<double, double>> CalcProbablities()
+		//Возвращает размер исходной выборки
+		public override int Count
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+
+		//Возвращает точечные оценки
+		public override List<PointValue> PointValues
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+		}
+
+		#endregion
+
+		//Расчитывает теоретические вероятности
+		public override List<PirsonProbability> CalcProbablities()
 		{
 			throw new NotImplementedException();
 		}
-
-        public override int Count
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override KeyValuePair<double, double> PointValues
-        {
-            get { throw new NotImplementedException(); }
-        }
-
 	}
 }
