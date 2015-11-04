@@ -231,7 +231,8 @@ namespace StatisticDistribution
 		//Проверка закона о биномиальном распределении
 		private void menuCheckBinomial_Click(object sender, EventArgs e)
 		{
-
+			var frm = new CheckDistributionForm(new BinomialDistribution(distribution));
+			frm.Show();
 		}
 
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Statistics.Utils;
 
 namespace Statistics.DistributionCheck
 {
@@ -12,13 +9,15 @@ namespace Statistics.DistributionCheck
 	/// </summary>
 	public struct PirsonProbability
 	{
-		public double Pi;
-		public int Mi;
+		public double Pi { get; private set; }
+		public int Mi { get; private set; }
+		public Range Interval { get; private set; }
 
-		public PirsonProbability(int mi, double pi)
+		public PirsonProbability(int mi, double pi, Range interval)
 		{
 			Pi = pi;
 			Mi = mi;
+			Interval = interval;
 		}
 	}
 }

@@ -46,11 +46,7 @@
 			this.labelResult = new System.Windows.Forms.Label();
 			this.txtPirsonCrit = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Pi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.sums = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.gridCalcTable = new System.Windows.Forms.DataGridView();
 			this.pboxFunction = new System.Windows.Forms.PictureBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.gridPointValues = new System.Windows.Forms.DataGridView();
@@ -58,9 +54,13 @@
 			this.Formula = new System.Windows.Forms.DataGridViewImageColumn();
 			this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.label4 = new System.Windows.Forms.Label();
+			this.interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Pi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.sums = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridCalcTable)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pboxFunction)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridPointValues)).BeginInit();
 			this.SuspendLayout();
@@ -134,7 +134,7 @@
 			// 
 			// txtPirsonVis
 			// 
-			this.txtPirsonVis.Location = new System.Drawing.Point(147, 176);
+			this.txtPirsonVis.Location = new System.Drawing.Point(147, 112);
 			this.txtPirsonVis.Name = "txtPirsonVis";
 			this.txtPirsonVis.ReadOnly = true;
 			this.txtPirsonVis.Size = new System.Drawing.Size(221, 20);
@@ -143,7 +143,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(6, 179);
+			this.label3.Location = new System.Drawing.Point(6, 115);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(129, 13);
 			this.label3.TabIndex = 8;
@@ -195,14 +195,14 @@
 			// 
 			this.cbAlpha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbAlpha.FormattingEnabled = true;
-			this.cbAlpha.Location = new System.Drawing.Point(147, 123);
+			this.cbAlpha.Location = new System.Drawing.Point(147, 138);
 			this.cbAlpha.Name = "cbAlpha";
 			this.cbAlpha.Size = new System.Drawing.Size(221, 21);
 			this.cbAlpha.TabIndex = 20;
 			// 
 			// txtDegreesOfFreedom
 			// 
-			this.txtDegreesOfFreedom.Location = new System.Drawing.Point(147, 150);
+			this.txtDegreesOfFreedom.Location = new System.Drawing.Point(147, 166);
 			this.txtDegreesOfFreedom.Name = "txtDegreesOfFreedom";
 			this.txtDegreesOfFreedom.ReadOnly = true;
 			this.txtDegreesOfFreedom.Size = new System.Drawing.Size(221, 20);
@@ -211,7 +211,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(6, 131);
+			this.label6.Location = new System.Drawing.Point(6, 141);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(114, 13);
 			this.label6.TabIndex = 18;
@@ -220,7 +220,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(6, 157);
+			this.label5.Location = new System.Drawing.Point(7, 169);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(136, 13);
 			this.label5.TabIndex = 17;
@@ -241,7 +241,7 @@
 			// 
 			// txtPirsonCrit
 			// 
-			this.txtPirsonCrit.Location = new System.Drawing.Point(147, 202);
+			this.txtPirsonCrit.Location = new System.Drawing.Point(147, 192);
 			this.txtPirsonCrit.Name = "txtPirsonCrit";
 			this.txtPirsonCrit.ReadOnly = true;
 			this.txtPirsonCrit.Size = new System.Drawing.Size(221, 20);
@@ -250,57 +250,28 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 205);
+			this.label1.Location = new System.Drawing.Point(7, 195);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(122, 13);
 			this.label1.TabIndex = 14;
 			this.label1.Text = "Критическое значение";
 			// 
-			// dataGridView1
+			// gridCalcTable
 			// 
-			this.dataGridView1.AllowUserToAddRows = false;
-			this.dataGridView1.AllowUserToDeleteRows = false;
-			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			this.gridCalcTable.AllowUserToAddRows = false;
+			this.gridCalcTable.AllowUserToDeleteRows = false;
+			this.gridCalcTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridCalcTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.interval,
             this.Pi,
             this.ni,
             this.sums});
-			this.dataGridView1.Location = new System.Drawing.Point(762, 40);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.ReadOnly = true;
-			this.dataGridView1.RowHeadersVisible = false;
-			this.dataGridView1.Size = new System.Drawing.Size(230, 577);
-			this.dataGridView1.TabIndex = 15;
-			// 
-			// interval
-			// 
-			this.interval.FillWeight = 108.6718F;
-			this.interval.HeaderText = "Интервал";
-			this.interval.Name = "interval";
-			this.interval.ReadOnly = true;
-			// 
-			// Pi
-			// 
-			this.Pi.FillWeight = 86.30658F;
-			this.Pi.HeaderText = "Pi";
-			this.Pi.Name = "Pi";
-			this.Pi.ReadOnly = true;
-			// 
-			// ni
-			// 
-			this.ni.FillWeight = 73.0419F;
-			this.ni.HeaderText = "ni";
-			this.ni.Name = "ni";
-			this.ni.ReadOnly = true;
-			// 
-			// sums
-			// 
-			this.sums.FillWeight = 131.9797F;
-			this.sums.HeaderText = "Слагаемые";
-			this.sums.Name = "sums";
-			this.sums.ReadOnly = true;
+			this.gridCalcTable.Location = new System.Drawing.Point(762, 40);
+			this.gridCalcTable.Name = "gridCalcTable";
+			this.gridCalcTable.ReadOnly = true;
+			this.gridCalcTable.RowHeadersVisible = false;
+			this.gridCalcTable.Size = new System.Drawing.Size(304, 577);
+			this.gridCalcTable.TabIndex = 15;
 			// 
 			// pboxFunction
 			// 
@@ -370,16 +341,49 @@
 			this.label4.TabIndex = 17;
 			this.label4.Text = "Процесс вычисления";
 			// 
+			// interval
+			// 
+			this.interval.FillWeight = 97.92616F;
+			this.interval.HeaderText = "Интервал";
+			this.interval.Name = "interval";
+			this.interval.ReadOnly = true;
+			this.interval.Width = 140;
+			// 
+			// Pi
+			// 
+			this.Pi.FillWeight = 30F;
+			this.Pi.HeaderText = "Pi";
+			this.Pi.MinimumWidth = 20;
+			this.Pi.Name = "Pi";
+			this.Pi.ReadOnly = true;
+			this.Pi.Width = 40;
+			// 
+			// ni
+			// 
+			this.ni.FillWeight = 48.07822F;
+			this.ni.HeaderText = "ni";
+			this.ni.Name = "ni";
+			this.ni.ReadOnly = true;
+			this.ni.Width = 40;
+			// 
+			// sums
+			// 
+			this.sums.FillWeight = 118.9294F;
+			this.sums.HeaderText = "Слагаемые";
+			this.sums.Name = "sums";
+			this.sums.ReadOnly = true;
+			this.sums.Width = 80;
+			// 
 			// CheckDistributionForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1009, 632);
+			this.ClientSize = new System.Drawing.Size(1084, 632);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.gridPointValues);
-			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.gridCalcTable);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.pboxFunction);
 			this.Controls.Add(this.lblDistrType);
@@ -393,7 +397,7 @@
 			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridCalcTable)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pboxFunction)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridPointValues)).EndInit();
 			this.ResumeLayout(false);
@@ -421,16 +425,16 @@
         private System.Windows.Forms.ComboBox cbAlpha;
         private System.Windows.Forms.TextBox txtDegreesOfFreedom;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gridCalcTable;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn interval;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Pi;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ni;
-		private System.Windows.Forms.DataGridViewTextBoxColumn sums;
 		private System.Windows.Forms.DataGridView gridPointValues;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ParamName;
 		private System.Windows.Forms.DataGridViewImageColumn Formula;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Value;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.DataGridViewTextBoxColumn interval;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Pi;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ni;
+		private System.Windows.Forms.DataGridViewTextBoxColumn sums;
 	}
 }

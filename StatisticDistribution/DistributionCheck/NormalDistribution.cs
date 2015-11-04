@@ -14,8 +14,8 @@ namespace Statistics.DistributionCheck
 	/// </summary>
 	public class NormalDistribution : AbstractDistribution
 	{
-		double expected_value;					//Матожидание
-		double standart_deviation;				//Среднекв. откланение
+		double expected_value;					         //Матожидание
+		double standart_deviation;				        //Среднекв. откланение
 
 		Dictionary<double, double> raw_statistics;      //Исходный ряд (либо группированный, либо простой)
 														//Используется для расчет точечных оценок и построения
@@ -120,7 +120,7 @@ namespace Statistics.DistributionCheck
 			x2 = intervals.First().Key.Right;
 			u2 = LaplasFunction.Calc(l_arg(x2));
 			p = u2 - u1;
-			result.Add(new PirsonProbability((int)freq.First().Value, p));
+			result.Add(new PirsonProbability((int)freq.First().Value, p, new Range(Double.NegativeInfinity, x2, false, true)));
 					
 			//СТРАШНЫЙ ГОВНОКОД
 			//СЛОЖНОСТЬ КАЖДОЙ ИТЕРАЦИИ O(N)
@@ -135,7 +135,7 @@ namespace Statistics.DistributionCheck
 				u1 = LaplasFunction.Calc(l_arg(x1));
 				u2 = LaplasFunction.Calc(l_arg(x2));
 				p = u2 - u1;
-				result.Add(new PirsonProbability((int)freq.ElementAt(i).Value, p));
+				result.Add(new PirsonProbability((int)freq.ElementAt(i).Value, p, new Range(x1,x2, false, true)));
 			}
 
 			//Значение для интервала (an-1; +inf)
@@ -143,7 +143,7 @@ namespace Statistics.DistributionCheck
             u1 = LaplasFunction.Calc(l_arg(x1));
             u2 = 0.5;
             p = u2 - u1;
-            result.Add(new PirsonProbability((int)freq.Last().Value, p));
+            result.Add(new PirsonProbability((int)freq.Last().Value, p, new Range(x1, Double.PositiveInfinity)));
 
 			return result;
 		}

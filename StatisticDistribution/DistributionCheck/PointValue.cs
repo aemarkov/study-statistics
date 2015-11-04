@@ -16,6 +16,6 @@ namespace Statistics.DistributionCheck
 			ParamName = name;
 			Formula = formula;
 			Value = value;
-		}
+        }
 	}
 }

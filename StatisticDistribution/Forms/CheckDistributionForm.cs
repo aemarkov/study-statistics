@@ -25,6 +25,8 @@ namespace StatisticDistribution
 		public CheckDistributionForm(AbstractDistribution distr)
 		{
 			InitializeComponent();
+
+			//Сохраняем распределение. Отображаем его имя
 			this.distr = distr;
 			lblDistrType.Text = distr.Name;
 
@@ -35,9 +37,11 @@ namespace StatisticDistribution
 			//Загружает значения уровней значимости в ComboBox
 			cbAlpha.DataSource = CriticalPirsonCriterion.GetSignificanceLevel();
 
-			//Отображаем формулы
+			//Отображаем формулу распределения
 			pboxFunction.BackgroundImage = distr.Funtion;
 
+			//Отображаем точечные оценки
+			//Магия
 			foreach (DataGridViewColumn col in gridPointValues.Columns)
 				col.DataPropertyName = col.Name;
 
@@ -47,7 +51,11 @@ namespace StatisticDistribution
 			gridPointValues.DataSource = bs;
 			gridPointValues.Columns["Value"].DefaultCellStyle.Format = "N2";
 
-			//gridPointValues.DataSource =  distr.PointValues;
+
+			//Настройка числа знаков после запятой для таблицы расчета
+			gridCalcTable.Columns["Pi"].DefaultCellStyle.Format = "N2";
+			gridCalcTable.Columns["ni"].DefaultCellStyle.Format = "N2";
+			gridCalcTable.Columns["sums"].DefaultCellStyle.Format = "N2";
 		}
 
 		//Автоматический режим
@@ -87,15 +95,17 @@ namespace StatisticDistribution
 		//и сам сравнивает
 		void auto_check(AbstractDistribution distr)
 		{
+			//Вычисляем значения
 			double pirson_vis = calc_pirson(distr);
 			int degrees_of_freedom = calc_degrees_of_freedom(distr);
 			double pirson_crit = CriticalPirsonCriterion.GetCriticalValue((double)cbAlpha.SelectedItem, degrees_of_freedom);
 
-
+			//Отображаем значения
 			txtPirsonVis.Text = pirson_vis.ToString("N4");
 			txtDegreesOfFreedom.Text = degrees_of_freedom.ToString();
 			txtPirsonCrit.Text = pirson_crit.ToString("N4");
 
+			//Пишемм вывод
 			if(pirson_vis<pirson_crit)
 			{
 				labelResult.Text = "НЕ ОТВЕРГАЕМ ГИПОТЕЗУ";
@@ -127,7 +137,17 @@ namespace StatisticDistribution
 			//Расчитываем критерий пирсонаы
 			foreach (var el in probs)
 			{
-				pirson += Math.Pow(el.Mi - n * el.Pi,2) / (n * el.Pi);
+				double slag = Math.Pow(el.Mi - n * el.Pi, 2) / (n * el.Pi);
+				pirson += slag;
+
+				//Заполняем таблицу расчетов
+				var row_index = gridCalcTable.Rows.Add();
+				var row = gridCalcTable.Rows[row_index];
+			
+				row.Cells["interval"].Value = el.Interval;
+				row.Cells["Pi"].Value = el.Pi;
+				row.Cells["ni"].Value = el.Mi;
+				row.Cells["sums"].Value = slag;
 			}
 
 			return pirson;
