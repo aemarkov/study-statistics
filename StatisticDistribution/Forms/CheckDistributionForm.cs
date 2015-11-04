@@ -36,6 +36,26 @@ namespace StatisticDistribution
 			cbAlpha.DataSource = CriticalPirsonCriterion.GetSignificanceLevel();
 		}
 
+		//Автоматический режим
+		private void rbAuto_CheckedChanged(object sender, EventArgs e)
+		{
+			txtDegreesOfFreedom.Enabled = true;
+			txtPirsonCrit.Enabled = true;
+			cbAlpha.Enabled = true;
+		}
+
+		//РУчной режим
+		private void rbManual_CheckedChanged(object sender, EventArgs e)
+		{
+			txtDegreesOfFreedom.Enabled = false;
+			txtPirsonCrit.Enabled = false;
+			cbAlpha.Enabled = false;
+
+			txtDegreesOfFreedom.Text = "";
+			txtPirsonCrit.Text = "";
+			labelResult.Visible = false;
+		}
+
 		//Подтвердить гипотезу - дальнейшая проверка по критерию пирсона
 		private void btnCorrect_Click(object sender, EventArgs e)
 		{
@@ -56,6 +76,23 @@ namespace StatisticDistribution
 			double pirson_vis = calc_pirson(distr);
 			int degrees_of_freedom = calc_degrees_of_freedom(distr);
 			double pirson_crit = CriticalPirsonCriterion.GetCriticalValue((double)cbAlpha.SelectedItem, degrees_of_freedom);
+
+
+			txtPirsonVis.Text = pirson_vis.ToString("N4");
+			txtDegreesOfFreedom.Text = degrees_of_freedom.ToString();
+			txtPirsonCrit.Text = pirson_crit.ToString("N4");
+
+			if(pirson_vis<pirson_crit)
+			{
+				labelResult.Text = "НЕ ОТВЕРГАЕМ ГИПОТЕЗУ";
+				labelResult.ForeColor = Color.Green;
+			}
+			else
+			{
+				labelResult.Text = "ОТВЕРГАЕМ ГИПОТЕЗУ";
+				labelResult.ForeColor = Color.Red;
+			}
+			labelResult.Visible = true;
 		}
 
 		//Ручная проверка
@@ -76,7 +113,7 @@ namespace StatisticDistribution
 			//Расчитываем критерий пирсонаы
 			foreach (var el in probs)
 			{
-				pirson += (el.Mi - n * el.Pi) / (n * el.Pi);
+				pirson += Math.Pow(el.Mi - n * el.Pi,2) / (n * el.Pi);
 			}
 
 			return pirson;

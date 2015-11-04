@@ -43,7 +43,7 @@
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.cbAlpha = new System.Windows.Forms.ComboBox();
-			this.txtNumOfFreedom = new System.Windows.Forms.TextBox();
+			this.txtDegreesOfFreedom = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.labelResult = new System.Windows.Forms.Label();
@@ -140,6 +140,7 @@
 			this.rbManual.TabStop = true;
 			this.rbManual.Text = "Вручную";
 			this.rbManual.UseVisualStyleBackColor = true;
+			this.rbManual.CheckedChanged += new System.EventHandler(this.rbManual_CheckedChanged);
 			// 
 			// rbAuto
 			// 
@@ -152,6 +153,7 @@
 			this.rbAuto.TabStop = true;
 			this.rbAuto.Text = "Автоматически";
 			this.rbAuto.UseVisualStyleBackColor = true;
+			this.rbAuto.CheckedChanged += new System.EventHandler(this.rbAuto_CheckedChanged);
 			// 
 			// txtPirsonVis
 			// 
@@ -195,7 +197,7 @@
 			// groupBox3
 			// 
 			this.groupBox3.Controls.Add(this.cbAlpha);
-			this.groupBox3.Controls.Add(this.txtNumOfFreedom);
+			this.groupBox3.Controls.Add(this.txtDegreesOfFreedom);
 			this.groupBox3.Controls.Add(this.label6);
 			this.groupBox3.Controls.Add(this.label5);
 			this.groupBox3.Controls.Add(this.labelResult);
@@ -221,13 +223,13 @@
 			this.cbAlpha.Size = new System.Drawing.Size(155, 21);
 			this.cbAlpha.TabIndex = 20;
 			// 
-			// txtNumOfFreedom
+			// txtDegreesOfFreedom
 			// 
-			this.txtNumOfFreedom.Location = new System.Drawing.Point(147, 150);
-			this.txtNumOfFreedom.Name = "txtNumOfFreedom";
-			this.txtNumOfFreedom.ReadOnly = true;
-			this.txtNumOfFreedom.Size = new System.Drawing.Size(155, 20);
-			this.txtNumOfFreedom.TabIndex = 19;
+			this.txtDegreesOfFreedom.Location = new System.Drawing.Point(147, 150);
+			this.txtDegreesOfFreedom.Name = "txtDegreesOfFreedom";
+			this.txtDegreesOfFreedom.ReadOnly = true;
+			this.txtDegreesOfFreedom.Size = new System.Drawing.Size(155, 20);
+			this.txtDegreesOfFreedom.TabIndex = 19;
 			// 
 			// label6
 			// 
@@ -367,7 +369,7 @@
         private System.Windows.Forms.Label labelResult;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbAlpha;
-        private System.Windows.Forms.TextBox txtNumOfFreedom;
+        private System.Windows.Forms.TextBox txtDegreesOfFreedom;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn interval;

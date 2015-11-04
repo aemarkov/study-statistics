@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 using System.Drawing;
 using Statistics.Distribution;
 using Statistics.Utils;
@@ -112,7 +110,7 @@ namespace Statistics.DistributionCheck
 			u2 = LaplasFunction.Calc(l_arg(x2));
 			p = u2 - u1;
 			result.Add(new PirsonProbability((int)freq.First().Value, p));
-			
+					
 			//СТРАШНЫЙ ГОВНОКОД
 			//СЛОЖНОСТЬ КАЖДОЙ ИТЕРАЦИИ O(N)
 			//УБЕЙТЕ МЕНЯ ЗА ЭТО
@@ -129,11 +127,13 @@ namespace Statistics.DistributionCheck
 				result.Add(new PirsonProbability((int)freq.ElementAt(i).Value, p));
 			}
 
-            //Значение для интервала (an-1; +inf)
-            u1 = LaplasFunction.Calc(l_arg(intervals.Last().Key.Left));
+			//Значение для интервала (an-1; +inf)
+			x1 = intervals.Last().Key.Left;
+            u1 = LaplasFunction.Calc(l_arg(x1));
             u2 = 0.5;
             p = u2 - u1;
             result.Add(new PirsonProbability((int)freq.Last().Value, p));
+
 			return result;
 		}
 
