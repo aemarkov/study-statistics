@@ -78,8 +78,6 @@ namespace Statistics.DistributionCheck
 		//Возвращает группированный ряд относительных частот
 		public override Dictionary<double, double> StatisticsData{ get { return distr.GroupRelFreq; } }
 
-		//Размер исходной выборки
-        public override int Count { get { return distr.Count; } }
 
 		//Возвращает мат ожидание и  среднеквадратическое откланенеие
 		public override List<PointValue> PointValues { get { return point_values; } }

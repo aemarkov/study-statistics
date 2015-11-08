@@ -11,13 +11,17 @@ namespace Statistics.DistributionCheck
 	{
 		public double Pi { get; private set; }
 		public int Mi { get; private set; }
-		public Range Interval { get; private set; }
+
+		//Говнокод нужен этот, чтобы джедай рукожопый мог значения х
+		//для ряда дискретного и непрерывного передавать
+		//object - Range или Int быть может
+		public object XValue { get; private set; }		
 
 		public PirsonProbability(int mi, double pi, Range interval)
 		{
 			Pi = pi;
 			Mi = mi;
-			Interval = interval;
+			XValue = interval;
 		}
 	}
 }

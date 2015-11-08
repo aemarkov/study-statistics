@@ -133,7 +133,7 @@ namespace StatisticDistribution
 			var probs = distr.CalcProbablities();
 			double pirson = 0;
 			int n = distr.Count;
-
+			
 			//Расчитываем критерий пирсонаы
 			foreach (var el in probs)
 			{
@@ -144,7 +144,7 @@ namespace StatisticDistribution
 				var row_index = gridCalcTable.Rows.Add();
 				var row = gridCalcTable.Rows[row_index];
 			
-				row.Cells["interval"].Value = el.Interval;
+				row.Cells["interval"].Value = el.XValue;
 				row.Cells["Pi"].Value = el.Pi;
 				row.Cells["ni"].Value = el.Mi;
 				row.Cells["sums"].Value = slag;

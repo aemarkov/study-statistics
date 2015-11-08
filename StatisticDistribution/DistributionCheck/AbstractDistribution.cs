@@ -34,7 +34,7 @@ namespace Statistics.DistributionCheck
 		/// <summary>
 		/// Картинка с формулой закона распределения
 		/// </summary>
-		public virtual Bitmap Funtion { get; }
+		public abstract Bitmap Funtion { get; }
 
 		/// <summary>
 		/// Возвращает группированный ряд относительных частот (или простой ряд относительных частот)
@@ -56,7 +56,7 @@ namespace Statistics.DistributionCheck
 		/// <summary>
 		/// Возвращает размер исходной выборки
 		/// </summary>
-        abstract public int Count { get; }
+        public int Count { get { return distr.Count; } }
 
 		/// <summary>
 		/// Расчитывает вероятности (pi и mi)

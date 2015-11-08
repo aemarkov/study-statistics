@@ -34,8 +34,8 @@ namespace Statistics.DistributionCheck
 
 		public override Bitmap Funtion{ get { return Resources.binomial_function; }}
 
-		//Возвращает ряд частот, для построения полигона
-		public override Dictionary<double, double> StatisticsData {get { return distr.StatFreq; }}
+		//Возвращает ряд относительных частот, для построения полигона
+		public override Dictionary<double, double> StatisticsData {get { return distr.StatRelFreq; }}
 
 		//Возвращает список точек для построения теоретической кривой
 		public override Dictionary<double, double> GetTheoreticalFreq()
@@ -43,9 +43,6 @@ namespace Statistics.DistributionCheck
 			throw new NotImplementedException();
 			//TODO: генерация теоретического ряда распределения
 		}
-
-		//Возвращает размер исходной выборки
-		public override int Count{get { return distr.Count; }}
 
 		//Возвращает точечные оценки
 		public override List<PointValue> PointValues
