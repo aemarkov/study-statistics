@@ -11,7 +11,7 @@ namespace Statistics.DistributionCheck
 		public Bitmap Formula { get; private set; }		 //Формула точечной оценки
 		public double Value { get; private set; }		 //Значение
 
-		public PointValue(string name, Bitmap formula, double value)
+		public PointValue(string name, Bitmap formula, double value) :this()
 		{
 			ParamName = name;
 			Formula = formula;

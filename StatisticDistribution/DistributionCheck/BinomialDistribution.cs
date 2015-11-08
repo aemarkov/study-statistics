@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-
-
+using Statistics.Distribution;
+using Statistics.Utils;
+using StatisticDistribution.Helpers;
 using StatisticDistribution.Properties;
+
+
 namespace Statistics.DistributionCheck
 {
 	/// <summary>
@@ -13,21 +16,34 @@ namespace Statistics.DistributionCheck
 	/// </summary>
 	public class BinomialDistribution : AbstractDistribution
 	{
-		private double p;							//Вероятность благоприятного исхода (точечная оценка)
-		private List<PointValue> point_values;		//Список точечных оценок
+		private double p; // M(x) / n 			    //Вероятность благоприятного исхода (точечная оценка)
+        private int n;    // Объем выборки
+        private List<PointValue> point_values;		//Список точечных оценок
 
-		//Конструктор
+        Dictionary<double, double> raw_statistics;      //Исходный ряд (либо группированный, либо простой)
+                                                        //Используется для расчет точечных оценок и построения
+                                                        //теоретической функции
+        
+
+        #region CONSTRUCTORS
 		public BinomialDistribution(Distribution.Distribution distr):base(distr)
 		{
-			//Создаем список с точечными оценками
-			point_values = new List<PointValue>
-			{
-				new PointValue("Математическое ожидание", Resources.binomial_p, p),
-			};
-		}
+            raw_statistics = distr.StatFreq;
+            n = raw_statistics.Count; //distr.Count;
+            double mean = new NumericSolver(raw_statistics).Mean();
+            p =  mean / n;
 
-		#region STATISTICS_INTERFACE
-		///////////////////////////// ДАННЫЕ О СТАТИСТИЧЕСКОМ РЯДЕ ////////////////////////////////////////
+			point_values = new List<PointValue>
+            {
+                new PointValue("Вероятность появления события", Resources.binomial_p, p)
+            };
+		}
+        #endregion
+
+
+
+        #region STATISTICS_INTERFACE
+        ///////////////////////////// ДАННЫЕ О СТАТИСТИЧЕСКОМ РЯДЕ ////////////////////////////////////////
 
 		//Название распределения
 		public override string Name { get { return "Биномиальное распределение"; } }
@@ -40,8 +56,15 @@ namespace Statistics.DistributionCheck
 		//Возвращает список точек для построения теоретической кривой
 		public override Dictionary<double, double> GetTheoreticalFreq()
 		{
-			throw new NotImplementedException();
-			//TODO: генерация теоретического ряда распределения
+			// генерация теоретического ряда распределения
+            Dictionary<double, double> theoreticalFreq = new Dictionary<double, double>();
+            foreach(var i in raw_statistics)
+            {
+                int k = (int)i.Key;
+                theoreticalFreq.Add(k, BinomialP.correct(k, n, p));
+            }
+
+            return theoreticalFreq;
 		}
 
 		//Возвращает точечные оценки
@@ -49,8 +72,7 @@ namespace Statistics.DistributionCheck
 		{
 			get
 			{
-				//TODO: расчет точечных оценок
-				throw new NotImplementedException();
+                return point_values;
 			}
 		}
 
@@ -59,8 +81,17 @@ namespace Statistics.DistributionCheck
 		//Расчитывает теоретические вероятности
 		public override List<PirsonProbability> CalcProbablities()
 		{
-			//TODO: расчет вероятностей для метода пирсона
-			throw new NotImplementedException();
-		}
-	}
+            List<PirsonProbability> listOfMiPi = new List<PirsonProbability>();
+            foreach(var i in raw_statistics)
+            {
+                int k  = (int)i.Key;
+                int mi = (int)i.Value;
+                double pi = BinomialP.correct(k, n, p);
+                Range fakeRange = new Range(k, k, true, true);
+                listOfMiPi.Add(new PirsonProbability(mi, pi, fakeRange));
+            }
+
+            return listOfMiPi;
+        }
+    }
 }
