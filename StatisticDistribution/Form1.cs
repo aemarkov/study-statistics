@@ -231,8 +231,14 @@ namespace StatisticDistribution
 		//Проверка закона о биномиальном распределении
 		private void menuCheckBinomial_Click(object sender, EventArgs e)
 		{
-			var frm = new CheckDistributionForm(new BinomialDistribution(distribution));
-			frm.Show();
+			try
+			{
+				var frm = new CheckDistributionForm(new BinomialDistribution(distribution));
+				frm.Show();
+			}catch (Exception exp)
+			{
+				MessageBox.Show(exp.Message,"Проверка гипотезы",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 		}
 
 
@@ -251,24 +257,24 @@ namespace StatisticDistribution
 			{
 				//Файл не открыт, нельзя производить никакие операции
 				case GUIState.NOT_OPENED:
-					setElementEnabled(false, menuStatFreq,  menuStatRelFreq, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction);
+					setElementEnabled(false, menuStatFreq,  menuStatRelFreq, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction, menuCheckBinomial, menuCheckNormal);
 					setElementEnabled(false, numIntervals, btnSeparate);
 					break;
 
 				//Файл открыт, но не разделен. Можно смотреть только статистические ряды
 				case GUIState.OPENED:
-					setElementEnabled(true,  menuStatFreq, menuStatRelFreq, menuNumericCharacteristics);
+					setElementEnabled(true,  menuStatFreq, menuStatRelFreq, menuNumericCharacteristics, menuCheckBinomial);
 					setElementEnabled(true, numIntervals, btnSeparate);
 					setElementEnabled(false, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuEmpiricFunction);
                     break;
 
 				//Файл открыт и разделен. Можно выполнять все операции
 				case GUIState.SEPARATE:
-					setElementEnabled(true, menuStatFreq, menuStatRelFreq, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction);
+					setElementEnabled(true, menuStatFreq, menuStatRelFreq, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction, menuCheckNormal);
 					setElementEnabled(true, numIntervals, btnSeparate);
 					break;
 				case GUIState.INTERVAL_ONLY:
-					setElementEnabled(false, menuStatFreq, menuStatRelFreq);
+					setElementEnabled(false, menuStatFreq, menuStatRelFreq, menuCheckBinomial);
 					setElementEnabled(false, numIntervals, btnSeparate);
 					setElementEnabled(true, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction);
 					break;

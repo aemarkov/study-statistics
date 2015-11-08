@@ -266,11 +266,11 @@
             this.Pi,
             this.ni,
             this.sums});
-			this.gridCalcTable.Location = new System.Drawing.Point(762, 40);
+			this.gridCalcTable.Location = new System.Drawing.Point(760, 40);
 			this.gridCalcTable.Name = "gridCalcTable";
 			this.gridCalcTable.ReadOnly = true;
 			this.gridCalcTable.RowHeadersVisible = false;
-			this.gridCalcTable.Size = new System.Drawing.Size(304, 577);
+			this.gridCalcTable.Size = new System.Drawing.Size(303, 577);
 			this.gridCalcTable.TabIndex = 15;
 			// 
 			// pboxFunction
@@ -344,7 +344,7 @@
 			// interval
 			// 
 			this.interval.FillWeight = 97.92616F;
-			this.interval.HeaderText = "Интервал";
+			this.interval.HeaderText = "X";
 			this.interval.Name = "interval";
 			this.interval.ReadOnly = true;
 			this.interval.Width = 140;
@@ -379,7 +379,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1084, 632);
+			this.ClientSize = new System.Drawing.Size(1080, 632);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.gridPointValues);

@@ -17,7 +17,7 @@ namespace Statistics.DistributionCheck
 		//object - Range или Int быть может
 		public object XValue { get; private set; }		
 
-		public PirsonProbability(int mi, double pi, Range interval) :this()
+		public PirsonProbability(int mi, double pi, object interval) :this()
 		{
 			Pi = pi;
 			Mi = mi;

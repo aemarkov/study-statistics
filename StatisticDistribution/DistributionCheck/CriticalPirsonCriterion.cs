@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using StatisticDistribution.Properties;
 
 namespace Statistics.DistributionCheck
 {
@@ -25,7 +26,7 @@ namespace Statistics.DistributionCheck
 
 			try
 			{
-				using (StreamReader sr = new StreamReader(filename))
+				using (var sr = new StringReader(Resources.PirsonCritical))
 				{
 					int k = 1;          //Степень свободы
 					string line;        //Текущая строка

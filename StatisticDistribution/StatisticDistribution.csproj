@@ -69,6 +69,7 @@
     <Compile Include="DistributionCheck\BinomialDistribution.cs" />
     <Compile Include="DistributionCheck\CriticalPirsonCriterion.cs" />
     <Compile Include="DistributionCheck\AbstractDistribution.cs" />
+    <Compile Include="DistributionCheck\Exceptions.cs" />
     <Compile Include="DistributionCheck\NormalDistribution.cs" />
     <Compile Include="DistributionCheck\PirsonProbability.cs" />
     <Compile Include="DistributionCheck\PointValue.cs" />
@@ -148,6 +149,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\PirsonCritical.csv" />
     <None Include="Resources\system.png" />
   </ItemGroup>
   <ItemGroup>

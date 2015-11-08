@@ -8,7 +8,14 @@ namespace StatisticDistribution.Helpers
     // Gmurman (c 52 - 53)
     class BinomialP
     {
-        static public double correct(int k, int n, double p)
+		/// <summary>
+		/// Расчет вероятности k успехов в биномиальном законе
+		/// </summary>
+		/// <param name="k">Число успехов</param>
+		/// <param name="n">Число опытов(??)</param>
+		/// <param name="p">Вероятность успеха в одном испытании</param>
+		/// <returns></returns>
+        static public double BinomialProbability(int k, int n, double p)
         {
             double Cnk = (double)combinations(n, k);
             double pk = Math.Pow(p, k);
@@ -17,6 +24,7 @@ namespace StatisticDistribution.Helpers
             return P;
         }
 
+		//Вычисление факториала
         static private double correct_factorial(double n)
         {
             double factorial = 1;
@@ -25,7 +33,7 @@ namespace StatisticDistribution.Helpers
             return factorial;       
         }
 
-        // из n по k
+        // сочетания из n по k
         static private double combinations(int n, int k)
         {
             return correct_factorial(n) / (correct_factorial(k) * correct_factorial(n - k));

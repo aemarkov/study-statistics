@@ -61,7 +61,10 @@ namespace Statistics.DistributionCheck
             foreach(var i in raw_statistics)
             {
                 int k = (int)i.Key;
-                theoreticalFreq.Add(k, BinomialP.correct(k, n, p));
+				if (!theoreticalFreq.ContainsKey(k))
+					theoreticalFreq.Add(k, BinomialP.BinomialProbability((int)k, n, p));
+				else
+					throw new ElementAlreadyExistsException();
             }
 
             return theoreticalFreq;
@@ -86,9 +89,8 @@ namespace Statistics.DistributionCheck
             {
                 int k  = (int)i.Key;
                 int mi = (int)i.Value;
-                double pi = BinomialP.correct(k, n, p);
-                Range fakeRange = new Range(k, k, true, true);
-                listOfMiPi.Add(new PirsonProbability(mi, pi, fakeRange));
+                double pi = BinomialP.BinomialProbability(k, n, p);
+                listOfMiPi.Add(new PirsonProbability(mi, pi, k));
             }
 
             return listOfMiPi;

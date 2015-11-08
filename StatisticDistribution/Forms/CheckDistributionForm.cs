@@ -30,6 +30,11 @@ namespace StatisticDistribution
 			this.distr = distr;
 			lblDistrType.Text = distr.Name;
 
+
+			//Заголовки графиков
+			graphEmp.GraphPane.Title.Text = "Полигон относительных частот";
+			graphTheor.GraphPane.Title.Text = "Теоретическая функция распределения";
+
 			//Отображает полигон относительных частот и график теоретического закона распределения
 			draw_distribution(graphEmp, distr.StatisticsData);
 			draw_distribution(graphTheor, distr.GetTheoreticalFreq());
@@ -56,6 +61,7 @@ namespace StatisticDistribution
 			gridCalcTable.Columns["Pi"].DefaultCellStyle.Format = "N2";
 			gridCalcTable.Columns["ni"].DefaultCellStyle.Format = "N2";
 			gridCalcTable.Columns["sums"].DefaultCellStyle.Format = "N2";
+
 		}
 
 		//Автоматический режим
@@ -133,6 +139,9 @@ namespace StatisticDistribution
 			var probs = distr.CalcProbablities();
 			double pirson = 0;
 			int n = distr.Count;
+
+			//Очищаем таблицу
+			gridCalcTable.Rows.Clear();
 			
 			//Расчитываем критерий пирсонаы
 			foreach (var el in probs)
@@ -192,7 +201,6 @@ namespace StatisticDistribution
 			var pane = graph.GraphPane;
 			pane.YAxis.Title.Text = "y";
 			pane.X2Axis.Title.Text = "x";
-			pane.Title.Text = Text;
 
 			//Настраиваем пересечение осей
 			pane.XAxis.Cross = 0.0;
