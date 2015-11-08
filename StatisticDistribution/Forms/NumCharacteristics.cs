@@ -50,8 +50,9 @@ namespace StatisticDistribution
 		}
 
 		#region NUMERIC_CHARACTERISTICS
-		
 
-#endregion
-    }
+
+		#endregion
+
+	}
 }

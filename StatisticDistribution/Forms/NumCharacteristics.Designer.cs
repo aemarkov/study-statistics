@@ -43,9 +43,19 @@
 			this.numStartMoment = new System.Windows.Forms.NumericUpDown();
 			this.numCentralMoment = new System.Windows.Forms.NumericUpDown();
 			this.label6 = new System.Windows.Forms.Label();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.pictureBox4 = new System.Windows.Forms.PictureBox();
+			this.pictureBox5 = new System.Windows.Forms.PictureBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numStartMoment)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCentralMoment)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -59,7 +69,7 @@
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(13, 57);
+			this.label2.Location = new System.Drawing.Point(12, 80);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(113, 20);
 			this.label2.TabIndex = 0;
@@ -67,7 +77,7 @@
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(13, 86);
+			this.label3.Location = new System.Drawing.Point(11, 119);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(114, 48);
 			this.label3.TabIndex = 0;
@@ -75,9 +85,6 @@
 			// 
 			// tbMean
 			// 
-			this.tbMean.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbMean.Location = new System.Drawing.Point(6, 19);
 			this.tbMean.Name = "tbMean";
 			this.tbMean.ReadOnly = true;
@@ -86,10 +93,7 @@
 			// 
 			// tbDispersion
 			// 
-			this.tbDispersion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbDispersion.Location = new System.Drawing.Point(6, 45);
+			this.tbDispersion.Location = new System.Drawing.Point(6, 65);
 			this.tbDispersion.Name = "tbDispersion";
 			this.tbDispersion.ReadOnly = true;
 			this.tbDispersion.Size = new System.Drawing.Size(215, 20);
@@ -97,10 +101,7 @@
 			// 
 			// tbStandartDeviation
 			// 
-			this.tbStandartDeviation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbStandartDeviation.Location = new System.Drawing.Point(6, 71);
+			this.tbStandartDeviation.Location = new System.Drawing.Point(6, 116);
 			this.tbStandartDeviation.Name = "tbStandartDeviation";
 			this.tbStandartDeviation.ReadOnly = true;
 			this.tbStandartDeviation.Size = new System.Drawing.Size(215, 20);
@@ -108,9 +109,6 @@
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.btnCentralMoment);
 			this.groupBox1.Controls.Add(this.tbCentralMoment);
 			this.groupBox1.Controls.Add(this.btnStartMoment);
@@ -118,16 +116,16 @@
 			this.groupBox1.Controls.Add(this.tbStandartDeviation);
 			this.groupBox1.Controls.Add(this.tbMean);
 			this.groupBox1.Controls.Add(this.tbDispersion);
-			this.groupBox1.Location = new System.Drawing.Point(145, 12);
+			this.groupBox1.Location = new System.Drawing.Point(325, 15);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(227, 275);
+			this.groupBox1.Size = new System.Drawing.Size(236, 307);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Значения характеристик";
 			// 
 			// btnCentralMoment
 			// 
-			this.btnCentralMoment.Location = new System.Drawing.Point(164, 208);
+			this.btnCentralMoment.Location = new System.Drawing.Point(169, 277);
 			this.btnCentralMoment.Name = "btnCentralMoment";
 			this.btnCentralMoment.Size = new System.Drawing.Size(57, 20);
 			this.btnCentralMoment.TabIndex = 7;
@@ -137,10 +135,7 @@
 			// 
 			// tbCentralMoment
 			// 
-			this.tbCentralMoment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbCentralMoment.Location = new System.Drawing.Point(6, 208);
+			this.tbCentralMoment.Location = new System.Drawing.Point(6, 276);
 			this.tbCentralMoment.Name = "tbCentralMoment";
 			this.tbCentralMoment.ReadOnly = true;
 			this.tbCentralMoment.Size = new System.Drawing.Size(157, 20);
@@ -148,9 +143,9 @@
 			// 
 			// btnStartMoment
 			// 
-			this.btnStartMoment.Location = new System.Drawing.Point(169, 127);
+			this.btnStartMoment.Location = new System.Drawing.Point(169, 198);
 			this.btnStartMoment.Name = "btnStartMoment";
-			this.btnStartMoment.Size = new System.Drawing.Size(52, 20);
+			this.btnStartMoment.Size = new System.Drawing.Size(57, 20);
 			this.btnStartMoment.TabIndex = 5;
 			this.btnStartMoment.Text = "Расчет";
 			this.btnStartMoment.UseVisualStyleBackColor = true;
@@ -158,10 +153,7 @@
 			// 
 			// tbStartMoment
 			// 
-			this.tbStartMoment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbStartMoment.Location = new System.Drawing.Point(6, 127);
+			this.tbStartMoment.Location = new System.Drawing.Point(6, 198);
 			this.tbStartMoment.Name = "tbStartMoment";
 			this.tbStartMoment.ReadOnly = true;
 			this.tbStartMoment.Size = new System.Drawing.Size(157, 20);
@@ -169,7 +161,7 @@
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(14, 139);
+			this.label5.Location = new System.Drawing.Point(12, 169);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(113, 42);
 			this.label5.TabIndex = 3;
@@ -177,7 +169,7 @@
 			// 
 			// numStartMoment
 			// 
-			this.numStartMoment.Location = new System.Drawing.Point(16, 184);
+			this.numStartMoment.Location = new System.Drawing.Point(15, 214);
 			this.numStartMoment.Maximum = new decimal(new int[] {
             5,
             0,
@@ -199,7 +191,7 @@
 			// 
 			// numCentralMoment
 			// 
-			this.numCentralMoment.Location = new System.Drawing.Point(15, 265);
+			this.numCentralMoment.Location = new System.Drawing.Point(14, 292);
 			this.numCentralMoment.Maximum = new decimal(new int[] {
             5,
             0,
@@ -221,18 +213,73 @@
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(17, 220);
+			this.label6.Location = new System.Drawing.Point(11, 247);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(113, 42);
 			this.label6.TabIndex = 5;
 			this.label6.Text = "Центральный выборочный момент порядка";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.BackgroundImage = global::StatisticDistribution.Properties.Resources.mean;
+			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox1.Location = new System.Drawing.Point(132, 21);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(187, 43);
+			this.pictureBox1.TabIndex = 7;
+			this.pictureBox1.TabStop = false;
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.BackgroundImage = global::StatisticDistribution.Properties.Resources.dispertion;
+			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox2.Location = new System.Drawing.Point(131, 70);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(187, 43);
+			this.pictureBox2.TabIndex = 8;
+			this.pictureBox2.TabStop = false;
+			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.BackgroundImage = global::StatisticDistribution.Properties.Resources.stat_standart_deviation;
+			this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox3.Location = new System.Drawing.Point(132, 119);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Size = new System.Drawing.Size(187, 43);
+			this.pictureBox3.TabIndex = 9;
+			this.pictureBox3.TabStop = false;
+			// 
+			// pictureBox4
+			// 
+			this.pictureBox4.BackgroundImage = global::StatisticDistribution.Properties.Resources.start_moment;
+			this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox4.Location = new System.Drawing.Point(135, 191);
+			this.pictureBox4.Name = "pictureBox4";
+			this.pictureBox4.Size = new System.Drawing.Size(187, 43);
+			this.pictureBox4.TabIndex = 10;
+			this.pictureBox4.TabStop = false;
+			// 
+			// pictureBox5
+			// 
+			this.pictureBox5.BackgroundImage = global::StatisticDistribution.Properties.Resources.central_moment;
+			this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox5.Location = new System.Drawing.Point(134, 269);
+			this.pictureBox5.Name = "pictureBox5";
+			this.pictureBox5.Size = new System.Drawing.Size(187, 43);
+			this.pictureBox5.TabIndex = 11;
+			this.pictureBox5.TabStop = false;
 			// 
 			// NumCharacteristics
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(384, 297);
+			this.ClientSize = new System.Drawing.Size(575, 326);
+			this.Controls.Add(this.pictureBox5);
+			this.Controls.Add(this.pictureBox4);
+			this.Controls.Add(this.pictureBox3);
+			this.Controls.Add(this.pictureBox2);
+			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.numCentralMoment);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.numStartMoment);
@@ -249,6 +296,11 @@
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numStartMoment)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCentralMoment)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -271,5 +323,10 @@
 		private System.Windows.Forms.NumericUpDown numStartMoment;
 		private System.Windows.Forms.NumericUpDown numCentralMoment;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.PictureBox pictureBox4;
+		private System.Windows.Forms.PictureBox pictureBox5;
 	}
 }
