@@ -62,6 +62,16 @@ namespace Statistics.Distribution
 					stat_freq.Add(d, 1);
 		}
 
+		//Создает объект из ряда частот
+		public Distribution(Dictionary<double, double> freq)
+		{
+			this.stat_freq = freq;
+			data_size = 0;
+			foreach (var el in stat_freq)
+				data_size += (int)el.Value;
+		}
+
+
 		//Заполняет интервальный ряд частот
 		public Distribution(Dictionary<Range, double> interval_freq, double interval) : this()
 		{
@@ -88,6 +98,8 @@ namespace Statistics.Distribution
 			this.interval = interval;
 			interval_freq = null;
 			interval_rel_freq = null;
+			group_freq = null;
+			group_rel_freq = null;
 			return IntervalFreq;
 		}
 

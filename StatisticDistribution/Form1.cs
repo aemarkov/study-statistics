@@ -20,6 +20,7 @@ namespace StatisticDistribution
 		//------------------ ДАННЫЕ ---------------------------------------
 		List<double> data;												//Выборка
 		BindingList<IntervalPair> stringIntervals { get; set; }			//Введенный пользователем интервальный ряд частот
+		BindingList<FreqPair> inputFreq { get; set; }					//Ввеленный пользователем ряд частот
 		double interval;												//Длина интервала
 		int dataSize;                                                   //Число элементов в выборке
 
@@ -44,6 +45,7 @@ namespace StatisticDistribution
 
 			//Создаем объект данных
 			stringIntervals = new BindingList<IntervalPair>();
+			inputFreq = new BindingList<FreqPair>();
 
 
 			//Настраиваем таблицу ввода интервального ряда
@@ -57,9 +59,20 @@ namespace StatisticDistribution
 
 			gridIntervalData.CellValidating += GridIntervalData_CellValidating;
 			gridIntervalData.CellEndEdit += GridIntervalData_CellEndEdit;
+
+			//Настраиваем таблицу ввода ряда частот
+			foreach (DataGridViewColumn col in gridFreqData.Columns)
+				col.DataPropertyName = col.Name;
+
+			inputFreq.AllowNew = true;
+			inputFreq.AllowEdit = true;
+			inputFreq.AllowRemove = true;
+			gridFreqData.DataSource = inputFreq;
+
+			gridFreqData.CellValidating += GridFreqData_CellValidating;
+			gridFreqData.CellEndEdit += GridFreqData_CellEndEdit;
 		}
 
-		
 
 		#region GUI_EVENTS
 		/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +102,7 @@ namespace StatisticDistribution
 					data.Sort();
 					dataSize = data.Count;
 
-					//Какой-то странный костыль
+					//Настраиваем дата гриды
 					var bs = new BindingSource();
 					bs.DataSource = data.Select(x => new { Xi = x }).ToList();
 					gridData.DataSource = bs;
@@ -150,6 +163,36 @@ namespace StatisticDistribution
 			gridIntervalData.Rows[e.RowIndex].ErrorText = String.Empty;
 		}
 
+		//Ввод ряда частот
+		private void btnFreq_Click(object sender, EventArgs e)
+		{
+			resetData();
+			data = null;
+			setupGUIState(GUIState.OPENED);
+			var freq = new Dictionary<double, double>();
+
+			foreach (var f in inputFreq)
+				freq.Add(f.val, f.freq);
+
+			distribution = new Distribution(freq);
+
+		}
+
+		//Валидацция ряда частот
+		private void GridFreqData_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+		{
+			// Clear the row error in case the user presses ESC.   
+			gridFreqData.Rows[e.RowIndex].ErrorText = String.Empty;
+		}
+
+		private void GridFreqData_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+		{
+			double resd;
+			int resi;
+
+			if (((e.ColumnIndex == 0) && !double.TryParse((string)e.FormattedValue, out resd)) || ((e.ColumnIndex==1)&&!int.TryParse((string)e.FormattedValue, out resi)))
+				e.Cancel = true;
+        }
 
 		#endregion
 
@@ -322,9 +365,8 @@ namespace StatisticDistribution
 
 
 
+
+
 		#endregion
-
-		
-
 	}
 }

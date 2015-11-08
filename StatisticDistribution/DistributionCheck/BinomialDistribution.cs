@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using Statistics.Distribution;
 using Statistics.Utils;
-using StatisticDistribution.Helpers;
 using StatisticDistribution.Properties;
 
 
@@ -29,7 +25,8 @@ namespace Statistics.DistributionCheck
 		public BinomialDistribution(Distribution.Distribution distr):base(distr)
 		{
             raw_statistics = distr.StatFreq;
-            n = raw_statistics.Count; //distr.Count;
+			//n = raw_statistics.Count; //distr.Count;
+			n = distr.Count;
             double mean = new NumericSolver(raw_statistics).Mean();
             p =  mean / n;
 

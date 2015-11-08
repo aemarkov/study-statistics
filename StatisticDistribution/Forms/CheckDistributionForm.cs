@@ -182,7 +182,10 @@ namespace StatisticDistribution
 
 			//Построение полигона
 			var pane = graph.GraphPane;
-			var curve = pane.AddCurve("", dictionaryToList(distr), Color.FromArgb(255, 39, 174, 96),SymbolType.None);
+			SymbolType type = SymbolType.Default;
+			if (distr.Count > 20) type = SymbolType.None;
+
+			var curve = pane.AddCurve("", dictionaryToList(distr), Color.FromArgb(255, 39, 174, 96),type);
 			graph.AxisChange();
 			graph.Invalidate();
 		}

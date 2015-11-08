@@ -99,7 +99,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\BinomialP.cs" />
+    <Compile Include="Utils\BinomialP.cs" />
+    <Compile Include="Utils\FreqPair.cs" />
     <Compile Include="Utils\IntervalPair.cs" />
     <Compile Include="Forms\NumCharacteristics.cs">
       <SubType>Form</SubType>

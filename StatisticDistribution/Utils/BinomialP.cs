@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace StatisticDistribution.Helpers
+namespace Statistics.Utils
 {
     // Gmurman (c 52 - 53)
     class BinomialP
@@ -17,7 +17,7 @@ namespace StatisticDistribution.Helpers
 		/// <returns></returns>
         static public double BinomialProbability(int k, int n, double p)
         {
-            double Cnk = (double)combinations(n, k);
+			double Cnk = combinations(n, k);
             double pk = Math.Pow(p, k);
             double qn_k = Math.Pow(1 - p, n - k);
             double P = Cnk * pk * qn_k;
