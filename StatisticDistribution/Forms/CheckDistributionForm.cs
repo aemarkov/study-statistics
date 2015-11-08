@@ -130,6 +130,8 @@ namespace StatisticDistribution
 		void manual_ceck(AbstractDistribution distr)
 		{
 			txtPirsonVis.Text = calc_pirson(distr).ToString("N4");
+			var frm = new PirsonTableForm();
+			frm.Show();
 		}
 
 		//Расчитывает наблюдаемое значение критерия

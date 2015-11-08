@@ -99,6 +99,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PirsonTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PirsonTableForm.Designer.cs">
+      <DependentUpon>PirsonTableForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\BinomialP.cs" />
     <Compile Include="Utils\FreqPair.cs" />
     <Compile Include="Utils\IntervalPair.cs" />
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NumCharacteristics.resx">
       <DependentUpon>NumCharacteristics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PirsonTableForm.resx">
+      <DependentUpon>PirsonTableForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
