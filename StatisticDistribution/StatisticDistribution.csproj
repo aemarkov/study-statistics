@@ -164,6 +164,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <None Include="Resources\freedom.png" />
+    <None Include="Resources\pirson.png" />
     <None Include="Resources\central_moment.png" />
     <None Include="Resources\binomial_p.png" />
     <None Include="Resources\binomial_function.png" />

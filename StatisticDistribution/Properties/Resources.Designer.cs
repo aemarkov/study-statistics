@@ -113,6 +113,16 @@ namespace StatisticDistribution.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap freedom {
+            get {
+                object obj = ResourceManager.GetObject("freedom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mean {
             get {
                 object obj = ResourceManager.GetObject("mean", resourceCulture);
@@ -146,6 +156,16 @@ namespace StatisticDistribution.Properties {
         internal static System.Drawing.Bitmap normal_standart_deviation {
             get {
                 object obj = ResourceManager.GetObject("normal_standart_deviation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pirson {
+            get {
+                object obj = ResourceManager.GetObject("pirson", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

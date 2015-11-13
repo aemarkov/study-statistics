@@ -204,7 +204,7 @@ namespace StatisticDistribution
 		//Разбивка на интервалы
 		private void btnSeparate_Click(object sender, EventArgs e)
 		{
-			interval = (data.Last()-data.First())/(double)numIntervals.Value;
+			interval = (distribution.StatFreq.Last().Key - distribution.StatFreq.First().Key) / (double)numIntervals.Value;
 			DisplayForm.DisplayIntervalFreq(distribution.Separate(interval));
 			setupGUIState(GUIState.SEPARATE);
 		}

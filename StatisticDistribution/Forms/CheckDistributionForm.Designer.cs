@@ -47,6 +47,10 @@
 			this.txtPirsonCrit = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.gridCalcTable = new System.Windows.Forms.DataGridView();
+			this.interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Pi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.sums = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.pboxFunction = new System.Windows.Forms.PictureBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.gridPointValues = new System.Windows.Forms.DataGridView();
@@ -54,15 +58,23 @@
 			this.Formula = new System.Windows.Forms.DataGridViewImageColumn();
 			this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.label4 = new System.Windows.Forms.Label();
-			this.interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Pi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.sums = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.label9 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridCalcTable)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pboxFunction)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridPointValues)).BeginInit();
+			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// graphEmp
@@ -270,8 +282,41 @@
 			this.gridCalcTable.Name = "gridCalcTable";
 			this.gridCalcTable.ReadOnly = true;
 			this.gridCalcTable.RowHeadersVisible = false;
-			this.gridCalcTable.Size = new System.Drawing.Size(303, 577);
+			this.gridCalcTable.Size = new System.Drawing.Size(303, 314);
 			this.gridCalcTable.TabIndex = 15;
+			// 
+			// interval
+			// 
+			this.interval.FillWeight = 97.92616F;
+			this.interval.HeaderText = "X";
+			this.interval.Name = "interval";
+			this.interval.ReadOnly = true;
+			this.interval.Width = 140;
+			// 
+			// Pi
+			// 
+			this.Pi.FillWeight = 30F;
+			this.Pi.HeaderText = "Pi";
+			this.Pi.MinimumWidth = 20;
+			this.Pi.Name = "Pi";
+			this.Pi.ReadOnly = true;
+			this.Pi.Width = 40;
+			// 
+			// ni
+			// 
+			this.ni.FillWeight = 48.07822F;
+			this.ni.HeaderText = "ni";
+			this.ni.Name = "ni";
+			this.ni.ReadOnly = true;
+			this.ni.Width = 40;
+			// 
+			// sums
+			// 
+			this.sums.FillWeight = 118.9294F;
+			this.sums.HeaderText = "Слагаемые";
+			this.sums.Name = "sums";
+			this.sums.ReadOnly = true;
+			this.sums.Width = 80;
 			// 
 			// pboxFunction
 			// 
@@ -341,38 +386,96 @@
 			this.label4.TabIndex = 17;
 			this.label4.Text = "Процесс вычисления";
 			// 
-			// interval
+			// groupBox1
 			// 
-			this.interval.FillWeight = 97.92616F;
-			this.interval.HeaderText = "X";
-			this.interval.Name = "interval";
-			this.interval.ReadOnly = true;
-			this.interval.Width = 140;
+			this.groupBox1.Controls.Add(this.label12);
+			this.groupBox1.Controls.Add(this.label11);
+			this.groupBox1.Controls.Add(this.label10);
+			this.groupBox1.Controls.Add(this.label9);
+			this.groupBox1.Controls.Add(this.pictureBox2);
+			this.groupBox1.Controls.Add(this.label8);
+			this.groupBox1.Controls.Add(this.label7);
+			this.groupBox1.Controls.Add(this.pictureBox1);
+			this.groupBox1.Location = new System.Drawing.Point(763, 361);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(300, 256);
+			this.groupBox1.TabIndex = 18;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Справка";
 			// 
-			// Pi
+			// pictureBox1
 			// 
-			this.Pi.FillWeight = 30F;
-			this.Pi.HeaderText = "Pi";
-			this.Pi.MinimumWidth = 20;
-			this.Pi.Name = "Pi";
-			this.Pi.ReadOnly = true;
-			this.Pi.Width = 40;
+			this.pictureBox1.BackgroundImage = global::StatisticDistribution.Properties.Resources.pirson;
+			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox1.Location = new System.Drawing.Point(9, 37);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(177, 57);
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
 			// 
-			// ni
+			// label7
 			// 
-			this.ni.FillWeight = 48.07822F;
-			this.ni.HeaderText = "ni";
-			this.ni.Name = "ni";
-			this.ni.ReadOnly = true;
-			this.ni.Width = 40;
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(6, 18);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(187, 13);
+			this.label7.TabIndex = 1;
+			this.label7.Text = "Формула расчета критерия пирсоа";
 			// 
-			// sums
+			// label8
 			// 
-			this.sums.FillWeight = 118.9294F;
-			this.sums.HeaderText = "Слагаемые";
-			this.sums.Name = "sums";
-			this.sums.ReadOnly = true;
-			this.sums.Width = 80;
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(6, 113);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(230, 13);
+			this.label8.TabIndex = 2;
+			this.label8.Text = "Формула расчета  числа степеней свободы";
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.BackgroundImage = global::StatisticDistribution.Properties.Resources.freedom;
+			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox2.Location = new System.Drawing.Point(9, 129);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(105, 15);
+			this.pictureBox2.TabIndex = 3;
+			this.pictureBox2.TabStop = false;
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(9, 151);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(114, 13);
+			this.label9.TabIndex = 4;
+			this.label9.Text = "K - число интервалов";
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(9, 172);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(255, 13);
+			this.label10.TabIndex = 5;
+			this.label10.Text = "r - число параметров, определяемых по выборке";
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(12, 210);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(238, 13);
+			this.label11.TabIndex = 6;
+			this.label11.Text = "Столбец \"слагаемые\" в таблице - слагаемые";
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(12, 224);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(104, 13);
+			this.label12.TabIndex = 7;
+			this.label12.Text = " критерия Пирсона";
 			// 
 			// CheckDistributionForm
 			// 
@@ -380,6 +483,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(1080, 632);
+			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.gridPointValues);
@@ -400,6 +504,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridCalcTable)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pboxFunction)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridPointValues)).EndInit();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -436,5 +544,14 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Pi;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ni;
 		private System.Windows.Forms.DataGridViewTextBoxColumn sums;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.PictureBox pictureBox1;
 	}
 }
