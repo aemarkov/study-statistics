@@ -152,7 +152,7 @@ namespace Statistics.DistributionCheck
 		//Плотность вероятности
 		double f(double x)
 		{
-			return 1 / (Math.Sqrt(2 * Math.PI) * standart_deviation) * Math.Exp(-Math.Pow(x - expected_value, 2) / (2 * standart_deviation));
+			return 1 / (Math.Sqrt(2 * Math.PI) * standart_deviation) * Math.Exp(-Math.Pow(x - expected_value, 2) / (2 * standart_deviation* standart_deviation));
 		}
 
 		//Вычисление аргумента для функции Лапласса

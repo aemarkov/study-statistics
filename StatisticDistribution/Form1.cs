@@ -319,7 +319,7 @@ namespace StatisticDistribution
 				case GUIState.INTERVAL_ONLY:
 					setElementEnabled(false, menuStatFreq, menuStatRelFreq, menuCheckBinomial);
 					setElementEnabled(false, numIntervals, btnSeparate);
-					setElementEnabled(true, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction);
+					setElementEnabled(true, menuIntervalFreq, menuIntervalRelFreq, menuGroupFreq, menuGroupRelFreq, menuNumericCharacteristics, menuEmpiricFunction, menuCheckNormal);
 					break;
 			};
 		}

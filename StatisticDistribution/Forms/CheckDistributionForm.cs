@@ -42,8 +42,11 @@ namespace StatisticDistribution
 			graphTheor.GraphPane.XAxis.Scale.Min = graphEmp.GraphPane.XAxis.Scale.Min;
 			graphTheor.GraphPane.XAxis.Scale.Max = graphEmp.GraphPane.XAxis.Scale.Max;
 
-			graphTheor.GraphPane.YAxis.Scale.Min = graphEmp.GraphPane.YAxis.Scale.Min;
-			graphTheor.GraphPane.YAxis.Scale.Max = graphEmp.GraphPane.YAxis.Scale.Max;
+			//graphTheor.GraphPane.YAxis.Scale.Min = graphEmp.GraphPane.YAxis.Scale.Min;
+			//graphTheor.GraphPane.YAxis.Scale.Max = graphEmp.GraphPane.YAxis.Scale.Max;
+
+			graphTheor.AxisChange();
+			graphTheor.Invalidate();
 
 			//Загружает значения уровней значимости в ComboBox
 			cbAlpha.DataSource = CriticalPirsonCriterion.GetSignificanceLevel();
