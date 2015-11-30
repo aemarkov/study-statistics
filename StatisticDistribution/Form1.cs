@@ -89,7 +89,7 @@ namespace StatisticDistribution
 				try
 				{
 					data = new List<double>();
-					stringIntervals = null;
+					stringIntervals = new BindingList<IntervalPair>();
 
 					//Меняем состояние
 					setupGUIState(GUIState.OPENED);
