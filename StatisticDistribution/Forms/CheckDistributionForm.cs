@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 using Statistics.DistributionCheck;
-using Statistics.Distribution;
-
 using ZedGraph;
+using System.Diagnostics;
 
 namespace StatisticDistribution
 {
@@ -150,6 +146,7 @@ namespace StatisticDistribution
 			var probs = distr.CalcProbablities();
 			double pirson = 0;
 			int n = distr.Count;
+			Debug.WriteLine("n={0}", n.ToString());
 
 			//Очищаем таблицу
 			gridCalcTable.Rows.Clear();
@@ -157,6 +154,7 @@ namespace StatisticDistribution
 			//Расчитываем критерий пирсонаы
 			foreach (var el in probs)
 			{
+				Debug.WriteLine(n * el.Pi);
 				double slag = Math.Pow(el.Mi - n * el.Pi, 2) / (n * el.Pi);
 				pirson += slag;
 

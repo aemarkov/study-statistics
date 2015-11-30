@@ -11,10 +11,10 @@ namespace Statistics.DistributionCheck
 	/// Для проверки гипотезы о нормальном законе распределения
 	/// </summary>
 	public class BinomialDistribution : AbstractDistribution
-	{
-		private double p; // M(x) / n 			    //Вероятность благоприятного исхода (точечная оценка)
-        private int n;    // Объем выборки
-        private List<PointValue> point_values;		//Список точечных оценок
+	{	
+		private double p; // M(x) / n 					//Вероятность благоприятного исхода (точечная оценка)
+		int n;											//Число опытов в одном испытании
+        private List<PointValue> point_values;			//Список точечных оценок
 
         Dictionary<double, double> raw_statistics;      //Исходный ряд (либо группированный, либо простой)
                                                         //Используется для расчет точечных оценок и построения
@@ -22,11 +22,12 @@ namespace Statistics.DistributionCheck
         
 
         #region CONSTRUCTORS
-		public BinomialDistribution(Distribution.Distribution distr):base(distr)
+		public BinomialDistribution(Distribution.Distribution distr, int number_of_experiments):base(distr)
 		{
             raw_statistics = distr.StatFreq;
-			//n = raw_statistics.Count; //distr.Count;
-			n = distr.Count;
+			n = number_of_experiments;
+
+			//Вычисляем вероятность благоприятного исхода
             double mean = new NumericSolver(raw_statistics).Mean();
             p =  mean / n;
 

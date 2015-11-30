@@ -274,9 +274,25 @@ namespace StatisticDistribution
 		//Проверка закона о биномиальном распределении
 		private void menuCheckBinomial_Click(object sender, EventArgs e)
 		{
+			//Поучаем число опытов
+			int num;
+			var dlg = new BinomialDialog();
+			if (dlg.ShowDialog() == DialogResult.OK)
+				num = dlg.NumberOfExperiments;
+			else
+				return;
+
+			if (num > 170)
+			{
+				MessageBox.Show("Внимание! Значение слишком велико: 170 максимум", "Проверка гипотезы о виде закона распределения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			else if (num > 20)
+				MessageBox.Show("Внимание! Потеря точности", "Проверка гипотезы о виде закона распределения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
 			try
 			{
-				var frm = new CheckDistributionForm(new BinomialDistribution(distribution));
+				var frm = new CheckDistributionForm(new BinomialDistribution(distribution, num));
 				frm.Show();
 			}catch (Exception exp)
 			{

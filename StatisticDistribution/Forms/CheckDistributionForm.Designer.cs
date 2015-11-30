@@ -281,7 +281,7 @@
 			this.gridCalcTable.Name = "gridCalcTable";
 			this.gridCalcTable.ReadOnly = true;
 			this.gridCalcTable.RowHeadersVisible = false;
-			this.gridCalcTable.Size = new System.Drawing.Size(303, 314);
+			this.gridCalcTable.Size = new System.Drawing.Size(343, 314);
 			this.gridCalcTable.TabIndex = 15;
 			// 
 			// interval
@@ -397,7 +397,7 @@
 			this.groupBox1.Controls.Add(this.pictureBox1);
 			this.groupBox1.Location = new System.Drawing.Point(763, 361);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(300, 256);
+			this.groupBox1.Size = new System.Drawing.Size(340, 256);
 			this.groupBox1.TabIndex = 18;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Справка";
@@ -407,9 +407,9 @@
 			this.label12.AutoSize = true;
 			this.label12.Location = new System.Drawing.Point(12, 224);
 			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(104, 13);
+			this.label12.Size = new System.Drawing.Size(286, 13);
 			this.label12.TabIndex = 7;
-			this.label12.Text = " критерия Пирсона";
+			this.label12.Text = "в формуле наблюдаемого значения критерия Пирсона";
 			// 
 			// label11
 			// 
@@ -462,9 +462,9 @@
 			this.label7.AutoSize = true;
 			this.label7.Location = new System.Drawing.Point(6, 18);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(187, 13);
+			this.label7.Size = new System.Drawing.Size(323, 13);
 			this.label7.TabIndex = 1;
-			this.label7.Text = "Формула расчета критерия пирсоа";
+			this.label7.Text = "Формула расчета наблюдаемого значения критерия Пирсона";
 			// 
 			// pictureBox1
 			// 
@@ -481,7 +481,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1080, 628);
+			this.ClientSize = new System.Drawing.Size(1115, 628);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label2);

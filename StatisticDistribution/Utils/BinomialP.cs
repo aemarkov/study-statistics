@@ -30,6 +30,8 @@ namespace Statistics.Utils
             double factorial = 1;
             for (int i = 2; i <= n; ++i)
                 factorial *= i;
+
+			if (double.IsInfinity(factorial)) throw new Exception("FUCK");
             return factorial;       
         }
 
