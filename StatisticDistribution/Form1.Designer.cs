@@ -35,6 +35,11 @@
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.btnOpen = new System.Windows.Forms.Button();
 			this.gridData = new System.Windows.Forms.DataGridView();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.btnFreq = new System.Windows.Forms.Button();
+			this.gridFreqData = new System.Windows.Forms.DataGridView();
+			this.val = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.freq = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.btnInterval = new System.Windows.Forms.Button();
 			this.gridIntervalData = new System.Windows.Forms.DataGridView();
@@ -54,21 +59,19 @@
 			this.проверкаГипотезыОВидеЗаконаРаспределенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuCheckNormal = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuCheckBinomial = new System.Windows.Forms.ToolStripMenuItem();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.btnFreq = new System.Windows.Forms.Button();
-			this.gridFreqData = new System.Windows.Forms.DataGridView();
-			this.val = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.freq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuShowHelp = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBoxInterval.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numIntervals)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
+			this.tabPage3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridFreqData)).BeginInit();
 			this.tabPage2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridIntervalData)).BeginInit();
 			this.menuStrip1.SuspendLayout();
-			this.tabPage3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.gridFreqData)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBoxInterval
@@ -176,6 +179,58 @@
 			this.gridData.Size = new System.Drawing.Size(291, 478);
 			this.gridData.TabIndex = 3;
 			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.btnFreq);
+			this.tabPage3.Controls.Add(this.gridFreqData);
+			this.tabPage3.Cursor = System.Windows.Forms.Cursors.Arrow;
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(305, 606);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "Ряд частот";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// btnFreq
+			// 
+			this.btnFreq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnFreq.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btnFreq.Location = new System.Drawing.Point(6, 563);
+			this.btnFreq.Name = "btnFreq";
+			this.btnFreq.Size = new System.Drawing.Size(293, 37);
+			this.btnFreq.TabIndex = 7;
+			this.btnFreq.Text = "Ввод";
+			this.btnFreq.UseVisualStyleBackColor = true;
+			this.btnFreq.Click += new System.EventHandler(this.btnFreq_Click);
+			// 
+			// gridFreqData
+			// 
+			this.gridFreqData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.gridFreqData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.gridFreqData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridFreqData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.val,
+            this.freq});
+			this.gridFreqData.Location = new System.Drawing.Point(6, 6);
+			this.gridFreqData.MultiSelect = false;
+			this.gridFreqData.Name = "gridFreqData";
+			this.gridFreqData.Size = new System.Drawing.Size(293, 551);
+			this.gridFreqData.TabIndex = 6;
+			// 
+			// val
+			// 
+			this.val.HeaderText = "Значение";
+			this.val.Name = "val";
+			// 
+			// freq
+			// 
+			this.freq.HeaderText = "Частота";
+			this.freq.Name = "freq";
+			// 
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.btnInterval);
@@ -230,7 +285,8 @@
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.обработкаToolStripMenuItem});
+            this.обработкаToolStripMenuItem,
+            this.справкаToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(324, 24);
@@ -340,57 +396,28 @@
 			this.menuCheckBinomial.Text = "Биномиальное распределение";
 			this.menuCheckBinomial.Click += new System.EventHandler(this.menuCheckBinomial_Click);
 			// 
-			// tabPage3
+			// справкаToolStripMenuItem
 			// 
-			this.tabPage3.Controls.Add(this.btnFreq);
-			this.tabPage3.Controls.Add(this.gridFreqData);
-			this.tabPage3.Cursor = System.Windows.Forms.Cursors.Arrow;
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(305, 606);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "Ряд частот";
-			this.tabPage3.UseVisualStyleBackColor = true;
+			this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuShowHelp,
+            this.menuAbout});
+			this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+			this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+			this.справкаToolStripMenuItem.Text = "Справка";
 			// 
-			// btnFreq
+			// menuShowHelp
 			// 
-			this.btnFreq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnFreq.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btnFreq.Location = new System.Drawing.Point(6, 563);
-			this.btnFreq.Name = "btnFreq";
-			this.btnFreq.Size = new System.Drawing.Size(293, 37);
-			this.btnFreq.TabIndex = 7;
-			this.btnFreq.Text = "Ввод";
-			this.btnFreq.UseVisualStyleBackColor = true;
-			this.btnFreq.Click += new System.EventHandler(this.btnFreq_Click);
+			this.menuShowHelp.Name = "menuShowHelp";
+			this.menuShowHelp.Size = new System.Drawing.Size(179, 22);
+			this.menuShowHelp.Text = "Просмотр справки";
+			this.menuShowHelp.Click += new System.EventHandler(this.menuShowHelp_Click);
 			// 
-			// gridFreqData
+			// menuAbout
 			// 
-			this.gridFreqData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.gridFreqData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.gridFreqData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.gridFreqData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.val,
-            this.freq});
-			this.gridFreqData.Location = new System.Drawing.Point(6, 6);
-			this.gridFreqData.MultiSelect = false;
-			this.gridFreqData.Name = "gridFreqData";
-			this.gridFreqData.Size = new System.Drawing.Size(293, 551);
-			this.gridFreqData.TabIndex = 6;
-			// 
-			// val
-			// 
-			this.val.HeaderText = "Значение";
-			this.val.Name = "val";
-			// 
-			// freq
-			// 
-			this.freq.HeaderText = "Частота";
-			this.freq.Name = "freq";
+			this.menuAbout.Name = "menuAbout";
+			this.menuAbout.Size = new System.Drawing.Size(179, 22);
+			this.menuAbout.Text = "О программе";
+			this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
 			// 
 			// MainForm
 			// 
@@ -409,12 +436,12 @@
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
+			this.tabPage3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.gridFreqData)).EndInit();
 			this.tabPage2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridIntervalData)).EndInit();
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			this.tabPage3.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.gridFreqData)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -452,6 +479,9 @@
 		private System.Windows.Forms.DataGridView gridFreqData;
 		private System.Windows.Forms.DataGridViewTextBoxColumn val;
 		private System.Windows.Forms.DataGridViewTextBoxColumn freq;
+		private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem menuShowHelp;
+		private System.Windows.Forms.ToolStripMenuItem menuAbout;
 	}
 }
 

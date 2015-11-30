@@ -194,6 +194,25 @@ namespace StatisticDistribution
 				e.Cancel = true;
         }
 
+		//Показ справки
+		private void menuShowHelp_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				HelpProvider.ShowHelp();
+				
+			}catch(Exception exp)
+			{
+				MessageBox.Show(exp.Message, "Не удается отобразить справку", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void menuAbout_Click(object sender, EventArgs e)
+		{
+			var frm = new AboutBox();
+			frm.ShowDialog();
+		}
+
 		#endregion
 
 		#region CALC
@@ -384,5 +403,7 @@ namespace StatisticDistribution
 
 
 		#endregion
+
+
 	}
 }
