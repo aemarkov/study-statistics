@@ -121,6 +121,7 @@
     <Compile Include="HelpProvider.cs" />
     <Compile Include="Utils\BinomialP.cs" />
     <Compile Include="Utils\FreqPair.cs" />
+    <Compile Include="Utils\HistogramPlotter.cs" />
     <Compile Include="Utils\IntervalPair.cs" />
     <Compile Include="Forms\NumCharacteristics.cs">
       <SubType>Form</SubType>

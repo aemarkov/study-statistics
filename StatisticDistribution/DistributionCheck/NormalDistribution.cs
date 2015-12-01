@@ -76,7 +76,25 @@ namespace Statistics.DistributionCheck
 		public override Bitmap Funtion { get { return Resources.normal_function; } }
 
 		//Возвращает группированный ряд относительных частот
-		public override Dictionary<double, double> StatisticsData{ get { return distr.GroupRelFreq; } }
+		public override Dictionary<double, double> StatisticsData
+		{
+			get 
+			{
+				//return distr.GroupRelFreq;
+				var res = new Dictionary<double, double>();
+				double interval = 1;
+				for (int i = 0; i < distr.GroupRelFreq.Count; i++ )
+				{
+					var val = distr.GroupRelFreq.ElementAt(i);
+					if (i < distr.GroupRelFreq.Count-1)
+						interval = distr.GroupRelFreq.ElementAt(i + 1).Key - val.Key;
+
+					res.Add(val.Key, val.Value / interval);
+				}
+
+				return res;
+			}
+		}
 
 
 		//Возвращает мат ожидание и  среднеквадратическое откланенеие

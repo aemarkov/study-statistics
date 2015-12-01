@@ -130,48 +130,9 @@ namespace StatisticDistribution
 			SetupDataSource<Range, double>(data, xName, yName);
 			setupForm(title, xName, yName);
 
-			//Вывод графика
-			var pane = graph.GraphPane;
-			double maxY = 0;
-
-			//Находим интервалы
-			var intervals = new double[data.Count];
-			var height = new double[data.Count];
-			var xi = new double[data.Count];
-
-			//МЕГАКОСТЫЛь. Зря я использовал Dictionary
-			int i = 0;
-			foreach(var x in data)
-			{
-				intervals[i] = x.Key.Length;
-				height[i] = x.Value / intervals[i];
-				xi[i] = x.Key.Left;
-				i++;
-			}
-
-			//Находим высоту
-			//var height = data.Select(x => x.Value / interval).ToArray();
-			//var xi = data.Select(x => x.Key.Left).ToArray();
-
-			//Рисуем гистограмму
-			for (i = 0; i < height.Length; i++)
-			{
-				var box = new BoxObj((float)xi[i], (float)height[i], (float)intervals[i], (float)height[i], Color.Black, Color.FromArgb(255, 39, 174, 96));
-
-				pane.GraphObjList.Add(box);
-				if (height[i] > maxY) maxY = height[i];
-			}
-
-
-
-			//Настраиваем масштаб
-			pane.XAxis.Scale.Min = data.First().Key.Left;
-			pane.XAxis.Scale.Max = data.Last().Key.Right;
-			pane.YAxis.Scale.Min = 0;
-			pane.YAxis.Scale.Max = maxY * 1.1;
-			
-			graph.AxisChange();
-			graph.Invalidate();
+			//Рисуем график
+			var plotter = new HistogramPlotter(graph);
+			plotter.Plot(data);
 		}
 
 #endregion
