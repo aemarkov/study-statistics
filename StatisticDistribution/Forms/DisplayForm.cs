@@ -132,7 +132,7 @@ namespace StatisticDistribution
 
 			//Рисуем график
 			var plotter = new HistogramPlotter(graph);
-			plotter.Plot(data);
+			plotter.Plot(data, Color.FromArgb(255, 39, 174, 96));
 		}
 
 #endregion

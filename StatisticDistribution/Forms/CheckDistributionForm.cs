@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using Statistics.DistributionCheck;
 using ZedGraph;
 using System.Diagnostics;
+using Statistics.Distribution;
+using Statistics.Utils;
 
 namespace StatisticDistribution
 {
@@ -28,18 +30,29 @@ namespace StatisticDistribution
 
 
 			//Заголовки графиков
-			graphEmp.GraphPane.Title.Text = "Полигон относительных частот";
+			if(distr.DistributionType==DistributionType.DISCRETE)
+				graphEmp.GraphPane.Title.Text = "Полигон относительных частот";
+			else
+				graphEmp.GraphPane.Title.Text = "Гистограмма относительных частот";
+
 			graphTheor.GraphPane.Title.Text = "Теоретическая функция распределения";
 
 			//Отображает полигон относительных частот и график теоретического закона распределения
-			draw_distribution(graphEmp, distr.StatisticsData);
+			//draw_distribution(graphEmp, distr.Distribution);
+
+			draw_emp_graph(graphEmp, distr);
 			draw_distribution(graphTheor, distr.GetTheoreticalFreq());
 
-			graphTheor.GraphPane.XAxis.Scale.Min = graphEmp.GraphPane.XAxis.Scale.Min;
-			graphTheor.GraphPane.XAxis.Scale.Max = graphEmp.GraphPane.XAxis.Scale.Max;
+			//Делаем одинаковый масштаб
+			double min_1 = graphTheor.GraphPane.YAxis.Scale.Min;
+			double min_2 = graphEmp.GraphPane.YAxis.Scale.Min;
+			double max_1 = graphTheor.GraphPane.YAxis.Scale.Max;
+			double max_2 = graphEmp.GraphPane.YAxis.Scale.Max;
 
-			//graphTheor.GraphPane.YAxis.Scale.Min = graphEmp.GraphPane.YAxis.Scale.Min;
-			//graphTheor.GraphPane.YAxis.Scale.Max = graphEmp.GraphPane.YAxis.Scale.Max;
+			graphTheor.GraphPane.YAxis.Scale.Min = Math.Min(min_1, min_2);
+			graphEmp.GraphPane.YAxis.Scale.Max = Math.Max(max_1, max_2);
+			graphEmp.GraphPane.YAxis.Scale.MajorStep = graphTheor.GraphPane.YAxis.Scale.MajorStep;
+			graphEmp.GraphPane.YAxis.Scale.MinorStep = graphTheor.GraphPane.YAxis.Scale.MinorStep;
 
 			graphTheor.AxisChange();
 			graphTheor.Invalidate();
@@ -174,7 +187,7 @@ namespace StatisticDistribution
 		//Расчитывает число степеней свободы
 		int calc_degrees_of_freedom(AbstractDistribution distr)
 		{
-			return distr.StatisticsData.Count -   //Число элементов группированного ряда == число интервалов
+			return distr.Distribution.Count -   //Число элементов группированного ряда == число интервалов
 				   distr.PointValues.Count -	  //число точечных значений - число элементов, которые мы оцениваем по выборке
 				   1;
 		}
@@ -184,6 +197,43 @@ namespace StatisticDistribution
 		#region GRAPHICS
 		///////////////////////////// ПОСТРОЙКА ГРАФИКОВ ////////////////////////////////
 
+		//Строит график ряда
+		//Для дискретного распределения строится только полигон относительных частот
+		//Для непрерывного - гистограмма, а на ее фоне  - полигон, но деленый на ширину интервала
+		void draw_emp_graph(ZedGraphControl graph, AbstractDistribution distr)
+		{
+			if (distr.DistributionType == DistributionType.DISCRETE)
+				draw_distribution(graph, distr.Distribution.GroupRelFreq);
+			else
+			{
+				//Непрерывное
+				//Гистограмма
+				HistogramPlotter plotter = new HistogramPlotter(graph);
+				plotter.Plot(distr.Distribution.IntervalRelFreq, Color.FromArgb(30, 230, 126, 34));
+
+				//Полигон
+				double interval = 1;
+				var points = new PointPairList();
+				for (int i = 0; i < distr.Distribution.GroupRelFreq.Count; i++)
+				{
+					var val = distr.Distribution.GroupRelFreq.ElementAt(i);
+					if (i < distr.Distribution.GroupRelFreq.Count - 1)
+						interval = distr.Distribution.GroupRelFreq.ElementAt(i + 1).Key - val.Key;
+
+					points.Add(val.Key, val.Value / interval);
+				}
+
+				var pane = graph.GraphPane;
+
+				var curve = pane.AddCurve("", points, Color.FromArgb(255, 39, 174, 96), SymbolType.Default);
+
+
+				graph.AxisChange();
+				graph.Invalidate();
+			}
+		}
+
+
 		//Строит график
 		void draw_distribution(ZedGraphControl graph, Dictionary<double, double> distr)
 		{
@@ -191,10 +241,10 @@ namespace StatisticDistribution
 
 			//Построение полигона
 			var pane = graph.GraphPane;
-			SymbolType type = SymbolType.Default;
-			if (distr.Count > 20) type = SymbolType.None;
+			//SymbolType type = SymbolType.Default;
+			//if (distr.Count > 20) type = SymbolType.None;
 
-			var curve = pane.AddCurve("", dictionaryToList(distr), Color.FromArgb(255, 39, 174, 96),type);
+			var curve = pane.AddCurve("", dictionaryToList(distr), Color.FromArgb(255, 39, 174, 96),SymbolType.None);
 			graph.AxisChange();
 			graph.Invalidate();
 		}

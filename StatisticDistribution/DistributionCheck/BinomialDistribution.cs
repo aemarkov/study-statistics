@@ -43,13 +43,12 @@ namespace Statistics.DistributionCheck
         #region STATISTICS_INTERFACE
         ///////////////////////////// ДАННЫЕ О СТАТИСТИЧЕСКОМ РЯДЕ ////////////////////////////////////////
 
+		public override DistributionType DistributionType { get { return DistributionType.DISCRETE; } }
+
 		//Название распределения
-		public override string Name { get { return "Биномиальное распределение"; } }
+		public override string Name { get { return "Предполагаемое биномиальное распределение"; } }
 
 		public override Bitmap Funtion{ get { return Resources.binomial_function; }}
-
-		//Возвращает ряд относительных частот, для построения полигона
-		public override Dictionary<double, double> StatisticsData {get { return distr.StatRelFreq; }}
 
 		//Возвращает список точек для построения теоретической кривой
 		public override Dictionary<double, double> GetTheoreticalFreq()

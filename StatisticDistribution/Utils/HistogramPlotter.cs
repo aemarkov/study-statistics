@@ -29,7 +29,7 @@ namespace Statistics.Utils
 		/// Строит диаграмму для интервального ряда
 		/// </summary>
 		/// <param name="intervalFreq">Интервальный ряд</param>
-		public void Plot(Dictionary<Range, double> data)
+		public void Plot(Dictionary<Range, double> data, Color color)
 		{
 			//Вывод графика
 			var pane = graph.GraphPane;
@@ -53,7 +53,7 @@ namespace Statistics.Utils
 			//Рисуем гистограмму
 			for (i = 0; i < height.Length; i++)
 			{
-				var box = new BoxObj((float)xi[i], (float)height[i], (float)intervals[i], (float)height[i], Color.Black, Color.FromArgb(255, 39, 174, 96));
+				var box = new BoxObj((float)xi[i], (float)height[i], (float)intervals[i], (float)height[i], Color.Black, color);
 
 				pane.GraphObjList.Add(box);
 				if (height[i] > maxY) maxY = height[i];

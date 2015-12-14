@@ -65,37 +65,17 @@ namespace Statistics.DistributionCheck
 		#region STATISTICS_INTERFACE
 		///////////////////////////// ДАННЫЕ О СТАТИСТИЧЕСКОМ РЯДЕ ////////////////////////////////////////
 
+		public override DistributionType DistributionType { get { return DistributionType.CONTINUOUS; } }
+
 		/// <summary>
 		/// Название распределения
 		/// </summary>
-		public override string Name { get { return "Нормальное распределение"; } }
+		public override string Name { get { return "Плотность предполагаемого нормального распределения"; } }
 
 		/// <summary>
 		/// Картинка с формулой закона распределения
 		/// </summary>
 		public override Bitmap Funtion { get { return Resources.normal_function; } }
-
-		//Возвращает группированный ряд относительных частот
-		public override Dictionary<double, double> StatisticsData
-		{
-			get 
-			{
-				//return distr.GroupRelFreq;
-				var res = new Dictionary<double, double>();
-				double interval = 1;
-				for (int i = 0; i < distr.GroupRelFreq.Count; i++ )
-				{
-					var val = distr.GroupRelFreq.ElementAt(i);
-					if (i < distr.GroupRelFreq.Count-1)
-						interval = distr.GroupRelFreq.ElementAt(i + 1).Key - val.Key;
-
-					res.Add(val.Key, val.Value / interval);
-				}
-
-				return res;
-			}
-		}
-
 
 		//Возвращает мат ожидание и  среднеквадратическое откланенеие
 		public override List<PointValue> PointValues { get { return point_values; } }

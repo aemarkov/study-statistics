@@ -110,12 +110,12 @@
 			// lblDistrType
 			// 
 			this.lblDistrType.AutoSize = true;
-			this.lblDistrType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.lblDistrType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.lblDistrType.Location = new System.Drawing.Point(379, 11);
 			this.lblDistrType.Name = "lblDistrType";
-			this.lblDistrType.Size = new System.Drawing.Size(268, 24);
+			this.lblDistrType.Size = new System.Drawing.Size(350, 15);
 			this.lblDistrType.TabIndex = 2;
-			this.lblDistrType.Text = "Нормальное распределение";
+			this.lblDistrType.Text = "Плотность предполагаемого нормального распределения";
 			// 
 			// rbManual
 			// 

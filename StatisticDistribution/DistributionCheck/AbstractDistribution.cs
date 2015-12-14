@@ -4,6 +4,12 @@ using System.Drawing;
 namespace Statistics.DistributionCheck
 {
 	/// <summary>
+	/// Тип распределения
+	/// </summary>
+	public enum DistributionType { DISCRETE, CONTINUOUS };
+
+
+	/// <summary>
 	/// Интерфейс для классов, предоставляющийх необходимые
 	/// методы и данные для проверки гипотезы.
 	/// Класс, описывающий распределение обладает следующим:
@@ -20,11 +26,15 @@ namespace Statistics.DistributionCheck
 
 		protected Distribution.Distribution distr;
 
-
 		public AbstractDistribution(Distribution.Distribution distr)
 		{
 			this.distr = distr;
 		}
+
+		/// <summary>
+		/// Тип распределения - непрерывное или дискретное
+		/// </summary>
+		abstract public DistributionType DistributionType { get; }
 
 		/// <summary>
 		/// Название закона распределения
@@ -40,7 +50,7 @@ namespace Statistics.DistributionCheck
 		/// Возвращает группированный ряд относительных частот (или простой ряд относительных частот)
 		/// </summary>
 		/// <returns></returns>
-		abstract public Dictionary<double, double> StatisticsData { get; }
+		public Distribution.Distribution Distribution { get { return distr; } }
 
 		/// <summary>
 		/// Возвращает список точек для построения теоретической кривой
