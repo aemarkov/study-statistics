@@ -19,6 +19,7 @@ namespace Regression
 		/// Набор пар значений СВ
 		/// </summary>
 		BindingList<PointD> data;
+		CorrelationTable cor_table;
 
 
 		///////////////////////////////////////////////////////////////////////////////////////
@@ -29,11 +30,16 @@ namespace Regression
 
 			//Настройка списка и биндингов
 			data = new BindingList<PointD>();
-			data.AllowEdit = true;
-			data.AllowNew = true;
-			data.AllowRemove = true;
+			data.AllowEdit = false;;
+			data.AllowNew = false;
+			data.AllowRemove = false;
 
 			gridData.DataSource = data;
+
+
+			int? a = null;
+			int b = a.GetValueOrDefault();
+			int c = b;
 
 		}
 
@@ -53,13 +59,21 @@ namespace Regression
 		//Создание корреляционной таблицы заданного размера
 		private void btnCreate_Click(object sender, EventArgs e)
 		{
+			int n_x = (int)numCols.Value;
+			int n_y = (int)numRows.Value;
 
+			cor_table = new CorrelationTable(n_x, n_y);
 		}
 
 		//Разбитие исходной выборки в корреляционную таблицу
 		private void btnSeparate_Click(object sender, EventArgs e)
 		{
+			int n_x = (int)numCols.Value;
+			int n_y = (int)numRows.Value;
 
+			cor_table = new CorrelationTable(n_x, n_y);
+			cor_table.Fill(data.ToList());
+			print_correlation_table(cor_table);
 		}
 
 		//Ввод корреляционной таблицы
@@ -68,5 +82,35 @@ namespace Regression
 
 		}
 
+		/////////////////////////////////////////////////////////////////////////////
+
+		private void print_correlation_table(CorrelationTable table)
+		{
+			gridCorrelation.Rows.Clear();
+			gridCorrelation.Columns.Clear();
+
+			//Добавляем колонки
+			var templ_row = new DataGridViewRow();
+			templ_row.Cells.Add(new DataGridViewTextBoxCell());
+			gridCorrelation.Columns.Add("YHeaders","");
+			for (int i = 0; i<table.Width; i++)
+			{
+				templ_row.Cells.Add(new DataGridViewTextBoxCell());
+				gridCorrelation.Columns.Add("c" + i, table.XHeaders[i].ToString());
+            }
+			gridCorrelation.RowTemplate = templ_row;
+
+			//Добавляем значения
+			for(int y=0; y<table.Height; y++)
+			{
+				gridCorrelation.Rows.Add();
+				gridCorrelation[0, y].Value = table.YHeaders[y].ToString();
+
+				for(int x=0; x<table.Width; x++)
+				{
+					gridCorrelation[x + 1, y].Value = table[x, y].ToString();
+				}
+			}
+		}
 	}
 }

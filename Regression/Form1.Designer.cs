@@ -33,24 +33,24 @@
 			this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
 			this.gridData = new System.Windows.Forms.DataGridView();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.label1 = new System.Windows.Forms.Label();
-			this.btnInput = new System.Windows.Forms.Button();
-			this.label2 = new System.Windows.Forms.Label();
-			this.numRows = new System.Windows.Forms.NumericUpDown();
-			this.numCols = new System.Windows.Forms.NumericUpDown();
-			this.label3 = new System.Windows.Forms.Label();
-			this.btnSeparate = new System.Windows.Forms.Button();
-			this.btnCreate = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.btnCreate = new System.Windows.Forms.Button();
+			this.btnSeparate = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.numCols = new System.Windows.Forms.NumericUpDown();
+			this.numRows = new System.Windows.Forms.NumericUpDown();
+			this.label2 = new System.Windows.Forms.Label();
+			this.btnInput = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
+			this.gridCorrelation = new System.Windows.Forms.DataGridView();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numRows)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCols)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numRows)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridCorrelation)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -99,7 +99,7 @@
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.btnInput);
 			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Controls.Add(this.dataGridView1);
+			this.groupBox1.Controls.Add(this.gridCorrelation);
 			this.groupBox1.Location = new System.Drawing.Point(323, 28);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(678, 650);
@@ -107,58 +107,60 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Корреляционная таблица";
 			// 
-			// dataGridView1
+			// label6
 			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(6, 154);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(664, 490);
-			this.dataGridView1.TabIndex = 0;
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(249, 108);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(417, 13);
+			this.label6.TabIndex = 11;
+			this.label6.Text = "Разбить введенные из файла данные и сформировать корреляционную таблицу";
 			// 
-			// label1
+			// label5
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 138);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(136, 13);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Корреляционная таблица";
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(255, 108);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(0, 13);
+			this.label5.TabIndex = 10;
 			// 
-			// btnInput
+			// label4
 			// 
-			this.btnInput.Location = new System.Drawing.Point(256, 20);
-			this.btnInput.Name = "btnInput";
-			this.btnInput.Size = new System.Drawing.Size(410, 46);
-			this.btnInput.TabIndex = 2;
-			this.btnInput.Text = "Ввод данных из корреляционной таблицы";
-			this.btnInput.UseVisualStyleBackColor = true;
-			this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(253, 83);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(417, 13);
+			this.label4.TabIndex = 9;
+			this.label4.Text = "Создать пустую корреляционную таблицу заданного размера для ручного ввода";
 			// 
-			// label2
+			// btnCreate
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(18, 20);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(71, 13);
-			this.label2.TabIndex = 3;
-			this.label2.Text = "Число строк";
+			this.btnCreate.Location = new System.Drawing.Point(21, 74);
+			this.btnCreate.Name = "btnCreate";
+			this.btnCreate.Size = new System.Drawing.Size(225, 23);
+			this.btnCreate.TabIndex = 8;
+			this.btnCreate.Text = "Создать";
+			this.btnCreate.UseVisualStyleBackColor = true;
+			this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
 			// 
-			// numRows
+			// btnSeparate
 			// 
-			this.numRows.Location = new System.Drawing.Point(126, 20);
-			this.numRows.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.numRows.Name = "numRows";
-			this.numRows.Size = new System.Drawing.Size(120, 20);
-			this.numRows.TabIndex = 4;
-			this.numRows.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+			this.btnSeparate.Location = new System.Drawing.Point(21, 103);
+			this.btnSeparate.Name = "btnSeparate";
+			this.btnSeparate.Size = new System.Drawing.Size(225, 23);
+			this.btnSeparate.TabIndex = 7;
+			this.btnSeparate.Text = "Разбить";
+			this.btnSeparate.UseVisualStyleBackColor = true;
+			this.btnSeparate.Click += new System.EventHandler(this.btnSeparate_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(18, 48);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(89, 13);
+			this.label3.TabIndex = 6;
+			this.label3.Text = "Число столбцов";
 			// 
 			// numCols
 			// 
@@ -177,60 +179,60 @@
             0,
             0});
 			// 
-			// label3
+			// numRows
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(18, 48);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(89, 13);
-			this.label3.TabIndex = 6;
-			this.label3.Text = "Число столбцов";
+			this.numRows.Location = new System.Drawing.Point(126, 20);
+			this.numRows.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numRows.Name = "numRows";
+			this.numRows.Size = new System.Drawing.Size(120, 20);
+			this.numRows.TabIndex = 4;
+			this.numRows.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
-			// btnSeparate
+			// label2
 			// 
-			this.btnSeparate.Location = new System.Drawing.Point(21, 103);
-			this.btnSeparate.Name = "btnSeparate";
-			this.btnSeparate.Size = new System.Drawing.Size(225, 23);
-			this.btnSeparate.TabIndex = 7;
-			this.btnSeparate.Text = "Разбить";
-			this.btnSeparate.UseVisualStyleBackColor = true;
-			this.btnSeparate.Click += new System.EventHandler(this.btnSeparate_Click);
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(18, 20);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(71, 13);
+			this.label2.TabIndex = 3;
+			this.label2.Text = "Число строк";
 			// 
-			// btnCreate
+			// btnInput
 			// 
-			this.btnCreate.Location = new System.Drawing.Point(21, 74);
-			this.btnCreate.Name = "btnCreate";
-			this.btnCreate.Size = new System.Drawing.Size(225, 23);
-			this.btnCreate.TabIndex = 8;
-			this.btnCreate.Text = "Создать";
-			this.btnCreate.UseVisualStyleBackColor = true;
-			this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+			this.btnInput.Location = new System.Drawing.Point(256, 20);
+			this.btnInput.Name = "btnInput";
+			this.btnInput.Size = new System.Drawing.Size(410, 46);
+			this.btnInput.TabIndex = 2;
+			this.btnInput.Text = "Ввод данных из корреляционной таблицы";
+			this.btnInput.UseVisualStyleBackColor = true;
+			this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
 			// 
-			// label4
+			// label1
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(253, 83);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(417, 13);
-			this.label4.TabIndex = 9;
-			this.label4.Text = "Создать пустую корреляционную таблицу заданного размера для ручного ввода";
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(6, 138);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(136, 13);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Корреляционная таблица";
 			// 
-			// label5
+			// gridCorrelation
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(255, 108);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(0, 13);
-			this.label5.TabIndex = 10;
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(249, 108);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(417, 13);
-			this.label6.TabIndex = 11;
-			this.label6.Text = "Разбить введенные из файла данные и сформировать корреляционную таблицу";
+			this.gridCorrelation.AllowUserToAddRows = false;
+			this.gridCorrelation.AllowUserToDeleteRows = false;
+			this.gridCorrelation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridCorrelation.Location = new System.Drawing.Point(6, 154);
+			this.gridCorrelation.Name = "gridCorrelation";
+			this.gridCorrelation.Size = new System.Drawing.Size(664, 490);
+			this.gridCorrelation.TabIndex = 0;
 			// 
 			// Form1
 			// 
@@ -250,9 +252,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numRows)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCols)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numRows)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridCorrelation)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -272,7 +274,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnInput;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridView gridCorrelation;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;

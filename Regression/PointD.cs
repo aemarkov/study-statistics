@@ -18,5 +18,10 @@ namespace Regression
 			X = x;
 			Y = y;
 		}
+
+		public new string ToString()
+		{
+			return "(" + X.ToString() + "; " + Y.ToString() + ")";
+		}
 	}
 }
