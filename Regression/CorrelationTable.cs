@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 using Utils;
 
@@ -28,6 +27,16 @@ namespace Regression
 
 		public int Width { get; private set; }
 		public int Height { get; private set; }
+
+		/// <summary>
+		/// Шаг по гооризонтали
+		/// </summary>
+		public double Bx { get; private set; }
+
+		/// <summary>
+		/// Шаг по вертикали
+		/// </summary>
+		public double By { get; private set; }
 
 
 		/// <summary>
@@ -59,6 +68,8 @@ namespace Regression
 
 			double step_x = (max_x - min_x) / Width;
 			double step_y = (max_y - min_y) / Height;
+			Bx = step_x;
+			By = step_y;
 
 			//Заполняем "оси"
 			double x_1 = min_x;
