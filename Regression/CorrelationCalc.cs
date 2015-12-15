@@ -40,6 +40,7 @@ namespace Regression
 		public double NjVj { get; private set; }
 		public double NiUi2 { get; private set; }
 		public double NjVj2 { get; private set; }
+		public double NijUiVj { get; private set;}
 
 		//Еще суммы
 		public double Qu { get; private set; }
@@ -67,15 +68,15 @@ namespace Regression
 
 		/////////////////////////////////////////////////////////////////////////////
 
-		private CorrelationTable table;
+		public CorrelationTable Table { get; private set; }
 
 		public CorrelationCalc(CorrelationTable table)
 		{
-			this.table = table;
+			this.Table = table;
 
 			N = get_n(table);
 			Ni = get_Ni(table);
-			Ni = get_Nj(table);
+			Nj = get_Nj(table);
 
 			var dxdy = get_DxDy(table);
 			Dx = dxdy.X;
@@ -91,7 +92,8 @@ namespace Regression
 
 			Qu = NiUi2 - NiUi * NiUi / N;
 			Qv = NjVj2 - NjVj * NjVj / N;
-			Quv = get_Quv(table, Ni, Ui, Nj, Vj, NiUi, NjVj);
+			NijUiVj = get_NijUiVj(table, Ni, Ui, Nj, Vj);
+			Quv= NijUiVj - NiUi * NjVj / N; ;
 
 			//Расчет среднего
 			X = table.Bx * NiUi / N + Dx;
@@ -194,14 +196,14 @@ namespace Regression
 		}
 
 		//Расчет других странных сумм
-		double get_Quv(CorrelationTable table, int[] Ni, double[] Ui, int[] Nj, double[]Vj, double NiUi, double NjVj)
+		double get_NijUiVj(CorrelationTable table, int[] Ni, double[] Ui, int[] Nj, double[]Vj)
 		{
 			double sum1 = 0;
 			for (int x = 0; x < table.Width; x++)
 				for (int y = 0; y < table.Height; y++)
 					sum1 += table[x, y] * Ui[x] * Vj[y];        //???
 
-			return sum1 - (NiUi * NjVj) / N;
+			return sum1;
 		}
 
 	}

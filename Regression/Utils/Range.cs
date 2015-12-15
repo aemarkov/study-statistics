@@ -38,7 +38,7 @@ namespace Utils
 		//Перевод к строке
 		public override string ToString()
 		{
-			return (leftIncluded ?  "[" : "(") + Left.ToString("N2") + "; " + Right.ToString("N2") + (rightIncluded ? "]": ")");
+			return (leftIncluded ?  "[" : "(") + Left.ToString("N2") + "; " + Right.ToString("N2") + (rightIncluded ? "]": ")")+Environment.NewLine+Middle.ToString();
 		}
 
 		public static bool operator==(Range a, Range b)

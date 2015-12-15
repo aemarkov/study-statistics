@@ -80,6 +80,8 @@
 			// 
 			// gridData
 			// 
+			this.gridData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gridData.Location = new System.Drawing.Point(13, 28);
 			this.gridData.Name = "gridData";
@@ -88,6 +90,9 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.label4);
@@ -228,6 +233,9 @@
 			// 
 			this.gridCorrelation.AllowUserToAddRows = false;
 			this.gridCorrelation.AllowUserToDeleteRows = false;
+			this.gridCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.gridCorrelation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gridCorrelation.Location = new System.Drawing.Point(6, 154);
 			this.gridCorrelation.Name = "gridCorrelation";
@@ -244,7 +252,6 @@
 			this.Controls.Add(this.gridData);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
-			this.MaximizeBox = false;
 			this.Name = "Form1";
 			this.Text = "Регрессия";
 			this.menuStrip1.ResumeLayout(false);
