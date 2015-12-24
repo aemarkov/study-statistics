@@ -8,7 +8,7 @@ namespace Regression
 	/// <summary>
 	/// Считает и сохраняет все параметры корреляционных штук
 	/// </summary>
-	class CorrelationCalc
+	public class CorrelationCalc
 	{
 		#region COLLERATION_PARAMS
 
@@ -58,7 +58,7 @@ namespace Regression
 		public double Sy { get; private set; }
 
 		//Коэффициент корреляции
-		public double r { get; private set; }
+		public double R { get; private set; }
 
 		//ОЦенки коээфициентов линейной регрессии
 		public double B1 { get; private set; }
@@ -104,7 +104,7 @@ namespace Regression
 			Sy = table.By * table.By * Qv / (N - 1);
 
 			//Расчет коэффициента корреляции:
-			r = Quv / Math.Sqrt(Qu * Qv);
+			R = Quv / Math.Sqrt(Qu * Qv);
 
 			//Расчет коээфициентов линейной регрессии
 			B1 = table.Bx / table.By * Quv / Qu;

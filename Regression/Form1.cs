@@ -19,6 +19,7 @@ namespace Regression
 		/// </summary>
 		BindingList<PointD> data;
 		CorrelationTable cor_table;
+		CorrelationCalc cor_calc;
 
 
 		///////////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +73,7 @@ namespace Regression
 
 			cor_table = new CorrelationTable(n_x, n_y);
 			cor_table.Fill(data.ToList());
-			var cor_calc = new CorrelationCalc(cor_table);
+			cor_calc = new CorrelationCalc(cor_table);
 			print_correlation_table(cor_calc);
 		}
 
@@ -180,6 +181,22 @@ namespace Regression
 			for (int i = 0; i < table.Width; i++)
 				gridCorrelation[i + 2, table.Height + 4].Value = calc.Ni[i] * calc.Ui[i] * calc.Ui[i];
 			gridCorrelation[table.Width + 2, table.Height + 4].Value = "Сумм: " + calc.NiUi2;
+
+			////////////
+			txtX.Text = calc.X.ToString("N4");
+			txtY.Text = calc.Y.ToString("N4");
+			txtSx.Text = calc.Sx.ToString("N4");
+			txtSy.Text = calc.Sy.ToString("N4");
+			txtR.Text = calc.R.ToString("N4");
+			txtB1.Text = calc.B1.ToString("N4");
+			txtB1_.Text = calc.B1_.ToString("N4");
+		}
+
+		//Построение диаграммы рассеивания
+		private void btnDiagr_Click(object sender, EventArgs e)
+		{
+			var frm = new DiagramForm(data.ToList(), cor_calc);
+			frm.Show(); 
 		}
 	}
 }

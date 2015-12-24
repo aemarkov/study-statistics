@@ -10,7 +10,7 @@ namespace Regression
 	/// <summary>
 	/// Корреляционная таблица
 	/// </summary>
-	class CorrelationTable
+	public class CorrelationTable
 	{
 
 		private int[,] table;        //Значения корреляционной таблицы
