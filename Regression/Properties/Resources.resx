@@ -166,4 +166,22 @@
   <data name="wtf4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wtf4.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="b0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\b0.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="b0_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\b0_.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="b1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\b1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="b1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\b1_.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reg_x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reg_x.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reg_y" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reg_y.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

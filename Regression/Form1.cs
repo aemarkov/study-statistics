@@ -242,6 +242,7 @@ namespace Regression
 			btnInput.Enabled = cortable_empty_exists | cortable_exists;
 			menuCalc.Enabled = cortable_exists;
 			menuDrawDiagram.Enabled = calc_exists && sample_exists;
+			menuAdditionalValues.Enabled = calc_exists;
 		}
 
 		//Задает все флаги

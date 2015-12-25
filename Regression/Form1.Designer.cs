@@ -35,6 +35,7 @@
 			this.обработкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuCalc = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuDrawDiagram = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuAdditionalValues = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnInput = new System.Windows.Forms.Button();
 			this.gridCorrelationInput = new System.Windows.Forms.DataGridView();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -66,7 +67,6 @@
 			this.txtY = new System.Windows.Forms.TextBox();
 			this.txtX = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.menuAdditionalValues = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -144,6 +144,13 @@
 			this.menuDrawDiagram.Text = "Построение диаграммы рассеивания";
 			this.menuDrawDiagram.Click += new System.EventHandler(this.menuDrawDiagram_Click);
 			// 
+			// menuAdditionalValues
+			// 
+			this.menuAdditionalValues.Name = "menuAdditionalValues";
+			this.menuAdditionalValues.Size = new System.Drawing.Size(281, 22);
+			this.menuAdditionalValues.Text = "Показать промежуточные значения";
+			this.menuAdditionalValues.Click += new System.EventHandler(this.menuAdditionalValues_Click);
+			// 
 			// btnInput
 			// 
 			this.btnInput.Location = new System.Drawing.Point(130, 73);
@@ -160,6 +167,9 @@
 			this.gridCorrelationInput.AllowUserToDeleteRows = false;
 			this.gridCorrelationInput.AllowUserToResizeColumns = false;
 			this.gridCorrelationInput.AllowUserToResizeRows = false;
+			this.gridCorrelationInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.gridCorrelationInput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.gridCorrelationInput.BackgroundColor = System.Drawing.Color.White;
 			this.gridCorrelationInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -172,6 +182,8 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox2.Controls.Add(this.groupBox1);
 			this.groupBox2.Controls.Add(this.gridData);
 			this.groupBox2.Location = new System.Drawing.Point(12, 37);
@@ -183,6 +195,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox1.Controls.Add(this.btnSeparate);
 			this.groupBox1.Controls.Add(this.numSepRows);
 			this.groupBox1.Controls.Add(this.label3);
@@ -263,6 +276,8 @@
 			this.gridData.AllowUserToDeleteRows = false;
 			this.gridData.AllowUserToResizeColumns = false;
 			this.gridData.AllowUserToResizeRows = false;
+			this.gridData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.gridData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.gridData.BackgroundColor = System.Drawing.Color.White;
 			this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -273,6 +288,9 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Controls.Add(this.gridCorrelationInput);
 			this.groupBox3.Controls.Add(this.groupBox4);
 			this.groupBox3.Location = new System.Drawing.Point(304, 37);
@@ -284,6 +302,7 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox4.Controls.Add(this.label1);
 			this.groupBox4.Controls.Add(this.btnInput);
 			this.groupBox4.Controls.Add(this.numCreateCols);
@@ -361,6 +380,7 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.pictureBox5);
 			this.groupBox5.Controls.Add(this.pictureBox4);
 			this.groupBox5.Controls.Add(this.pictureBox3);
@@ -500,13 +520,6 @@
 			this.label5.Size = new System.Drawing.Size(76, 20);
 			this.label5.TabIndex = 0;
 			this.label5.Text = "Среднее";
-			// 
-			// menuAdditionalValues
-			// 
-			this.menuAdditionalValues.Name = "menuAdditionalValues";
-			this.menuAdditionalValues.Size = new System.Drawing.Size(281, 22);
-			this.menuAdditionalValues.Text = "Показать промежуточные значения";
-			this.menuAdditionalValues.Click += new System.EventHandler(this.menuAdditionalValues_Click);
 			// 
 			// Form1
 			// 

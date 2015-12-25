@@ -102,5 +102,10 @@ namespace Regression
 			graph.AxisChange();
 			graph.Invalidate();
 		}
+
+		private void pictureBox3_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

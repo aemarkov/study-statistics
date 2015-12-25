@@ -129,6 +129,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <None Include="Resources\b1.png" />
+    <None Include="Resources\reg_y.png" />
+    <None Include="Resources\reg_x.png" />
+    <None Include="Resources\b1_.png" />
+    <None Include="Resources\b0_.png" />
+    <None Include="Resources\b0.png" />
     <None Include="Resources\wtf4.png" />
     <None Include="Resources\wtf3.png" />
     <None Include="Resources\wtf2.png" />

@@ -43,7 +43,7 @@ namespace Regression
 
 			row = gen.AddRow();
 			foreach (var x in calc.Ui)
-				row.AddCell(x.ToString());
+				row.AddCell(x.ToString("N2"));
 
 			
 			//Создание таблицы
@@ -51,15 +51,15 @@ namespace Regression
 			{
 				row = gen.AddRow();
 				row.AddCell(range_to_string(table.YHeaders[y]), "#B2DFDB");
-				row.AddCell(calc.Vj[y].ToString());
+				row.AddCell(calc.Vj[y].ToString("N2"));
 
 				//Значения
 				for (int x = 0; x < table.Width; x++)
-					row.AddCell(table[x, y].ToString(), "#B2DFDB");
+					row.AddCell(table[x, y].ToString("N2"), "#B2DFDB");
 
-				row.AddCell(calc.Nj[y].ToString());
-				row.AddCell((calc.Nj[y]*calc.Vj[y]).ToString());
-				row.AddCell((calc.Nj[y] * calc.Vj[y] * calc.Vj[y]).ToString());
+				row.AddCell(calc.Nj[y].ToString("N2"));
+				row.AddCell((calc.Nj[y]*calc.Vj[y]).ToString("N2"));
+				row.AddCell((calc.Nj[y] * calc.Vj[y] * calc.Vj[y]).ToString("N2"));
 			}
 
 			//Нижние строки
@@ -67,27 +67,27 @@ namespace Regression
 			row = gen.AddRow();
 			row.AddCell("Ni", 2, 1);
 			foreach (var x in calc.Ni)
-				row.AddCell(x.ToString());
+				row.AddCell(x.ToString("N2"));
 
-			row.AddCell("Сумма: "+calc.N.ToString());
-			row.AddCell("Сумма: " + calc.NjVj.ToString());
-			row.AddCell("Сумма: " + calc.NjVj2.ToString());
+			row.AddCell("Сумма: "+calc.N.ToString("N2"));
+			row.AddCell("Сумма: " + calc.NjVj.ToString("N2"));
+			row.AddCell("Сумма: " + calc.NjVj2.ToString("N2"));
 
 			//NiUi
 			row = gen.AddRow();
 			row.AddCell("NiUi", 2, 1);
 			for(int i = 0; i<table.Width; i++)
-				row.AddCell((calc.Ni[i]*calc.Ui[i]).ToString());
+				row.AddCell((calc.Ni[i]*calc.Ui[i]).ToString("N2"));
 
-			row.AddCell("Сумма: " + calc.NiUi.ToString());
+			row.AddCell("Сумма: " + calc.NiUi.ToString("N2"));
 
 			//NiUi2
 			row = gen.AddRow();
 			row.AddCell("NiUi^2", 2, 1);
 			for (int i = 0; i < table.Width; i++)
-				row.AddCell((calc.Ni[i] * calc.Ui[i]* calc.Ui[i]).ToString());
+				row.AddCell((calc.Ni[i] * calc.Ui[i]* calc.Ui[i]).ToString("N2"));
 
-			row.AddCell("Сумма: " + calc.NiUi2.ToString());
+			row.AddCell("Сумма: " + calc.NiUi2.ToString("N2"));
 
 			var str = gen.GetHTML();
 			using (var sw = new StreamWriter("D:\\index.html"))
@@ -101,12 +101,16 @@ namespace Regression
 			htmlPanel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
 			htmlPanel.Width = this.Width;
 			htmlPanel.Height = this.ClientSize.Height - groupBox1.Height - 10;
-        }
+
+			txtQu.Text = calc.Qu.ToString("N4");
+			txtQv.Text = calc.Qv.ToString("N4");
+			txtQuv.Text = calc.Quv.ToString("N4");
+		}
 
 
 		private string range_to_string(Range range)
 		{
-			return range.ToString() + "<br/>" + range.Middle.ToString();
+			return range.ToString() + "<br/>" + range.Middle.ToString("N2");
 		}
 
 	}
