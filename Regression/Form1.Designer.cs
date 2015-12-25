@@ -46,7 +46,18 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.gridData = new System.Windows.Forms.DataGridView();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.numCreateCols = new System.Windows.Forms.NumericUpDown();
+			this.label4 = new System.Windows.Forms.Label();
+			this.btnCreate = new System.Windows.Forms.Button();
+			this.numCreateRows = new System.Windows.Forms.NumericUpDown();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.pictureBox5 = new System.Windows.Forms.PictureBox();
+			this.pictureBox4 = new System.Windows.Forms.PictureBox();
+			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.txtR = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.txtSy = new System.Windows.Forms.TextBox();
@@ -55,17 +66,6 @@
 			this.txtY = new System.Windows.Forms.TextBox();
 			this.txtX = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.numCreateCols = new System.Windows.Forms.NumericUpDown();
-			this.label4 = new System.Windows.Forms.Label();
-			this.btnCreate = new System.Windows.Forms.Button();
-			this.numCreateRows = new System.Windows.Forms.NumericUpDown();
-			this.pictureBox5 = new System.Windows.Forms.PictureBox();
-			this.pictureBox4 = new System.Windows.Forms.PictureBox();
-			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -74,10 +74,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
 			this.groupBox3.SuspendLayout();
-			this.groupBox5.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateCols)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateRows)).BeginInit();
+			this.groupBox5.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -156,6 +156,10 @@
 			// 
 			this.gridCorrelationInput.AllowUserToAddRows = false;
 			this.gridCorrelationInput.AllowUserToDeleteRows = false;
+			this.gridCorrelationInput.AllowUserToResizeColumns = false;
+			this.gridCorrelationInput.AllowUserToResizeRows = false;
+			this.gridCorrelationInput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.gridCorrelationInput.BackgroundColor = System.Drawing.Color.White;
 			this.gridCorrelationInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gridCorrelationInput.ColumnHeadersVisible = false;
 			this.gridCorrelationInput.Location = new System.Drawing.Point(6, 19);
@@ -197,6 +201,7 @@
 			this.btnSeparate.TabIndex = 7;
 			this.btnSeparate.Text = "Разбить";
 			this.btnSeparate.UseVisualStyleBackColor = true;
+			this.btnSeparate.Click += new System.EventHandler(this.btnSeparate_Click_1);
 			// 
 			// numSepRows
 			// 
@@ -252,6 +257,12 @@
 			// 
 			// gridData
 			// 
+			this.gridData.AllowUserToAddRows = false;
+			this.gridData.AllowUserToDeleteRows = false;
+			this.gridData.AllowUserToResizeColumns = false;
+			this.gridData.AllowUserToResizeRows = false;
+			this.gridData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.gridData.BackgroundColor = System.Drawing.Color.White;
 			this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gridData.Location = new System.Drawing.Point(12, 19);
 			this.gridData.Name = "gridData";
@@ -268,6 +279,83 @@
 			this.groupBox3.TabIndex = 6;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Диаграмма рассеивания";
+			// 
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.label1);
+			this.groupBox4.Controls.Add(this.btnInput);
+			this.groupBox4.Controls.Add(this.numCreateCols);
+			this.groupBox4.Controls.Add(this.label4);
+			this.groupBox4.Controls.Add(this.btnCreate);
+			this.groupBox4.Controls.Add(this.numCreateRows);
+			this.groupBox4.Location = new System.Drawing.Point(6, 456);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(259, 108);
+			this.groupBox4.TabIndex = 0;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = " Создание корреляционной таблицы";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(6, 51);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(87, 13);
+			this.label1.TabIndex = 14;
+			this.label1.Text = "Число строк (Y)";
+			// 
+			// numCreateCols
+			// 
+			this.numCreateCols.Location = new System.Drawing.Point(130, 23);
+			this.numCreateCols.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numCreateCols.Name = "numCreateCols";
+			this.numCreateCols.Size = new System.Drawing.Size(120, 20);
+			this.numCreateCols.TabIndex = 16;
+			this.numCreateCols.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(6, 25);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(105, 13);
+			this.label4.TabIndex = 17;
+			this.label4.Text = "Число столбцов (X)";
+			// 
+			// btnCreate
+			// 
+			this.btnCreate.Location = new System.Drawing.Point(6, 73);
+			this.btnCreate.Name = "btnCreate";
+			this.btnCreate.Size = new System.Drawing.Size(120, 23);
+			this.btnCreate.TabIndex = 13;
+			this.btnCreate.Text = "Создать";
+			this.btnCreate.UseVisualStyleBackColor = true;
+			this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click_1);
+			// 
+			// numCreateRows
+			// 
+			this.numCreateRows.Location = new System.Drawing.Point(130, 49);
+			this.numCreateRows.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numCreateRows.Name = "numCreateRows";
+			this.numCreateRows.Size = new System.Drawing.Size(120, 20);
+			this.numCreateRows.TabIndex = 15;
+			this.numCreateRows.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// groupBox5
 			// 
@@ -290,6 +378,56 @@
 			this.groupBox5.TabIndex = 14;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Числовые характеристики";
+			// 
+			// pictureBox5
+			// 
+			this.pictureBox5.BackgroundImage = global::Regression.Properties.Resources.r;
+			this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox5.Location = new System.Drawing.Point(9, 370);
+			this.pictureBox5.Name = "pictureBox5";
+			this.pictureBox5.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox5.TabIndex = 19;
+			this.pictureBox5.TabStop = false;
+			// 
+			// pictureBox4
+			// 
+			this.pictureBox4.BackgroundImage = global::Regression.Properties.Resources.Sy;
+			this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox4.Location = new System.Drawing.Point(6, 265);
+			this.pictureBox4.Name = "pictureBox4";
+			this.pictureBox4.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox4.TabIndex = 18;
+			this.pictureBox4.TabStop = false;
+			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.BackgroundImage = global::Regression.Properties.Resources.Sx;
+			this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox3.Location = new System.Drawing.Point(6, 199);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox3.TabIndex = 17;
+			this.pictureBox3.TabStop = false;
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.BackgroundImage = global::Regression.Properties.Resources.Y;
+			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox2.Location = new System.Drawing.Point(6, 108);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox2.TabIndex = 16;
+			this.pictureBox2.TabStop = false;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.BackgroundImage = global::Regression.Properties.Resources.X;
+			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox1.Location = new System.Drawing.Point(6, 42);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox1.TabIndex = 15;
+			this.pictureBox1.TabStop = false;
 			// 
 			// txtR
 			// 
@@ -361,132 +499,6 @@
 			this.label5.TabIndex = 0;
 			this.label5.Text = "Среднее";
 			// 
-			// groupBox4
-			// 
-			this.groupBox4.Controls.Add(this.label1);
-			this.groupBox4.Controls.Add(this.btnInput);
-			this.groupBox4.Controls.Add(this.numCreateCols);
-			this.groupBox4.Controls.Add(this.label4);
-			this.groupBox4.Controls.Add(this.btnCreate);
-			this.groupBox4.Controls.Add(this.numCreateRows);
-			this.groupBox4.Location = new System.Drawing.Point(6, 456);
-			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(259, 108);
-			this.groupBox4.TabIndex = 0;
-			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = " Создание корреляционной таблицы";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 51);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(87, 13);
-			this.label1.TabIndex = 14;
-			this.label1.Text = "Число строк (Y)";
-			// 
-			// numCreateCols
-			// 
-			this.numCreateCols.Location = new System.Drawing.Point(130, 23);
-			this.numCreateCols.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.numCreateCols.Name = "numCreateCols";
-			this.numCreateCols.Size = new System.Drawing.Size(120, 20);
-			this.numCreateCols.TabIndex = 16;
-			this.numCreateCols.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(6, 25);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(105, 13);
-			this.label4.TabIndex = 17;
-			this.label4.Text = "Число столбцов (X)";
-			// 
-			// btnCreate
-			// 
-			this.btnCreate.Location = new System.Drawing.Point(6, 73);
-			this.btnCreate.Name = "btnCreate";
-			this.btnCreate.Size = new System.Drawing.Size(120, 23);
-			this.btnCreate.TabIndex = 13;
-			this.btnCreate.Text = "Создать";
-			this.btnCreate.UseVisualStyleBackColor = true;
-			// 
-			// numCreateRows
-			// 
-			this.numCreateRows.Location = new System.Drawing.Point(130, 49);
-			this.numCreateRows.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.numCreateRows.Name = "numCreateRows";
-			this.numCreateRows.Size = new System.Drawing.Size(120, 20);
-			this.numCreateRows.TabIndex = 15;
-			this.numCreateRows.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
-			// pictureBox5
-			// 
-			this.pictureBox5.BackgroundImage = global::Regression.Properties.Resources.r;
-			this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pictureBox5.Location = new System.Drawing.Point(9, 370);
-			this.pictureBox5.Name = "pictureBox5";
-			this.pictureBox5.Size = new System.Drawing.Size(200, 60);
-			this.pictureBox5.TabIndex = 19;
-			this.pictureBox5.TabStop = false;
-			// 
-			// pictureBox4
-			// 
-			this.pictureBox4.BackgroundImage = global::Regression.Properties.Resources.Sy;
-			this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pictureBox4.Location = new System.Drawing.Point(6, 265);
-			this.pictureBox4.Name = "pictureBox4";
-			this.pictureBox4.Size = new System.Drawing.Size(200, 60);
-			this.pictureBox4.TabIndex = 18;
-			this.pictureBox4.TabStop = false;
-			// 
-			// pictureBox3
-			// 
-			this.pictureBox3.BackgroundImage = global::Regression.Properties.Resources.Sx;
-			this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pictureBox3.Location = new System.Drawing.Point(6, 199);
-			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(200, 60);
-			this.pictureBox3.TabIndex = 17;
-			this.pictureBox3.TabStop = false;
-			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.BackgroundImage = global::Regression.Properties.Resources.Y;
-			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pictureBox2.Location = new System.Drawing.Point(6, 108);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(200, 60);
-			this.pictureBox2.TabIndex = 16;
-			this.pictureBox2.TabStop = false;
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.BackgroundImage = global::Regression.Properties.Resources.X;
-			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pictureBox1.Location = new System.Drawing.Point(6, 42);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(200, 60);
-			this.pictureBox1.TabIndex = 15;
-			this.pictureBox1.TabStop = false;
-			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,12 +522,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
 			this.groupBox3.ResumeLayout(false);
-			this.groupBox5.ResumeLayout(false);
-			this.groupBox5.PerformLayout();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateCols)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateRows)).EndInit();
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

@@ -65,7 +65,7 @@ namespace Regression.Utils
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return (leftIncluded ? "[" : "(") + Left.ToString("N2") + "; " + Right.ToString("N2") + (rightIncluded ? "]" : ")");
+			return (leftIncluded ? "[" : "(") + Left.ToString("N2") + ":" + Right.ToString("N2") + (rightIncluded ? "]" : ")");
 		}
 
 		/// <summary>

@@ -114,8 +114,9 @@ namespace Regression
 
 
 		//Создание корреляционной таблицы заданного размера
-		private void btnCreate_Click(object sender, EventArgs e)
+		private void btnCreate_Click_1(object sender, EventArgs e)
 		{
+
 			if ((cortable_exists || cortable_empty_exists) && (MessageBox.Show("Создать новую таблицу? Это удалит текущие данные.", "Создание корреляционной таблицы", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)) return;
 
 			reset_all();
@@ -160,7 +161,7 @@ namespace Regression
 		}
 
 		//Разбитие исходной выборки в корреляционную таблицу
-		private void btnSeparate_Click(object sender, EventArgs e)
+		private void btnSeparate_Click_1(object sender, EventArgs e)
 		{
 			int n_x = (int)numSepCols.Value;
 			int n_y = (int)numSepRows.Value;
@@ -271,8 +272,8 @@ namespace Regression
 			gridCorrelationInput[0, 0].Value = "Y\\X";
 			gridCorrelationInput[0, 0].ReadOnly = true;
 
-			for(int x = 1; x<table.Width; x++)
-				gridCorrelationInput[x, 0].Value = table.XHeaders[x-1];
+			for(int x = 0; x<table.Width; x++)
+				gridCorrelationInput[x+1, 0].Value = table.XHeaders[x];
 
 			//Остальные строки
 			for (int y = 0; y < table.Height; y++)
@@ -319,7 +320,10 @@ namespace Regression
 			gridCorrelationInput.Rows[e.RowIndex].ErrorText = String.Empty;
 		}
 
+
 		#endregion
+
+
 	}
 }
 
