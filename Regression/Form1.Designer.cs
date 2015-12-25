@@ -32,43 +32,33 @@
 			this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
 			this.gridData = new System.Windows.Forms.DataGridView();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnCreate = new System.Windows.Forms.Button();
 			this.btnSeparate = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
-			this.numCols = new System.Windows.Forms.NumericUpDown();
-			this.numRows = new System.Windows.Forms.NumericUpDown();
+			this.numSepCols = new System.Windows.Forms.NumericUpDown();
+			this.numSepRows = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnInput = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.gridCorrelation = new System.Windows.Forms.DataGridView();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.txtB1_ = new System.Windows.Forms.TextBox();
-			this.txtB1 = new System.Windows.Forms.TextBox();
-			this.labelOMG = new System.Windows.Forms.Label();
-			this.labelWTF = new System.Windows.Forms.Label();
-			this.label14 = new System.Windows.Forms.Label();
-			this.txtR = new System.Windows.Forms.TextBox();
-			this.label11 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.txtSy = new System.Windows.Forms.TextBox();
-			this.txtSx = new System.Windows.Forms.TextBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.txtY = new System.Windows.Forms.TextBox();
-			this.txtX = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.btnDiagr = new System.Windows.Forms.Button();
+			this.label12 = new System.Windows.Forms.Label();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.gridCorrelationInput = new System.Windows.Forms.DataGridView();
+			this.label1 = new System.Windows.Forms.Label();
+			this.numCreateCols = new System.Windows.Forms.NumericUpDown();
+			this.label4 = new System.Windows.Forms.Label();
+			this.numCreateRows = new System.Windows.Forms.NumericUpDown();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
-			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numCols)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numRows)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridCorrelation)).BeginInit();
-			this.groupBox2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numSepRows)).BeginInit();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numCreateCols)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numCreateRows)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -77,7 +67,7 @@
             this.файлToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1011, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(637, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -98,41 +88,17 @@
 			// 
 			// gridData
 			// 
-			this.gridData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
 			this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.gridData.Location = new System.Drawing.Point(13, 28);
+			this.gridData.Location = new System.Drawing.Point(15, 17);
 			this.gridData.Name = "gridData";
-			this.gridData.Size = new System.Drawing.Size(303, 702);
+			this.gridData.Size = new System.Drawing.Size(331, 649);
 			this.gridData.TabIndex = 1;
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox1.Controls.Add(this.btnDiagr);
-			this.groupBox1.Controls.Add(this.btnCreate);
-			this.groupBox1.Controls.Add(this.btnSeparate);
-			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.numCols);
-			this.groupBox1.Controls.Add(this.numRows);
-			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Controls.Add(this.btnInput);
-			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Controls.Add(this.gridCorrelation);
-			this.groupBox1.Location = new System.Drawing.Point(323, 28);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(678, 526);
-			this.groupBox1.TabIndex = 2;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "B1\'";
 			// 
 			// btnCreate
 			// 
-			this.btnCreate.Location = new System.Drawing.Point(252, 20);
+			this.btnCreate.Location = new System.Drawing.Point(9, 59);
 			this.btnCreate.Name = "btnCreate";
-			this.btnCreate.Size = new System.Drawing.Size(225, 23);
+			this.btnCreate.Size = new System.Drawing.Size(241, 23);
 			this.btnCreate.TabIndex = 8;
 			this.btnCreate.Text = "Создать";
 			this.btnCreate.UseVisualStyleBackColor = true;
@@ -140,9 +106,9 @@
 			// 
 			// btnSeparate
 			// 
-			this.btnSeparate.Location = new System.Drawing.Point(252, 48);
+			this.btnSeparate.Location = new System.Drawing.Point(356, 89);
 			this.btnSeparate.Name = "btnSeparate";
-			this.btnSeparate.Size = new System.Drawing.Size(225, 23);
+			this.btnSeparate.Size = new System.Drawing.Size(241, 23);
 			this.btnSeparate.TabIndex = 7;
 			this.btnSeparate.Text = "Разбить";
 			this.btnSeparate.UseVisualStyleBackColor = true;
@@ -151,41 +117,41 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(18, 48);
+			this.label3.Location = new System.Drawing.Point(353, 65);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(89, 13);
 			this.label3.TabIndex = 6;
 			this.label3.Text = "Число столбцов";
 			// 
-			// numCols
+			// numSepCols
 			// 
-			this.numCols.Location = new System.Drawing.Point(126, 46);
-			this.numCols.Minimum = new decimal(new int[] {
+			this.numSepCols.Location = new System.Drawing.Point(477, 63);
+			this.numSepCols.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.numCols.Name = "numCols";
-			this.numCols.Size = new System.Drawing.Size(120, 20);
-			this.numCols.TabIndex = 5;
-			this.numCols.Value = new decimal(new int[] {
+			this.numSepCols.Name = "numSepCols";
+			this.numSepCols.Size = new System.Drawing.Size(120, 20);
+			this.numSepCols.TabIndex = 5;
+			this.numSepCols.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
 			// 
-			// numRows
+			// numSepRows
 			// 
-			this.numRows.Location = new System.Drawing.Point(126, 20);
-			this.numRows.Minimum = new decimal(new int[] {
+			this.numSepRows.Location = new System.Drawing.Point(477, 36);
+			this.numSepRows.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.numRows.Name = "numRows";
-			this.numRows.Size = new System.Drawing.Size(120, 20);
-			this.numRows.TabIndex = 4;
-			this.numRows.Value = new decimal(new int[] {
+			this.numSepRows.Name = "numSepRows";
+			this.numSepRows.Size = new System.Drawing.Size(120, 20);
+			this.numSepRows.TabIndex = 4;
+			this.numSepRows.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -194,7 +160,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(18, 20);
+			this.label2.Location = new System.Drawing.Point(353, 43);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(71, 13);
 			this.label2.TabIndex = 3;
@@ -202,238 +168,148 @@
 			// 
 			// btnInput
 			// 
-			this.btnInput.Location = new System.Drawing.Point(160, 79);
+			this.btnInput.Location = new System.Drawing.Point(256, 3);
 			this.btnInput.Name = "btnInput";
-			this.btnInput.Size = new System.Drawing.Size(317, 25);
+			this.btnInput.Size = new System.Drawing.Size(341, 79);
 			this.btnInput.TabIndex = 2;
 			this.btnInput.Text = "Ввод данных из корреляционной таблицы";
 			this.btnInput.UseVisualStyleBackColor = true;
 			this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
 			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Location = new System.Drawing.Point(12, 27);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(611, 699);
+			this.tabControl1.TabIndex = 4;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.btnDiagr);
+			this.tabPage1.Controls.Add(this.label12);
+			this.tabPage1.Controls.Add(this.gridData);
+			this.tabPage1.Controls.Add(this.btnSeparate);
+			this.tabPage1.Controls.Add(this.label2);
+			this.tabPage1.Controls.Add(this.numSepCols);
+			this.tabPage1.Controls.Add(this.label3);
+			this.tabPage1.Controls.Add(this.numSepRows);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(603, 673);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Ввод выборки";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// btnDiagr
+			// 
+			this.btnDiagr.Location = new System.Drawing.Point(356, 118);
+			this.btnDiagr.Name = "btnDiagr";
+			this.btnDiagr.Size = new System.Drawing.Size(241, 25);
+			this.btnDiagr.TabIndex = 10;
+			this.btnDiagr.Text = "Диаграмма рассеивания";
+			this.btnDiagr.UseVisualStyleBackColor = true;
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(353, 17);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(195, 13);
+			this.label12.TabIndex = 2;
+			this.label12.Text = "Построение корреляционной таблцы";
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.gridCorrelationInput);
+			this.tabPage2.Controls.Add(this.label1);
+			this.tabPage2.Controls.Add(this.numCreateCols);
+			this.tabPage2.Controls.Add(this.label4);
+			this.tabPage2.Controls.Add(this.numCreateRows);
+			this.tabPage2.Controls.Add(this.btnCreate);
+			this.tabPage2.Controls.Add(this.btnInput);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(603, 673);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Ввод корреляционной таблицы";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// gridCorrelationInput
+			// 
+			this.gridCorrelationInput.AllowUserToAddRows = false;
+			this.gridCorrelationInput.AllowUserToDeleteRows = false;
+			this.gridCorrelationInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridCorrelationInput.ColumnHeadersVisible = false;
+			this.gridCorrelationInput.Location = new System.Drawing.Point(9, 89);
+			this.gridCorrelationInput.Name = "gridCorrelationInput";
+			this.gridCorrelationInput.RowHeadersVisible = false;
+			this.gridCorrelationInput.Size = new System.Drawing.Size(588, 578);
+			this.gridCorrelationInput.TabIndex = 13;
+			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(18, 85);
+			this.label1.Location = new System.Drawing.Point(6, 35);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(136, 13);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Корреляционная таблица";
+			this.label1.Size = new System.Drawing.Size(87, 13);
+			this.label1.TabIndex = 9;
+			this.label1.Text = "Число строк (Y)";
 			// 
-			// gridCorrelation
+			// numCreateCols
 			// 
-			this.gridCorrelation.AllowUserToAddRows = false;
-			this.gridCorrelation.AllowUserToDeleteRows = false;
-			this.gridCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.gridCorrelation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.gridCorrelation.Location = new System.Drawing.Point(6, 110);
-			this.gridCorrelation.Name = "gridCorrelation";
-			this.gridCorrelation.Size = new System.Drawing.Size(664, 402);
-			this.gridCorrelation.TabIndex = 0;
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.groupBox2.Controls.Add(this.txtB1_);
-			this.groupBox2.Controls.Add(this.txtB1);
-			this.groupBox2.Controls.Add(this.labelOMG);
-			this.groupBox2.Controls.Add(this.labelWTF);
-			this.groupBox2.Controls.Add(this.label14);
-			this.groupBox2.Controls.Add(this.txtR);
-			this.groupBox2.Controls.Add(this.label11);
-			this.groupBox2.Controls.Add(this.label10);
-			this.groupBox2.Controls.Add(this.txtSy);
-			this.groupBox2.Controls.Add(this.txtSx);
-			this.groupBox2.Controls.Add(this.label8);
-			this.groupBox2.Controls.Add(this.label9);
-			this.groupBox2.Controls.Add(this.label7);
-			this.groupBox2.Controls.Add(this.txtY);
-			this.groupBox2.Controls.Add(this.txtX);
-			this.groupBox2.Controls.Add(this.label6);
-			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Controls.Add(this.label4);
-			this.groupBox2.Location = new System.Drawing.Point(322, 560);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(670, 171);
-			this.groupBox2.TabIndex = 3;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Характеристики";
-			// 
-			// txtB1_
-			// 
-			this.txtB1_.Location = new System.Drawing.Point(30, 140);
-			this.txtB1_.Name = "txtB1_";
-			this.txtB1_.ReadOnly = true;
-			this.txtB1_.Size = new System.Drawing.Size(150, 20);
-			this.txtB1_.TabIndex = 44;
-			// 
-			// txtB1
-			// 
-			this.txtB1.Location = new System.Drawing.Point(30, 114);
-			this.txtB1.Name = "txtB1";
-			this.txtB1.ReadOnly = true;
-			this.txtB1.Size = new System.Drawing.Size(150, 20);
-			this.txtB1.TabIndex = 43;
-			// 
-			// labelOMG
-			// 
-			this.labelOMG.AutoSize = true;
-			this.labelOMG.Location = new System.Drawing.Point(10, 143);
-			this.labelOMG.Name = "labelOMG";
-			this.labelOMG.Size = new System.Drawing.Size(22, 13);
-			this.labelOMG.TabIndex = 42;
-			this.labelOMG.Text = "B1\'";
-			// 
-			// labelWTF
-			// 
-			this.labelWTF.AutoSize = true;
-			this.labelWTF.Location = new System.Drawing.Point(10, 117);
-			this.labelWTF.Name = "labelWTF";
-			this.labelWTF.Size = new System.Drawing.Size(20, 13);
-			this.labelWTF.TabIndex = 41;
-			this.labelWTF.Text = "B1";
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(6, 97);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(210, 13);
-			this.label14.TabIndex = 40;
-			this.label14.Text = "Оценка параметро линейной регрессии";
-			// 
-			// txtR
-			// 
-			this.txtR.Location = new System.Drawing.Point(407, 46);
-			this.txtR.Name = "txtR";
-			this.txtR.ReadOnly = true;
-			this.txtR.Size = new System.Drawing.Size(150, 20);
-			this.txtR.TabIndex = 39;
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(386, 49);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(10, 13);
-			this.label11.TabIndex = 38;
-			this.label11.Text = "r";
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(381, 26);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(140, 13);
-			this.label10.TabIndex = 37;
-			this.label10.Text = "Коэффициент корреляции";
-			// 
-			// txtSy
-			// 
-			this.txtSy.Location = new System.Drawing.Point(219, 69);
-			this.txtSy.Name = "txtSy";
-			this.txtSy.ReadOnly = true;
-			this.txtSy.Size = new System.Drawing.Size(150, 20);
-			this.txtSy.TabIndex = 36;
-			// 
-			// txtSx
-			// 
-			this.txtSx.Location = new System.Drawing.Point(219, 43);
-			this.txtSx.Name = "txtSx";
-			this.txtSx.ReadOnly = true;
-			this.txtSx.Size = new System.Drawing.Size(150, 20);
-			this.txtSx.TabIndex = 35;
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(198, 72);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(19, 13);
-			this.label8.TabIndex = 34;
-			this.label8.Text = "Sy";
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(198, 46);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(19, 13);
-			this.label9.TabIndex = 33;
-			this.label9.Text = "Sx";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(192, 26);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(67, 13);
-			this.label7.TabIndex = 32;
-			this.label7.Text = "Дисперсии:";
-			// 
-			// txtY
-			// 
-			this.txtY.Location = new System.Drawing.Point(30, 69);
-			this.txtY.Name = "txtY";
-			this.txtY.ReadOnly = true;
-			this.txtY.Size = new System.Drawing.Size(150, 20);
-			this.txtY.TabIndex = 31;
-			// 
-			// txtX
-			// 
-			this.txtX.Location = new System.Drawing.Point(30, 43);
-			this.txtX.Name = "txtX";
-			this.txtX.ReadOnly = true;
-			this.txtX.Size = new System.Drawing.Size(150, 20);
-			this.txtX.TabIndex = 30;
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(10, 72);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(14, 13);
-			this.label6.TabIndex = 29;
-			this.label6.Text = "Y";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(10, 46);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(14, 13);
-			this.label5.TabIndex = 28;
-			this.label5.Text = "X";
+			this.numCreateCols.Location = new System.Drawing.Point(130, 12);
+			this.numCreateCols.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numCreateCols.Name = "numCreateCols";
+			this.numCreateCols.Size = new System.Drawing.Size(120, 20);
+			this.numCreateCols.TabIndex = 11;
+			this.numCreateCols.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(6, 26);
+			this.label4.Location = new System.Drawing.Point(6, 14);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(53, 13);
-			this.label4.TabIndex = 27;
-			this.label4.Text = "Средние:";
+			this.label4.Size = new System.Drawing.Size(105, 13);
+			this.label4.TabIndex = 12;
+			this.label4.Text = "Число столбцов (X)";
 			// 
-			// btnDiagr
+			// numCreateRows
 			// 
-			this.btnDiagr.Location = new System.Drawing.Point(483, 77);
-			this.btnDiagr.Name = "btnDiagr";
-			this.btnDiagr.Size = new System.Drawing.Size(189, 25);
-			this.btnDiagr.TabIndex = 9;
-			this.btnDiagr.Text = "Диаграмма рассеивания";
-			this.btnDiagr.UseVisualStyleBackColor = true;
-			this.btnDiagr.Click += new System.EventHandler(this.btnDiagr_Click);
+			this.numCreateRows.Location = new System.Drawing.Point(130, 35);
+			this.numCreateRows.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numCreateRows.Name = "numCreateRows";
+			this.numCreateRows.Size = new System.Drawing.Size(120, 20);
+			this.numCreateRows.TabIndex = 10;
+			this.numCreateRows.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1011, 742);
-			this.Controls.Add(this.groupBox2);
-			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.gridData);
+			this.ClientSize = new System.Drawing.Size(637, 742);
+			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
@@ -441,13 +317,16 @@
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numCols)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numRows)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridCorrelation)).EndInit();
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numSepRows)).EndInit();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage1.PerformLayout();
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numCreateCols)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numCreateRows)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -459,36 +338,23 @@
 		private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem menuOpen;
 		private System.Windows.Forms.DataGridView gridData;
-		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Button btnSeparate;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.NumericUpDown numCols;
-		private System.Windows.Forms.NumericUpDown numRows;
+		private System.Windows.Forms.NumericUpDown numSepCols;
+		private System.Windows.Forms.NumericUpDown numSepRows;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnInput;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.DataGridView gridCorrelation;
 		private System.Windows.Forms.Button btnCreate;
-		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.TextBox txtB1_;
-		private System.Windows.Forms.TextBox txtB1;
-		private System.Windows.Forms.Label labelOMG;
-		private System.Windows.Forms.Label labelWTF;
-		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.TextBox txtR;
-		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.TextBox txtSy;
-		private System.Windows.Forms.TextBox txtSx;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.TextBox txtY;
-		private System.Windows.Forms.TextBox txtX;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.Button btnDiagr;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.NumericUpDown numCreateCols;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.NumericUpDown numCreateRows;
+		private System.Windows.Forms.DataGridView gridCorrelationInput;
 	}
 }
 

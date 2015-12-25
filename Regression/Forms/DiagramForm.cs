@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Regression.Utils;
 
 namespace Regression
 {
@@ -14,6 +15,7 @@ namespace Regression
 		public DiagramForm(List<PointD> data, CorrelationCalc calc)
 		{
 			InitializeComponent();
+			setup_graph();
 
 			var pane = graph.GraphPane;
 			var table = calc.Table;
@@ -42,6 +44,30 @@ namespace Regression
 			var pane = graph.GraphPane;
 			pane.AddCurve("", new double[] { x_left, x_right }, new double[] { y_left, y_right }, Color.Red);
 			pane.AxisChange();
+			graph.Invalidate();
+		}
+
+		void setup_graph()
+		{
+			var pane = graph.GraphPane;
+
+			//Настраиваем пересечение осей
+			pane.XAxis.Cross = 0.0;
+			pane.YAxis.Cross = 0.0;
+			pane.XAxis.Scale.IsSkipFirstLabel = true;
+			pane.XAxis.Scale.IsSkipLastLabel = true;
+			pane.XAxis.Scale.IsSkipCrossLabel = true;
+			pane.YAxis.Scale.IsSkipFirstLabel = true;
+			pane.YAxis.Scale.IsSkipLastLabel = true;
+			pane.YAxis.Scale.IsSkipCrossLabel = true;
+
+			//Убираем засечки сверху и снизу
+			pane.XAxis.MinorTic.IsOpposite = false;
+			pane.XAxis.MajorTic.IsOpposite = false;
+			pane.YAxis.MinorTic.IsOpposite = false;
+			pane.YAxis.MajorTic.IsOpposite = false;
+
+			graph.AxisChange();
 			graph.Invalidate();
 		}
 	}
