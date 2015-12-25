@@ -56,6 +56,19 @@ namespace Regression
 		}
 
 		/// <summary>
+		/// Создание корреляционной таблицы заданного рамзера с заданным шагом
+		/// </summary>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		/// <param name="bx">Шаг по  X</param>
+		/// <param name="by">Шаг по Y</param>
+		public CorrelationTable(int width, int height, double bx, double by):this(width, height)
+		{
+			Bx = bx;
+			By = by;
+		}
+
+		/// <summary>
 		/// Заполняет таблицу из списка пар значений СВ
 		/// </summary>
 		/// <param name="poit"></param>

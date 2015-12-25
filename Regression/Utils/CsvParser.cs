@@ -42,6 +42,7 @@ namespace Regression.Utils
 			var y_headers = new List<Range>();
 
 			int width = -1;                             //Ширина таблицы
+			double bx = -1, by = -1;
 
 			//Чтение файла
 			using (var sr = new StreamReader(filename))
@@ -50,32 +51,48 @@ namespace Regression.Utils
 
 				//Читаем первую линию с интервалами
 				line = sr.ReadLine();
-				if (line == null) throw new Exception("Файл пуст");
+				if (line == null) throw new ParseException("Файл пуст");
 				var strings = separate_line(line);
 				x_headers = parse_ranges(strings[1]);
 
+				//Читаем остальные оинии
 				while ((line = sr.ReadLine()) != null)
 				{
 					strings = separate_line(line);
-					y_headers.Add(Range.Parse(strings[0]));
+					y_headers.Add(Range.Parse(strings[0]));		//Опеределяем интервал из первого столбца
 					var line_data = parse_values(strings[1]);
 
+					//Проврека на равенство длин всех строк
 					if (width == -1) width = line_data.Count;
 					else if (width != line_data.Count)
-						throw new Exception("Длины строк в таблице не совпадают");
+						throw new ParseException("Длины строк в таблице не совпадают");
 
 					raw_data.Add(line_data);
 				}
 			}
 
 			//Составление таблицы из данных
-			var table = new CorrelationTable(x_headers.Count, y_headers.Count);
-			for (int i = 0; i < x_headers.Count; i++) table.SetX(i, x_headers[i]);
-			for (int i = 0; i < y_headers.Count; i++) table.SetY(i, y_headers[i]);
+			//Определение размера интервала и проверка того, что они все одинаковы
+			foreach (var v in x_headers)
+				if (!set_or_not_update(ref bx, v.Length)) throw new ParseException("Длины интервалов должны быть одинаковы");
+			foreach (var v in y_headers)
+				if (!set_or_not_update(ref by, v.Length)) throw new ParseException("Длины интервалов должны быть одинаковы");
 
+
+			var table = new CorrelationTable(x_headers.Count, y_headers.Count, bx, by);
+
+			//Перенос интервалов
+			for (int i = 0; i < x_headers.Count; i++)
+				table.SetX(i, x_headers[i]);
+
+			for (int i = 0; i < y_headers.Count; i++)
+				table.SetY(i, y_headers[i]);
+
+			//Перенос значений
 			for (int x = 0; x < x_headers.Count; x++)
 				for (int y = 0; y < y_headers.Count; y++)
 					table[x, y] = raw_data[y][x];
+			
 
 
 			return table;
@@ -93,7 +110,7 @@ namespace Regression.Utils
 		{
 			var strings = new string[2];
 			int sep_index = line.IndexOf(';');
-			if (sep_index == -1) throw new Exception("В таблице отсутствуют необходимые столбцы");
+			if (sep_index == -1) throw new ParseException("В таблице отсутствуют необходимые столбцы");
 
 			strings[0] = line.Substring(0, sep_index);
 			strings[1] = line.Substring(sep_index + 1);
@@ -121,6 +138,13 @@ namespace Regression.Utils
 				ranges.Add(Range.Parse(v));
 
 			return ranges;
+		}
+
+		private static bool set_or_not_update(ref double val, double new_value)
+		{
+			if (val == -1) val = new_value;
+			else if (val != new_value) return false;
+			return true;
 		}
 	}
 }

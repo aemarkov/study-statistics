@@ -64,6 +64,8 @@ namespace Regression
 		//ОЦенки коээфициентов линейной регрессии
 		public double B1 { get; private set; }
 		public double B1_ { get; private set; }
+		public double B0 { get; private set; }
+		public double B0_ { get; private set; }
 
 		#endregion
 
@@ -108,8 +110,11 @@ namespace Regression
 			R = Quv / Math.Sqrt(Qu * Qv);
 
 			//Расчет коээфициентов линейной регрессии
-			B1 = table.Bx / table.By * Quv / Qu;
+			B1 = table.By / table.Bx * Quv / Qu;
 			B1_ = table.Bx / table.By * Quv / Qv;
+
+			B0 = Y - B1 * X;
+			B0_ = X - B1_ * Y;
 		}
 
 		/////////////////////////////////////////////////////////////////////////////
@@ -158,7 +163,7 @@ namespace Regression
 		}
 
 		//Находимт среднее наиболее часто встречающегося интервала
-		PointI get_DxDy(CorrelationTable table)
+		PointD get_DxDy(CorrelationTable table)
 		{
 
 			//Находим наибллее часто встреч.
@@ -172,7 +177,7 @@ namespace Regression
 						max_y = j;
 					}
 
-			return new PointI(max_x, max_y);
+			return new PointD(table.GetX(max_x).Middle, table.GetY(max_y).Middle);
         }
 
 		//Находим странные Ui, Vj
@@ -191,7 +196,7 @@ namespace Regression
 		{
 			double sum = 0;
 			for (int i = 0; i < size; i++)
-				sum += ni[i] + ui[i];
+				sum += ni[i] * ui[i];
 
 			return sum;
 		}
