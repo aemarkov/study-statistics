@@ -110,6 +110,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <None Include="Resources\Y.png" />
+    <None Include="Resources\Sy.png" />
+    <None Include="Resources\Sx.png" />
+    <None Include="Resources\r.png" />
+    <None Include="Resources\X.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

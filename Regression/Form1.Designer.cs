@@ -46,12 +46,26 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.gridData = new System.Windows.Forms.DataGridView();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.txtR = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
+			this.txtSy = new System.Windows.Forms.TextBox();
+			this.txtSx = new System.Windows.Forms.TextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.txtY = new System.Windows.Forms.TextBox();
+			this.txtX = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.numCreateCols = new System.Windows.Forms.NumericUpDown();
 			this.label4 = new System.Windows.Forms.Label();
-			this.numCreateRows = new System.Windows.Forms.NumericUpDown();
 			this.btnCreate = new System.Windows.Forms.Button();
+			this.numCreateRows = new System.Windows.Forms.NumericUpDown();
+			this.pictureBox5 = new System.Windows.Forms.PictureBox();
+			this.pictureBox4 = new System.Windows.Forms.PictureBox();
+			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -60,9 +74,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
 			this.groupBox3.SuspendLayout();
+			this.groupBox5.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateCols)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateRows)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -72,7 +92,7 @@
             this.обработкаToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1024, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(1336, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -177,7 +197,6 @@
 			this.btnSeparate.TabIndex = 7;
 			this.btnSeparate.Text = "Разбить";
 			this.btnSeparate.UseVisualStyleBackColor = true;
-			this.btnSeparate.Click += btnSeparate_Click;
 			// 
 			// numSepRows
 			// 
@@ -250,6 +269,98 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Диаграмма рассеивания";
 			// 
+			// groupBox5
+			// 
+			this.groupBox5.Controls.Add(this.pictureBox5);
+			this.groupBox5.Controls.Add(this.pictureBox4);
+			this.groupBox5.Controls.Add(this.pictureBox3);
+			this.groupBox5.Controls.Add(this.pictureBox2);
+			this.groupBox5.Controls.Add(this.pictureBox1);
+			this.groupBox5.Controls.Add(this.txtR);
+			this.groupBox5.Controls.Add(this.label11);
+			this.groupBox5.Controls.Add(this.txtSy);
+			this.groupBox5.Controls.Add(this.txtSx);
+			this.groupBox5.Controls.Add(this.label8);
+			this.groupBox5.Controls.Add(this.txtY);
+			this.groupBox5.Controls.Add(this.txtX);
+			this.groupBox5.Controls.Add(this.label5);
+			this.groupBox5.Location = new System.Drawing.Point(1015, 37);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(314, 448);
+			this.groupBox5.TabIndex = 14;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Числовые характеристики";
+			// 
+			// txtR
+			// 
+			this.txtR.Location = new System.Drawing.Point(212, 387);
+			this.txtR.Name = "txtR";
+			this.txtR.ReadOnly = true;
+			this.txtR.Size = new System.Drawing.Size(91, 20);
+			this.txtR.TabIndex = 11;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label11.Location = new System.Drawing.Point(6, 347);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(215, 20);
+			this.label11.TabIndex = 10;
+			this.label11.Text = "Коэффициент корреляции";
+			// 
+			// txtSy
+			// 
+			this.txtSy.Location = new System.Drawing.Point(212, 280);
+			this.txtSy.Name = "txtSy";
+			this.txtSy.ReadOnly = true;
+			this.txtSy.Size = new System.Drawing.Size(91, 20);
+			this.txtSy.TabIndex = 9;
+			// 
+			// txtSx
+			// 
+			this.txtSx.Location = new System.Drawing.Point(212, 218);
+			this.txtSx.Name = "txtSx";
+			this.txtSx.ReadOnly = true;
+			this.txtSx.Size = new System.Drawing.Size(91, 20);
+			this.txtSx.TabIndex = 8;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label8.Location = new System.Drawing.Point(3, 176);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(91, 20);
+			this.label8.TabIndex = 5;
+			this.label8.Text = "Дисперсия";
+			// 
+			// txtY
+			// 
+			this.txtY.Location = new System.Drawing.Point(212, 123);
+			this.txtY.Name = "txtY";
+			this.txtY.ReadOnly = true;
+			this.txtY.Size = new System.Drawing.Size(91, 20);
+			this.txtY.TabIndex = 4;
+			// 
+			// txtX
+			// 
+			this.txtX.Location = new System.Drawing.Point(212, 59);
+			this.txtX.Name = "txtX";
+			this.txtX.ReadOnly = true;
+			this.txtX.Size = new System.Drawing.Size(91, 20);
+			this.txtX.TabIndex = 3;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label5.Location = new System.Drawing.Point(6, 19);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(76, 20);
+			this.label5.TabIndex = 0;
+			this.label5.Text = "Среднее";
+			// 
 			// groupBox4
 			// 
 			this.groupBox4.Controls.Add(this.label1);
@@ -300,6 +411,15 @@
 			this.label4.TabIndex = 17;
 			this.label4.Text = "Число столбцов (X)";
 			// 
+			// btnCreate
+			// 
+			this.btnCreate.Location = new System.Drawing.Point(6, 73);
+			this.btnCreate.Name = "btnCreate";
+			this.btnCreate.Size = new System.Drawing.Size(120, 23);
+			this.btnCreate.TabIndex = 13;
+			this.btnCreate.Text = "Создать";
+			this.btnCreate.UseVisualStyleBackColor = true;
+			// 
 			// numCreateRows
 			// 
 			this.numCreateRows.Location = new System.Drawing.Point(130, 49);
@@ -317,23 +437,64 @@
             0,
             0});
 			// 
-			// btnCreate
+			// pictureBox5
 			// 
-			this.btnCreate.Location = new System.Drawing.Point(6, 73);
-			this.btnCreate.Name = "btnCreate";
-			this.btnCreate.Size = new System.Drawing.Size(120, 23);
-			this.btnCreate.TabIndex = 13;
-			this.btnCreate.Text = "Создать";
-			this.btnCreate.UseVisualStyleBackColor = true;
-			this.btnCreate.Click += btnCreate_Click;
+			this.pictureBox5.BackgroundImage = global::Regression.Properties.Resources.r;
+			this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox5.Location = new System.Drawing.Point(9, 370);
+			this.pictureBox5.Name = "pictureBox5";
+			this.pictureBox5.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox5.TabIndex = 19;
+			this.pictureBox5.TabStop = false;
+			// 
+			// pictureBox4
+			// 
+			this.pictureBox4.BackgroundImage = global::Regression.Properties.Resources.Sy;
+			this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox4.Location = new System.Drawing.Point(6, 265);
+			this.pictureBox4.Name = "pictureBox4";
+			this.pictureBox4.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox4.TabIndex = 18;
+			this.pictureBox4.TabStop = false;
+			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.BackgroundImage = global::Regression.Properties.Resources.Sx;
+			this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox3.Location = new System.Drawing.Point(6, 199);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox3.TabIndex = 17;
+			this.pictureBox3.TabStop = false;
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.BackgroundImage = global::Regression.Properties.Resources.Y;
+			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox2.Location = new System.Drawing.Point(6, 108);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox2.TabIndex = 16;
+			this.pictureBox2.TabStop = false;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.BackgroundImage = global::Regression.Properties.Resources.X;
+			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox1.Location = new System.Drawing.Point(6, 42);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(200, 60);
+			this.pictureBox1.TabIndex = 15;
+			this.pictureBox1.TabStop = false;
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1024, 620);
+			this.ClientSize = new System.Drawing.Size(1336, 620);
 			this.Controls.Add(this.groupBox3);
+			this.Controls.Add(this.groupBox5);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
@@ -349,10 +510,17 @@
 			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
 			this.groupBox3.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateCols)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateRows)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -384,6 +552,20 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.NumericUpDown numCreateRows;
 		private System.Windows.Forms.Button btnCreate;
+		private System.Windows.Forms.GroupBox groupBox5;
+		private System.Windows.Forms.TextBox txtSy;
+		private System.Windows.Forms.TextBox txtSx;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.TextBox txtY;
+		private System.Windows.Forms.TextBox txtX;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox txtR;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox pictureBox5;
+		private System.Windows.Forms.PictureBox pictureBox4;
+		private System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.PictureBox pictureBox2;
 	}
 }
 

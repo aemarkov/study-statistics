@@ -69,6 +69,12 @@ namespace Regression
 			cor_table = null;
 			cor_calc = null;
 
+			txtX.Text = "";
+			txtY.Text = "";
+			txtSx.Text = "";
+			txtSy.Text = "";
+			txtR.Text = "";
+
 			gui_flags_set(false);
 			setup_gui();
 		}
@@ -179,9 +185,15 @@ namespace Regression
 		private void menuCalc_Click(object sender, EventArgs e)
 		{
 			cor_calc = new CorrelationCalc(cor_table);
-
 			calc_exists = true;
 			setup_gui();
+
+			txtX.Text = cor_calc.X.ToString("N4");
+			txtY.Text = cor_calc.Y.ToString("N4");
+			txtSx.Text = cor_calc.Sx.ToString("N4");
+			txtSy.Text = cor_calc.Sy.ToString("N4");
+			txtR.Text = cor_calc.R.ToString("N4");
+
 		}
 
 		//Построение диаграммы рассеивания
@@ -202,8 +214,8 @@ namespace Regression
 		{
 			btnSeparate.Enabled = sample_exists;
 			btnInput.Enabled = cortable_empty_exists | cortable_exists;
-			menuCalc.Enabled = cortable_exists && sample_exists;
-			menuDrawDiagram.Enabled = calc_exists;
+			menuCalc.Enabled = cortable_exists;
+			menuDrawDiagram.Enabled = calc_exists && sample_exists;
 		}
 
 		//Задает все флаги
@@ -306,9 +318,6 @@ namespace Regression
 		{
 			gridCorrelationInput.Rows[e.RowIndex].ErrorText = String.Empty;
 		}
-
-
-
 
 		#endregion
 	}
