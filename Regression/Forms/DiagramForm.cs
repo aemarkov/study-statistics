@@ -7,35 +7,41 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Regression.Utils;
+using ZedGraph;	
 
 namespace Regression
 {
 	public partial class DiagramForm : Form
 	{
-		public DiagramForm(List<PointD> data, CorrelationCalc calc)
+		public DiagramForm(List<Regression.Utils.PointD> data, CorrelationCalc calc)
 		{
-			InitializeComponent();
+			InitializeComponent();	
 			setup_graph();
 
-			var pane = graph.GraphPane;
-			var table = calc.Table;
+			var pane = graph.GraphPane;		//Поверхность рисования
+			var table = calc.Table;			//Корреляционная таблица
+			double x_1, x_2, y_1, y_2;      //Координаты концов линий регрессии
+			var points = new PointPairList();
 
-			foreach(var x in data)
-			{
-				pane.AddCurve("", new double[] { x.X }, new double[] { x.Y }, Color.Green, ZedGraph.SymbolType.Circle);
-			}
+			//Построение точек
+			foreach (var x in data)
+				points.Add(x.X, x.Y);
+
+			//Добавляем точки на график и убираем линию.
+			var curve = pane.AddCurve("", points, Color.Green, SymbolType.Circle);
+			curve.Line.IsVisible = false;
+			curve.Symbol.Fill.Type = FillType.Solid;
+			curve.Symbol.Size = 5;
 
 			//Построение графиков
-			double x_1, x_2, y_1, y_2;
-
 			//y = B0  + B1 *x
 			x_1 = calc.Table.XHeaders.First().Left;
 			x_2 = calc.Table.XHeaders.Last().Right;
 			y_1 = calc.B0 + calc.B1 * x_1;
 			y_2 = calc.B0 + calc.B1 * x_2;
 	
-			pane = graph.GraphPane;
-			pane.AddCurve("", new double[] { x_1, x_2 }, new double[] { y_1, y_2 }, Color.Red);
+			curve = pane.AddCurve(String.Format("y = {0:N2} + {1:N2}x", calc.B0, calc.B1), new double[] { x_1, x_2 }, new double[] { y_1, y_2 }, Color.Red, SymbolType.None);
+			curve.Line.IsAntiAlias = true;
 
 			//x = B0' + B1'*y
 			y_1 = calc.Table.YHeaders.First().Left;
@@ -43,8 +49,12 @@ namespace Regression
 			x_1 = calc.B0_ + calc.B1_ * y_1;
 			x_2 = calc.B0_ + calc.B1_ * y_2;
 
-			pane = graph.GraphPane;
-			pane.AddCurve("", new double[] { x_1, x_2 }, new double[] { y_1, y_2 }, Color.Red);
+			curve = pane.AddCurve(String.Format("x = {0:N2} + {1:N2}y",calc.B0_, calc.B1_), new double[] { x_1, x_2 }, new double[] { y_1, y_2 }, Color.Blue, SymbolType.None);
+			curve.Line.IsAntiAlias = true;
+
+
+			//Построение точки пересечения
+			pane.AddCurve("", new double[] { calc.X }, new double[] { calc.Y }, Color.Blue, SymbolType.Circle);
 
 			pane.AxisChange();
 			graph.Invalidate();
@@ -84,6 +94,10 @@ namespace Regression
 			pane.XAxis.MajorTic.IsOpposite = false;
 			pane.YAxis.MinorTic.IsOpposite = false;
 			pane.YAxis.MajorTic.IsOpposite = false;
+
+			pane.Title.Text = "Диаграмма рассеивания и линии регрессии";
+			pane.XAxis.Title.Text = "X";
+			pane.YAxis.Title.Text = "Y";
 
 			graph.AxisChange();
 			graph.Invalidate();

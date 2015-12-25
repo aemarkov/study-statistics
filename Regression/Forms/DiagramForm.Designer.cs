@@ -46,7 +46,7 @@
 			this.graph.ScrollMinX = 0D;
 			this.graph.ScrollMinY = 0D;
 			this.graph.ScrollMinY2 = 0D;
-			this.graph.Size = new System.Drawing.Size(458, 375);
+			this.graph.Size = new System.Drawing.Size(559, 536);
 			this.graph.TabIndex = 0;
 			this.graph.UseExtendedPrintDialog = true;
 			// 
@@ -54,10 +54,10 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(483, 400);
+			this.ClientSize = new System.Drawing.Size(584, 561);
 			this.Controls.Add(this.graph);
 			this.Name = "DiagramForm";
-			this.Text = "DiagramForm";
+			this.Text = "Диаграмма рассеивания";
 			this.ResumeLayout(false);
 
 		}
