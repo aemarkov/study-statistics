@@ -66,6 +66,7 @@
 			this.txtY = new System.Windows.Forms.TextBox();
 			this.txtX = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
+			this.menuAdditionalValues = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -123,7 +124,8 @@
 			// 
 			this.обработкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuCalc,
-            this.menuDrawDiagram});
+            this.menuDrawDiagram,
+            this.menuAdditionalValues});
 			this.обработкаToolStripMenuItem.Name = "обработкаToolStripMenuItem";
 			this.обработкаToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
 			this.обработкаToolStripMenuItem.Text = "Обработка";
@@ -499,6 +501,13 @@
 			this.label5.TabIndex = 0;
 			this.label5.Text = "Среднее";
 			// 
+			// menuAdditionalValues
+			// 
+			this.menuAdditionalValues.Name = "menuAdditionalValues";
+			this.menuAdditionalValues.Size = new System.Drawing.Size(281, 22);
+			this.menuAdditionalValues.Text = "Показать промежуточные значения";
+			this.menuAdditionalValues.Click += new System.EventHandler(this.menuAdditionalValues_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -578,6 +587,7 @@
 		private System.Windows.Forms.PictureBox pictureBox4;
 		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.ToolStripMenuItem menuAdditionalValues;
 	}
 }
 

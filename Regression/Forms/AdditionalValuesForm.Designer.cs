@@ -1,4 +1,4 @@
-﻿namespace Regression.Forms
+﻿namespace Regression
 {
 	partial class AdditionalValuesForm
 	{
@@ -28,9 +28,17 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
+			this.SuspendLayout();
+			// 
+			// AdditionalValuesForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(645, 465);
+			this.Name = "AdditionalValuesForm";
 			this.Text = "AdditionalValuesForm";
+			this.ResumeLayout(false);
+
 		}
 
 		#endregion
