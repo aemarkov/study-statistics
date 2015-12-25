@@ -12,6 +12,6 @@ namespace Regression.Utils
 	{
 		public ParseException() : base("Ошибка при чтении файла. Возможно, файл имеет неверный формат") { }
 
-		public ParseException(string message) : base("Ошибка при чтении файла: " + message) { }
+		public ParseException(string message) : base(message +". Проверьте правильность составления файла") { }
 	}
 }

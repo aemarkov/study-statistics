@@ -87,8 +87,17 @@ namespace Regression
 			if (dlg.ShowDialog() != DialogResult.OK) return;
 
 			reset_all();
+			List<PointD> list;
+			try
+			{
+				 list = CsvParser.ReadSample(dlg.FileName);
+			}
+			catch (ParseException exp)
+			{
+				MessageBox.Show(exp.Message, "Ошибка при чтении корреляционной таблицы", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
 
-			var list = CsvParser.ReadSample(dlg.FileName);
 			foreach (var x in list)
 				data.Add(x);
 
@@ -105,7 +114,16 @@ namespace Regression
 
 			reset_all();
 
-			cor_table = CsvParser.ReadCorrelationTable(dlg.FileName);
+			try
+			{
+				cor_table = CsvParser.ReadCorrelationTable(dlg.FileName);
+			}
+			catch(ParseException exp)
+			{
+				MessageBox.Show(exp.Message, "Ошибка при чтении корреляционной таблицы", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
 			make_creation_table(cor_table);
 
 			cortable_exists = true;

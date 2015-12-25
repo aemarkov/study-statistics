@@ -21,12 +21,18 @@ namespace Regression.Utils
 		{
 			List<PointD> points = new List<PointD>();
 
-			using (var sr = new StreamReader(filename))
+			try
 			{
-				string line;
-				while ((line = sr.ReadLine()) != null)
-					points.Add(parse_point(line));
-			}
+				using (var sr = new StreamReader(filename))
+				{
+					string line;
+					while ((line = sr.ReadLine()) != null)
+						points.Add(parse_point(line));
+				}
+			}catch(FormatException exp)
+			{
+				throw new ParseException("В таблице присутствует значение в неправильом формате");
+            }
 
 			return points;
 		}
@@ -44,31 +50,39 @@ namespace Regression.Utils
 			int width = -1;                             //Ширина таблицы
 			double bx = -1, by = -1;
 
-			//Чтение файла
-			using (var sr = new StreamReader(filename))
+			try
 			{
-				string line;
 
-				//Читаем первую линию с интервалами
-				line = sr.ReadLine();
-				if (line == null) throw new ParseException("Файл пуст");
-				var strings = separate_line(line);
-				x_headers = parse_ranges(strings[1]);
-
-				//Читаем остальные оинии
-				while ((line = sr.ReadLine()) != null)
+				//Чтение файла
+				using (var sr = new StreamReader(filename))
 				{
-					strings = separate_line(line);
-					y_headers.Add(Range.Parse(strings[0]));		//Опеределяем интервал из первого столбца
-					var line_data = parse_values(strings[1]);
+					string line;
 
-					//Проврека на равенство длин всех строк
-					if (width == -1) width = line_data.Count;
-					else if (width != line_data.Count)
-						throw new ParseException("Длины строк в таблице не совпадают");
+					//Читаем первую линию с интервалами
+					line = sr.ReadLine();
+					if (line == null) throw new ParseException("Файл пуст");
+					var strings = separate_line(line);
+					x_headers = parse_ranges(strings[1]);
 
-					raw_data.Add(line_data);
+					//Читаем остальные оинии
+					while ((line = sr.ReadLine()) != null)
+					{
+						strings = separate_line(line);
+						y_headers.Add(Range.Parse(strings[0]));     //Опеределяем интервал из первого столбца
+						var line_data = parse_values(strings[1]);
+
+						//Проврека на равенство длин всех строк
+						if (width == -1) width = line_data.Count;
+						else if (width != line_data.Count)
+							throw new ParseException("Длины строк в таблице не совпадают");
+
+						raw_data.Add(line_data);
+					}
 				}
+
+			}catch(FormatException exp)
+			{
+				throw new ParseException("В таблице присутствует значение в неправильом формате");
 			}
 
 			//Составление таблицы из данных
@@ -124,7 +138,8 @@ namespace Regression.Utils
 			var list = new List<int>();
 			var values = line.Split(';');
 			foreach (var v in values)
-				list.Add(int.Parse(v));
+				if(v!="")
+					list.Add(int.Parse(v));
 
 			return list;
 		}
