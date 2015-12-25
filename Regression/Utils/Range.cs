@@ -39,6 +39,9 @@ namespace Regression.Utils
 		{
 			double left, right;
 			range = null;
+
+			if (str == null) return false;
+
 			var match = regex.Match(str);
 
 			if (match.Groups.Count != 3) return false;

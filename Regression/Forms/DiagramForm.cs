@@ -22,14 +22,8 @@ namespace Regression
 
 			foreach(var x in data)
 			{
-				pane.AddCurve("", new double[] { x.X }, new double[] { x.Y }, Color.Green);
+				pane.AddCurve("", new double[] { x.X }, new double[] { x.Y }, Color.Green, ZedGraph.SymbolType.Circle);
 			}
-
-
-			/*
-				
-				
-			*/
 
 			//Построение графиков
 			double x_1, x_2, y_1, y_2;

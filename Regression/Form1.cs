@@ -22,6 +22,12 @@ namespace Regression
 		CorrelationCalc cor_calc;
 
 
+		//СОСТОЯНИЯ ИНТЕРФЕЙСА
+		bool sample_exists;				//Открыта выборка
+		bool cortable_empty_exists;		//Создана пустая таблица
+		bool cortable_exists;			//Создана таблица (из выбокри, вручную, из файла)
+		bool calc_exists;				//Значения расчитаны
+
 		///////////////////////////////////////////////////////////////////////////////////////
 		/// ИНИЦИАЛИЗАЦИЯ
 		///////////////////////////////////////////////////////////////////////////////////////
@@ -30,26 +36,42 @@ namespace Regression
 		{
 			InitializeComponent();
 
-			//Настройка списка и биндингов
-			data = new BindingList<PointD>();
-			data.AllowEdit = false;;
-			data.AllowNew = false;
-			data.AllowRemove = false;
+			reset_all();
 
-			//Настройка таблиц
-			gridData.DataSource = data;
 
 			gridCorrelationInput.CellValidating += GridCorrelationInput_CellValidating;
 			gridCorrelationInput.CellEndEdit += GridCorrelationInput_CellEndEdit;
 
+			//Сброс GUI
+			//gui_flags_set(false);
 		}
 
-		
+
 
 		#region CORRELATION_CREATE
 		///////////////////////////////////////////////////////////////////////////////////////
 		/// СОЗДАНИЕ, ОТКРЫТИЕ, ВВОД КОРРЕЛЯЦИОННОЙ ТАБЛИЦЫ
 		///////////////////////////////////////////////////////////////////////////////////////
+
+
+		//Очищает все таблицы и прочее
+		private void reset_all()
+		{
+			gridCorrelationInput.Rows.Clear();
+			gridCorrelationInput.Columns.Clear();
+
+			data = new BindingList<PointD>();
+			data.AllowEdit = false; ;
+			data.AllowNew = false;
+			data.AllowRemove = false;
+			gridData.DataSource = data;
+
+			cor_table = null;
+			cor_calc = null;
+
+			gui_flags_set(false);
+			setup_gui();
+		}
 
 		//Открытие выборки
 		private void menuOpen_Click(object sender, EventArgs e)
@@ -58,19 +80,48 @@ namespace Regression
 			//dlg.Filter = "*.csv|Таблица CSV";
 			if (dlg.ShowDialog() != DialogResult.OK) return;
 
+			reset_all();
+
 			var list = CsvParser.ReadSample(dlg.FileName);
 			foreach (var x in list)
 				data.Add(x);
+
+			sample_exists = true;
+			setup_gui();
 		}
+
+		//Открытие корреляционной таблицы из файла
+		private void menuOpenCorrelationTable_Click(object sender, EventArgs e)
+		{
+			var dlg = new OpenFileDialog();
+			//dlg.Filter = "*.csv|Таблица CSV";
+			if (dlg.ShowDialog() != DialogResult.OK) return;
+
+			reset_all();
+
+			cor_table = CsvParser.ReadCorrelationTable(dlg.FileName);
+			make_creation_table(cor_table);
+
+			cortable_exists = true;
+			setup_gui();
+		}
+
 
 		//Создание корреляционной таблицы заданного размера
 		private void btnCreate_Click(object sender, EventArgs e)
 		{
+			if ((cortable_exists || cortable_empty_exists) && (MessageBox.Show("Создать новую таблицу? Это удалит текущие данные.", "Создание корреляционной таблицы", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)) return;
+
+			reset_all();
+
 			int n_x = (int)numCreateCols.Value;
 			int n_y = (int)numCreateRows.Value;
 
 			cor_table = new CorrelationTable(n_x, n_y);
 			make_creation_table(cor_table);
+
+			cortable_empty_exists = true;
+			setup_gui();
 		}
 
 		//Ввод корреляционной таблицы
@@ -97,17 +148,9 @@ namespace Regression
 			{
 				MessageBox.Show("Одно или несколько значений в таблице имели неверный формат", "Создание корреляционной таблицы", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
-		}
 
-		//Открытие корреляционной таблицы из файла
-		private void menuOpenCorrelationTable_Click(object sender, EventArgs e)
-		{
-			var dlg = new OpenFileDialog();
-			//dlg.Filter = "*.csv|Таблица CSV";
-			if (dlg.ShowDialog() != DialogResult.OK) return;
-			cor_table = CsvParser.ReadCorrelationTable(dlg.FileName);
-			make_creation_table(cor_table);
-			tabControl1.SelectedIndex = 1;
+			cortable_exists = true;
+			setup_gui();
 		}
 
 		//Разбитие исходной выборки в корреляционную таблицу
@@ -119,6 +162,9 @@ namespace Regression
 			cor_table = new CorrelationTable(n_x, n_y);
 			cor_table.Fill(data.ToList());
 			make_creation_table(cor_table);
+
+			cortable_exists = true;
+			setup_gui();
 		}
 
 		#endregion
@@ -133,7 +179,9 @@ namespace Regression
 		private void menuCalc_Click(object sender, EventArgs e)
 		{
 			cor_calc = new CorrelationCalc(cor_table);
-			//print_correlation_table(cor_calc);
+
+			calc_exists = true;
+			setup_gui();
 		}
 
 		//Построение диаграммы рассеивания
@@ -145,6 +193,27 @@ namespace Regression
 
 		#endregion
 
+		///////////////////////////////////////////////////////////////////////////////////////
+		/// УПРАВЛЕНИЕ СОСТОЯНИЕМ ИНТЕРФЕЙСА
+		///////////////////////////////////////////////////////////////////////////////////////
+
+		//Настраивает активность элементов в зависимости от флагов
+		private void setup_gui()
+		{
+			btnSeparate.Enabled = sample_exists;
+			btnInput.Enabled = cortable_empty_exists | cortable_exists;
+			menuCalc.Enabled = cortable_exists && sample_exists;
+			menuDrawDiagram.Enabled = calc_exists;
+		}
+
+		//Задает все флаги
+		private	void gui_flags_set(bool val)
+		{
+			sample_exists = val;
+			cortable_empty_exists = val;
+			cortable_exists = val;
+			calc_exists = val;
+		}
 		#region TABLE_GRAPHICS
 
 		///////////////////////////////////////////////////////////////////////////////////////
@@ -210,7 +279,6 @@ namespace Regression
 			}
 
 			//Переход на вкладку с таблией
-			tabControl1.SelectedIndex = 1;
 
 		}
 
@@ -241,9 +309,8 @@ namespace Regression
 
 
 
+
 		#endregion
-
-
 	}
 }
 

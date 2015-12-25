@@ -35,32 +35,32 @@
 			this.обработкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuCalc = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuDrawDiagram = new System.Windows.Forms.ToolStripMenuItem();
-			this.gridData = new System.Windows.Forms.DataGridView();
-			this.btnCreate = new System.Windows.Forms.Button();
 			this.btnInput = new System.Windows.Forms.Button();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPageSample = new System.Windows.Forms.TabPage();
+			this.gridCorrelationInput = new System.Windows.Forms.DataGridView();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnSeparate = new System.Windows.Forms.Button();
 			this.numSepRows = new System.Windows.Forms.NumericUpDown();
 			this.label3 = new System.Windows.Forms.Label();
 			this.numSepCols = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
-			this.tabPageCorrelationTable = new System.Windows.Forms.TabPage();
-			this.gridCorrelationInput = new System.Windows.Forms.DataGridView();
+			this.gridData = new System.Windows.Forms.DataGridView();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.numCreateCols = new System.Windows.Forms.NumericUpDown();
 			this.label4 = new System.Windows.Forms.Label();
 			this.numCreateRows = new System.Windows.Forms.NumericUpDown();
+			this.btnCreate = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
-			this.tabControl1.SuspendLayout();
-			this.tabPageSample.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).BeginInit();
+			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numSepRows)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).BeginInit();
-			this.tabPageCorrelationTable.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
+			this.groupBox3.SuspendLayout();
+			this.groupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateCols)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateRows)).BeginInit();
 			this.SuspendLayout();
@@ -72,7 +72,7 @@
             this.обработкаToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(637, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(1024, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -122,55 +122,38 @@
 			this.menuDrawDiagram.Text = "Построение диаграммы рассеивания";
 			this.menuDrawDiagram.Click += new System.EventHandler(this.menuDrawDiagram_Click);
 			// 
-			// gridData
-			// 
-			this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.gridData.Location = new System.Drawing.Point(15, 17);
-			this.gridData.Name = "gridData";
-			this.gridData.Size = new System.Drawing.Size(259, 524);
-			this.gridData.TabIndex = 1;
-			// 
-			// btnCreate
-			// 
-			this.btnCreate.Location = new System.Drawing.Point(9, 59);
-			this.btnCreate.Name = "btnCreate";
-			this.btnCreate.Size = new System.Drawing.Size(241, 23);
-			this.btnCreate.TabIndex = 8;
-			this.btnCreate.Text = "Создать";
-			this.btnCreate.UseVisualStyleBackColor = true;
-			this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-			// 
 			// btnInput
 			// 
-			this.btnInput.Location = new System.Drawing.Point(256, 3);
+			this.btnInput.Location = new System.Drawing.Point(130, 73);
 			this.btnInput.Name = "btnInput";
-			this.btnInput.Size = new System.Drawing.Size(341, 79);
+			this.btnInput.Size = new System.Drawing.Size(120, 23);
 			this.btnInput.TabIndex = 2;
-			this.btnInput.Text = "Ввод данных из корреляционной таблицы";
+			this.btnInput.Text = "Сохранить";
 			this.btnInput.UseVisualStyleBackColor = true;
 			this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
 			// 
-			// tabControl1
+			// gridCorrelationInput
 			// 
-			this.tabControl1.Controls.Add(this.tabPageSample);
-			this.tabControl1.Controls.Add(this.tabPageCorrelationTable);
-			this.tabControl1.Location = new System.Drawing.Point(12, 27);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(611, 699);
-			this.tabControl1.TabIndex = 4;
+			this.gridCorrelationInput.AllowUserToAddRows = false;
+			this.gridCorrelationInput.AllowUserToDeleteRows = false;
+			this.gridCorrelationInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridCorrelationInput.ColumnHeadersVisible = false;
+			this.gridCorrelationInput.Location = new System.Drawing.Point(6, 19);
+			this.gridCorrelationInput.Name = "gridCorrelationInput";
+			this.gridCorrelationInput.RowHeadersVisible = false;
+			this.gridCorrelationInput.Size = new System.Drawing.Size(683, 429);
+			this.gridCorrelationInput.TabIndex = 13;
 			// 
-			// tabPageSample
+			// groupBox2
 			// 
-			this.tabPageSample.Controls.Add(this.groupBox1);
-			this.tabPageSample.Controls.Add(this.gridData);
-			this.tabPageSample.Location = new System.Drawing.Point(4, 22);
-			this.tabPageSample.Name = "tabPageSample";
-			this.tabPageSample.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageSample.Size = new System.Drawing.Size(603, 673);
-			this.tabPageSample.TabIndex = 0;
-			this.tabPageSample.Text = "Выборка";
-			this.tabPageSample.UseVisualStyleBackColor = true;
+			this.groupBox2.Controls.Add(this.groupBox1);
+			this.groupBox2.Controls.Add(this.gridData);
+			this.groupBox2.Location = new System.Drawing.Point(12, 37);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(286, 570);
+			this.groupBox2.TabIndex = 5;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Выборка";
 			// 
 			// groupBox1
 			// 
@@ -179,10 +162,10 @@
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.numSepCols);
 			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Location = new System.Drawing.Point(15, 559);
+			this.groupBox1.Location = new System.Drawing.Point(12, 456);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(259, 108);
-			this.groupBox1.TabIndex = 8;
+			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Построение корреляционной таблицы";
 			// 
@@ -194,7 +177,7 @@
 			this.btnSeparate.TabIndex = 7;
 			this.btnSeparate.Text = "Разбить";
 			this.btnSeparate.UseVisualStyleBackColor = true;
-			this.btnSeparate.Click += new System.EventHandler(this.btnSeparate_Click);
+			this.btnSeparate.Click += btnSeparate_Click;
 			// 
 			// numSepRows
 			// 
@@ -248,47 +231,52 @@
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Число строк";
 			// 
-			// tabPageCorrelationTable
+			// gridData
 			// 
-			this.tabPageCorrelationTable.Controls.Add(this.gridCorrelationInput);
-			this.tabPageCorrelationTable.Controls.Add(this.label1);
-			this.tabPageCorrelationTable.Controls.Add(this.numCreateCols);
-			this.tabPageCorrelationTable.Controls.Add(this.label4);
-			this.tabPageCorrelationTable.Controls.Add(this.numCreateRows);
-			this.tabPageCorrelationTable.Controls.Add(this.btnCreate);
-			this.tabPageCorrelationTable.Controls.Add(this.btnInput);
-			this.tabPageCorrelationTable.Location = new System.Drawing.Point(4, 22);
-			this.tabPageCorrelationTable.Name = "tabPageCorrelationTable";
-			this.tabPageCorrelationTable.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageCorrelationTable.Size = new System.Drawing.Size(603, 673);
-			this.tabPageCorrelationTable.TabIndex = 1;
-			this.tabPageCorrelationTable.Text = "Корреляционная таблица";
-			this.tabPageCorrelationTable.UseVisualStyleBackColor = true;
+			this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridData.Location = new System.Drawing.Point(12, 19);
+			this.gridData.Name = "gridData";
+			this.gridData.Size = new System.Drawing.Size(259, 429);
+			this.gridData.TabIndex = 9;
 			// 
-			// gridCorrelationInput
+			// groupBox3
 			// 
-			this.gridCorrelationInput.AllowUserToAddRows = false;
-			this.gridCorrelationInput.AllowUserToDeleteRows = false;
-			this.gridCorrelationInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.gridCorrelationInput.ColumnHeadersVisible = false;
-			this.gridCorrelationInput.Location = new System.Drawing.Point(9, 88);
-			this.gridCorrelationInput.Name = "gridCorrelationInput";
-			this.gridCorrelationInput.RowHeadersVisible = false;
-			this.gridCorrelationInput.Size = new System.Drawing.Size(588, 578);
-			this.gridCorrelationInput.TabIndex = 13;
+			this.groupBox3.Controls.Add(this.gridCorrelationInput);
+			this.groupBox3.Controls.Add(this.groupBox4);
+			this.groupBox3.Location = new System.Drawing.Point(304, 37);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(705, 570);
+			this.groupBox3.TabIndex = 6;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Диаграмма рассеивания";
+			// 
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.label1);
+			this.groupBox4.Controls.Add(this.btnInput);
+			this.groupBox4.Controls.Add(this.numCreateCols);
+			this.groupBox4.Controls.Add(this.label4);
+			this.groupBox4.Controls.Add(this.btnCreate);
+			this.groupBox4.Controls.Add(this.numCreateRows);
+			this.groupBox4.Location = new System.Drawing.Point(6, 456);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(259, 108);
+			this.groupBox4.TabIndex = 0;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = " Создание корреляционной таблицы";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 35);
+			this.label1.Location = new System.Drawing.Point(6, 51);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(87, 13);
-			this.label1.TabIndex = 9;
+			this.label1.TabIndex = 14;
 			this.label1.Text = "Число строк (Y)";
 			// 
 			// numCreateCols
 			// 
-			this.numCreateCols.Location = new System.Drawing.Point(130, 12);
+			this.numCreateCols.Location = new System.Drawing.Point(130, 23);
 			this.numCreateCols.Minimum = new decimal(new int[] {
             1,
             0,
@@ -296,7 +284,7 @@
             0});
 			this.numCreateCols.Name = "numCreateCols";
 			this.numCreateCols.Size = new System.Drawing.Size(120, 20);
-			this.numCreateCols.TabIndex = 11;
+			this.numCreateCols.TabIndex = 16;
 			this.numCreateCols.Value = new decimal(new int[] {
             1,
             0,
@@ -306,15 +294,15 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(6, 14);
+			this.label4.Location = new System.Drawing.Point(6, 25);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(105, 13);
-			this.label4.TabIndex = 12;
+			this.label4.TabIndex = 17;
 			this.label4.Text = "Число столбцов (X)";
 			// 
 			// numCreateRows
 			// 
-			this.numCreateRows.Location = new System.Drawing.Point(130, 35);
+			this.numCreateRows.Location = new System.Drawing.Point(130, 49);
 			this.numCreateRows.Minimum = new decimal(new int[] {
             1,
             0,
@@ -322,36 +310,47 @@
             0});
 			this.numCreateRows.Name = "numCreateRows";
 			this.numCreateRows.Size = new System.Drawing.Size(120, 20);
-			this.numCreateRows.TabIndex = 10;
+			this.numCreateRows.TabIndex = 15;
 			this.numCreateRows.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
 			// 
+			// btnCreate
+			// 
+			this.btnCreate.Location = new System.Drawing.Point(6, 73);
+			this.btnCreate.Name = "btnCreate";
+			this.btnCreate.Size = new System.Drawing.Size(120, 23);
+			this.btnCreate.TabIndex = 13;
+			this.btnCreate.Text = "Создать";
+			this.btnCreate.UseVisualStyleBackColor = true;
+			this.btnCreate.Click += btnCreate_Click;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(637, 742);
-			this.Controls.Add(this.tabControl1);
+			this.ClientSize = new System.Drawing.Size(1024, 620);
+			this.Controls.Add(this.groupBox3);
+			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
 			this.Text = "Регрессия";
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
-			this.tabControl1.ResumeLayout(false);
-			this.tabPageSample.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).EndInit();
+			this.groupBox2.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numSepRows)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).EndInit();
-			this.tabPageCorrelationTable.ResumeLayout(false);
-			this.tabPageCorrelationTable.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
+			this.groupBox3.ResumeLayout(false);
+			this.groupBox4.ResumeLayout(false);
+			this.groupBox4.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateCols)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numCreateRows)).EndInit();
 			this.ResumeLayout(false);
@@ -364,27 +363,27 @@
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem menuOpen;
-		private System.Windows.Forms.DataGridView gridData;
 		private System.Windows.Forms.Button btnInput;
-		private System.Windows.Forms.Button btnCreate;
-		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TabPage tabPageSample;
-		private System.Windows.Forms.TabPage tabPageCorrelationTable;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.NumericUpDown numCreateCols;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.NumericUpDown numCreateRows;
 		private System.Windows.Forms.DataGridView gridCorrelationInput;
 		private System.Windows.Forms.ToolStripMenuItem menuOpenCorrelationTable;
 		private System.Windows.Forms.ToolStripMenuItem обработкаToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem menuCalc;
 		private System.Windows.Forms.ToolStripMenuItem menuDrawDiagram;
+		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Button btnSeparate;
 		private System.Windows.Forms.NumericUpDown numSepRows;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.NumericUpDown numSepCols;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.DataGridView gridData;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.NumericUpDown numCreateCols;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.NumericUpDown numCreateRows;
+		private System.Windows.Forms.Button btnCreate;
 	}
 }
 
