@@ -8,7 +8,7 @@ namespace Regression.Utils
 	public class Range
 	{
 		private bool leftIncluded, rightIncluded;   //Включенность границ
-		private static Regex regex = new Regex(@"\[(-?[0-9]+(?:,[0-9]+)?);(-?[0-9]+(?:,[0-9]+)?)\)");
+		private static Regex regex = new Regex(@"\[(-?[0-9]+(?:,[0-9]+)?):(-?[0-9]+(?:,[0-9]+)?)\)");
 
 		public double Left { get; set; }			//Левая граница диапазона
 		public double Right { get; set; }           //Правая граница диапазона

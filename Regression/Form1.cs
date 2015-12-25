@@ -58,7 +58,7 @@ namespace Regression
 			//dlg.Filter = "*.csv|Таблица CSV";
 			if (dlg.ShowDialog() != DialogResult.OK) return;
 
-			var list = CsvParser.ReadFile(dlg.FileName);
+			var list = CsvParser.ReadSample(dlg.FileName);
 			foreach (var x in list)
 				data.Add(x);
 		}
@@ -97,6 +97,17 @@ namespace Regression
 			{
 				MessageBox.Show("Одно или несколько значений в таблице имели неверный формат", "Создание корреляционной таблицы", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
+		}
+
+		//Открытие корреляционной таблицы из файла
+		private void menuOpenCorrelationTable_Click(object sender, EventArgs e)
+		{
+			var dlg = new OpenFileDialog();
+			//dlg.Filter = "*.csv|Таблица CSV";
+			if (dlg.ShowDialog() != DialogResult.OK) return;
+			cor_table = CsvParser.ReadCorrelationTable(dlg.FileName);
+			make_creation_table(cor_table);
+			tabControl1.SelectedIndex = 1;
 		}
 
 		//Разбитие исходной выборки в корреляционную таблицу
@@ -231,6 +242,7 @@ namespace Regression
 
 
 		#endregion
+
 
 	}
 }
