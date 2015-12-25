@@ -56,10 +56,21 @@ namespace Regression.Utils
 			return range;
 		}
 
-		//Перевод к строке
+		/// <summary>
+		///  Возвращает строковое представление
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
-			return (leftIncluded ?  "[" : "(") + Left.ToString("N2") + "; " + Right.ToString("N2") + (rightIncluded ? "]": ")")+Environment.NewLine+Middle.ToString();
+			return (leftIncluded ? "[" : "(") + Left.ToString("N2") + "; " + Right.ToString("N2") + (rightIncluded ? "]" : ")");
+		}
+
+		/// <summary>
+		/// Возвращает расширенное строковое представление, включающее середину интервала
+		/// </summary>
+		public string ToStringExtended()
+		{
+			return (leftIncluded ? "[" : "(") + Left.ToString("N2") + "; " + Right.ToString("N2") + (rightIncluded ? "]" : ")") + Environment.NewLine + Middle.ToString();
 		}
 
 		//Сравнения

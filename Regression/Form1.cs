@@ -70,7 +70,7 @@ namespace Regression
 			int n_y = (int)numCreateRows.Value;
 
 			cor_table = new CorrelationTable(n_x, n_y);
-			make_creation_table(n_x, n_y);
+			make_creation_table(cor_table);
 		}
 
 		//Ввод корреляционной таблицы
@@ -107,8 +107,7 @@ namespace Regression
 
 			cor_table = new CorrelationTable(n_x, n_y);
 			cor_table.Fill(data.ToList());
-			cor_calc = new CorrelationCalc(cor_table);
-			//print_correlation_table(cor_calc);
+			make_creation_table(cor_table);
 		}
 
 		#endregion
@@ -119,8 +118,15 @@ namespace Regression
 		/// ДЕЙСТВИЯ С ТАБЛИЦОЙ
 		///////////////////////////////////////////////////////////////////////////////////////
 
+		//Расчет числовых характеристик  и вывод
+		private void menuCalc_Click(object sender, EventArgs e)
+		{
+			cor_calc = new CorrelationCalc(cor_table);
+			//print_correlation_table(cor_calc);
+		}
+
 		//Построение диаграммы рассеивания
-		private void btnDiagr_Click(object sender, EventArgs e)
+		private void menuDrawDiagram_Click(object sender, EventArgs e)
 		{
 			var frm = new DiagramForm(data.ToList(), cor_calc);
 			frm.Show();
@@ -135,50 +141,69 @@ namespace Regression
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		//Создание таблицы для ручного ввода корреляционной таблицы
-		private void make_creation_table(int cols, int rows)
+		//Или отображение уже готовй таблицы
+		//MVC плачет кровавыми слезами
+		private void make_creation_table(CorrelationTable table)
 		{
 			gridCorrelationInput.Rows.Clear();
 			gridCorrelationInput.Columns.Clear();
 
-			int cell_size = 40;
+			//int cell_size = 40;
 			var templ_row = new DataGridViewRow();
 			var gray_style = new DataGridViewCellStyle();
 			var normal_style = new DataGridViewCellStyle();
 
 			gray_style.BackColor = Color.LightGray;
 			gray_style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-			normal_style.Alignment= DataGridViewContentAlignment.MiddleCenter;
+			normal_style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+			//Создаем столбцы
 			//Левый столбец - гранцы интервалов по У
 			templ_row.Cells.Add(new DataGridViewTextBoxCell());
 			gridCorrelationInput.Columns.Add("WTF".ToString(), "");
-			for (int i = 0; i < cols; i++)
+
+			//Остальные столбцы
+			for (int i = 0; i < table.Width; i++)
 			{
 				templ_row.Cells.Add(new DataGridViewTextBoxCell());
 				gridCorrelationInput.Columns.Add("C" + i.ToString(), "");
-				gridCorrelationInput.Columns[i+1].Width = cell_size;
+				//gridCorrelationInput.Columns[i + 1].Width = cell_size;
 			}
 
 			//Заполняем таблицу
+
+			//Первая строка
 			gridCorrelationInput.Rows.Add();
 			foreach (DataGridViewTextBoxCell c in gridCorrelationInput.Rows[0].Cells)
 				c.Style = gray_style;
 			gridCorrelationInput[0, 0].Value = "Y\\X";
 			gridCorrelationInput[0, 0].ReadOnly = true;
 
-			for (int i = 0; i < rows; i++)
+			for(int x = 1; x<table.Width; x++)
+				gridCorrelationInput[x, 0].Value = table.XHeaders[x-1];
+
+			//Остальные строки
+			for (int y = 0; y < table.Height; y++)
 			{
 				gridCorrelationInput.Rows.Add();
-				foreach (DataGridViewTextBoxCell c in gridCorrelationInput.Rows[i + 1].Cells)
-					c.Style = normal_style;
+				//gridCorrelationInput.Rows[y + 1].Height = cell_size;
 
-				gridCorrelationInput[i+1,0].Style = gray_style;
-				gridCorrelationInput.Rows[i + 1].Height = cell_size;
+				gridCorrelationInput[0, y + 1].Value = table.YHeaders[y];
+				gridCorrelationInput[0, y + 1].Style = gray_style;
+
+				for(int x = 0; x<table.Width; x++)
+				{
+					gridCorrelationInput[x+1, y+1].Style = normal_style;
+					gridCorrelationInput[x+1, y+1].Value = table[x, y];
+				}
 			}
 
-			
+			//Переход на вкладку с таблией
+			tabControl1.SelectedIndex = 1;
+
 		}
 
+		// Валидация
 
 		private void GridCorrelationInput_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
 		{
@@ -202,10 +227,10 @@ namespace Regression
 		{
 			gridCorrelationInput.Rows[e.RowIndex].ErrorText = String.Empty;
 		}
-		
+
+
 
 		#endregion
-
 
 	}
 }
