@@ -98,9 +98,9 @@ namespace Regression
 				htmlPanel.Text = str;
 			htmlPanel.Dock = DockStyle.Fill;
 			Controls.Add(htmlPanel);
-			/*htmlPanel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+			htmlPanel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
 			htmlPanel.Width = this.Width;
-			htmlPanel.Height = this.ClientSize.Height;*/
+			htmlPanel.Height = this.ClientSize.Height - groupBox1.Height - 10;
         }
 
 

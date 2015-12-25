@@ -133,4 +133,37 @@
   <data name="Y" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Y.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ni" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ni.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nj.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Qu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Qu.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Quv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Quv.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Qv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Qv.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ui" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ui.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vj.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wtf1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wtf1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wtf2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wtf2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wtf3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wtf3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wtf4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wtf4.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

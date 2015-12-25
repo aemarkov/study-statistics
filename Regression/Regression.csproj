@@ -129,6 +129,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <None Include="Resources\wtf4.png" />
+    <None Include="Resources\wtf3.png" />
+    <None Include="Resources\wtf2.png" />
+    <None Include="Resources\wtf1.png" />
+    <None Include="Resources\vj.png" />
+    <None Include="Resources\ui.png" />
+    <None Include="Resources\Qv.png" />
+    <None Include="Resources\Quv.png" />
+    <None Include="Resources\Qu.png" />
+    <None Include="Resources\nj.png" />
+    <None Include="Resources\ni.png" />
     <None Include="Resources\Y.png" />
     <None Include="Resources\Sy.png" />
     <None Include="Resources\Sx.png" />
