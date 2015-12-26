@@ -72,17 +72,32 @@ namespace Regression
 		/// Заполняет таблицу из списка пар значений СВ
 		/// </summary>
 		/// <param name="poit"></param>
-		public void Fill(List<PointD> data)
+		public  CorrelationTable(List<PointD> data, double bx, double by)
 		{
 			double min_x = data.Min(x => x.X);
 			double max_x = data.Max(x => x.X);
 			double min_y = data.Min(x => x.Y);
 			double max_y = data.Max(x => x.Y);
 
-			double step_x = (max_x - min_x) / Width;
-			double step_y = (max_y - min_y) / Height;
-			Bx = step_x;
-			By = step_y;
+
+			Bx = bx;
+			By = by;
+			double step_x = bx;
+			double step_y = by;
+
+			double w = ((max_x - min_x) / Bx);
+			Width = (int)w;
+			if (w != Width) Width++;
+
+			double h = ((max_y - min_y) / By); ;
+			Height = (int)h;
+			if (h != Height) Height++;
+
+
+			XHeaders = new Range[Width];
+			YHeaders = new Range[Height];
+			table = new int[Width, Height];
+
 
 			//Заполняем "оси"
 			double x_1 = min_x;

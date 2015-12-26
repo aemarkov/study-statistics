@@ -181,11 +181,19 @@ namespace Regression
 		//Разбитие исходной выборки в корреляционную таблицу
 		private void btnSeparate_Click_1(object sender, EventArgs e)
 		{
-			int n_x = (int)numSepCols.Value;
-			int n_y = (int)numSepRows.Value;
+			double bx, by;
+			try
+			{
+				bx = double.Parse(txtBx.Text);
+				by = double.Parse(txtBy.Text);
+							}
+			catch(FormatException)
+			{
+				MessageBox.Show("Некорректный формат значений", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
 
-			cor_table = new CorrelationTable(n_x, n_y);
-			cor_table.Fill(data.ToList());
+			cor_table = new CorrelationTable(data.ToList(), bx, by);
 			make_creation_table(cor_table);
 
 			cortable_exists = true;

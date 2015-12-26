@@ -41,9 +41,7 @@
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnSeparate = new System.Windows.Forms.Button();
-			this.numSepRows = new System.Windows.Forms.NumericUpDown();
 			this.label3 = new System.Windows.Forms.Label();
-			this.numSepCols = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.gridData = new System.Windows.Forms.DataGridView();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -67,12 +65,12 @@
 			this.txtY = new System.Windows.Forms.TextBox();
 			this.txtX = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
+			this.txtBy = new System.Windows.Forms.TextBox();
+			this.txtBx = new System.Windows.Forms.TextBox();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numSepRows)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
 			this.groupBox3.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -196,10 +194,10 @@
 			// groupBox1
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox1.Controls.Add(this.txtBx);
+			this.groupBox1.Controls.Add(this.txtBy);
 			this.groupBox1.Controls.Add(this.btnSeparate);
-			this.groupBox1.Controls.Add(this.numSepRows);
 			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.numSepCols);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Location = new System.Drawing.Point(12, 456);
 			this.groupBox1.Name = "groupBox1";
@@ -218,57 +216,23 @@
 			this.btnSeparate.UseVisualStyleBackColor = true;
 			this.btnSeparate.Click += new System.EventHandler(this.btnSeparate_Click_1);
 			// 
-			// numSepRows
-			// 
-			this.numSepRows.Location = new System.Drawing.Point(127, 21);
-			this.numSepRows.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.numSepRows.Name = "numSepRows";
-			this.numSepRows.Size = new System.Drawing.Size(120, 20);
-			this.numSepRows.TabIndex = 4;
-			this.numSepRows.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(6, 49);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(89, 13);
+			this.label3.Size = new System.Drawing.Size(98, 13);
 			this.label3.TabIndex = 6;
-			this.label3.Text = "Число столбцов";
-			// 
-			// numSepCols
-			// 
-			this.numSepCols.Location = new System.Drawing.Point(127, 47);
-			this.numSepCols.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.numSepCols.Name = "numSepCols";
-			this.numSepCols.Size = new System.Drawing.Size(120, 20);
-			this.numSepCols.TabIndex = 5;
-			this.numSepCols.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+			this.label3.Text = "Шаг по вертикали";
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(3, 23);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(71, 13);
+			this.label2.Size = new System.Drawing.Size(109, 13);
 			this.label2.TabIndex = 3;
-			this.label2.Text = "Число строк";
+			this.label2.Text = "Шаг по горизонтали";
 			// 
 			// gridData
 			// 
@@ -521,6 +485,20 @@
 			this.label5.TabIndex = 0;
 			this.label5.Text = "Среднее";
 			// 
+			// txtBy
+			// 
+			this.txtBy.Location = new System.Drawing.Point(126, 47);
+			this.txtBy.Name = "txtBy";
+			this.txtBy.Size = new System.Drawing.Size(121, 20);
+			this.txtBy.TabIndex = 8;
+			// 
+			// txtBx
+			// 
+			this.txtBx.Location = new System.Drawing.Point(126, 23);
+			this.txtBx.Name = "txtBx";
+			this.txtBx.Size = new System.Drawing.Size(121, 20);
+			this.txtBx.TabIndex = 9;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -540,8 +518,6 @@
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numSepRows)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numSepCols)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
@@ -574,9 +550,7 @@
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Button btnSeparate;
-		private System.Windows.Forms.NumericUpDown numSepRows;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.NumericUpDown numSepCols;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.DataGridView gridData;
 		private System.Windows.Forms.GroupBox groupBox3;
@@ -601,6 +575,8 @@
 		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.ToolStripMenuItem menuAdditionalValues;
+		private System.Windows.Forms.TextBox txtBx;
+		private System.Windows.Forms.TextBox txtBy;
 	}
 }
 
