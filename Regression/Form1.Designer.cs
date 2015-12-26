@@ -40,6 +40,8 @@
 			this.gridCorrelationInput = new System.Windows.Forms.DataGridView();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.txtBx = new System.Windows.Forms.TextBox();
+			this.txtBy = new System.Windows.Forms.TextBox();
 			this.btnSeparate = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -65,8 +67,11 @@
 			this.txtY = new System.Windows.Forms.TextBox();
 			this.txtX = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.txtBy = new System.Windows.Forms.TextBox();
-			this.txtBx = new System.Windows.Forms.TextBox();
+			this.txtStartX = new System.Windows.Forms.TextBox();
+			this.txtStartY = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridCorrelationInput)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -194,21 +199,40 @@
 			// groupBox1
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox1.Controls.Add(this.label9);
+			this.groupBox1.Controls.Add(this.txtStartX);
+			this.groupBox1.Controls.Add(this.txtStartY);
+			this.groupBox1.Controls.Add(this.label6);
+			this.groupBox1.Controls.Add(this.label7);
 			this.groupBox1.Controls.Add(this.txtBx);
 			this.groupBox1.Controls.Add(this.txtBy);
 			this.groupBox1.Controls.Add(this.btnSeparate);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Location = new System.Drawing.Point(12, 456);
+			this.groupBox1.Location = new System.Drawing.Point(12, 387);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(259, 108);
+			this.groupBox1.Size = new System.Drawing.Size(259, 177);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Построение корреляционной таблицы";
 			// 
+			// txtBx
+			// 
+			this.txtBx.Location = new System.Drawing.Point(126, 23);
+			this.txtBx.Name = "txtBx";
+			this.txtBx.Size = new System.Drawing.Size(121, 20);
+			this.txtBx.TabIndex = 9;
+			// 
+			// txtBy
+			// 
+			this.txtBy.Location = new System.Drawing.Point(126, 47);
+			this.txtBy.Name = "txtBy";
+			this.txtBy.Size = new System.Drawing.Size(121, 20);
+			this.txtBy.TabIndex = 8;
+			// 
 			// btnSeparate
 			// 
-			this.btnSeparate.Location = new System.Drawing.Point(6, 73);
+			this.btnSeparate.Location = new System.Drawing.Point(6, 142);
 			this.btnSeparate.Name = "btnSeparate";
 			this.btnSeparate.Size = new System.Drawing.Size(241, 23);
 			this.btnSeparate.TabIndex = 7;
@@ -228,7 +252,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(3, 23);
+			this.label2.Location = new System.Drawing.Point(6, 23);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(109, 13);
 			this.label2.TabIndex = 3;
@@ -247,7 +271,7 @@
 			this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gridData.Location = new System.Drawing.Point(12, 19);
 			this.gridData.Name = "gridData";
-			this.gridData.Size = new System.Drawing.Size(259, 429);
+			this.gridData.Size = new System.Drawing.Size(259, 290);
 			this.gridData.TabIndex = 9;
 			// 
 			// groupBox3
@@ -485,19 +509,46 @@
 			this.label5.TabIndex = 0;
 			this.label5.Text = "Среднее";
 			// 
-			// txtBy
+			// txtStartX
 			// 
-			this.txtBy.Location = new System.Drawing.Point(126, 47);
-			this.txtBy.Name = "txtBy";
-			this.txtBy.Size = new System.Drawing.Size(121, 20);
-			this.txtBy.TabIndex = 8;
+			this.txtStartX.Location = new System.Drawing.Point(126, 92);
+			this.txtStartX.Name = "txtStartX";
+			this.txtStartX.Size = new System.Drawing.Size(121, 20);
+			this.txtStartX.TabIndex = 13;
 			// 
-			// txtBx
+			// txtStartY
 			// 
-			this.txtBx.Location = new System.Drawing.Point(126, 23);
-			this.txtBx.Name = "txtBx";
-			this.txtBx.Size = new System.Drawing.Size(121, 20);
-			this.txtBx.TabIndex = 9;
+			this.txtStartY.Location = new System.Drawing.Point(126, 116);
+			this.txtStartY.Name = "txtStartY";
+			this.txtStartY.Size = new System.Drawing.Size(121, 20);
+			this.txtStartY.TabIndex = 12;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(6, 118);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(116, 13);
+			this.label6.TabIndex = 11;
+			this.label6.Text = "Начальная граница Y";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(6, 92);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(116, 13);
+			this.label7.TabIndex = 10;
+			this.label7.Text = "Начальная граница X";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(6, 70);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(78, 13);
+			this.label9.TabIndex = 14;
+			this.label9.Text = "Опционально:";
 			// 
 			// Form1
 			// 
@@ -577,6 +628,11 @@
 		private System.Windows.Forms.ToolStripMenuItem menuAdditionalValues;
 		private System.Windows.Forms.TextBox txtBx;
 		private System.Windows.Forms.TextBox txtBy;
+		private System.Windows.Forms.TextBox txtStartX;
+		private System.Windows.Forms.TextBox txtStartY;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label9;
 	}
 }
 

@@ -29,6 +29,9 @@
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.txtQuv = new System.Windows.Forms.TextBox();
+			this.txtQv = new System.Windows.Forms.TextBox();
+			this.txtQu = new System.Windows.Forms.TextBox();
 			this.pictureBox11 = new System.Windows.Forms.PictureBox();
 			this.pictureBox10 = new System.Windows.Forms.PictureBox();
 			this.pictureBox9 = new System.Windows.Forms.PictureBox();
@@ -40,9 +43,6 @@
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.txtQu = new System.Windows.Forms.TextBox();
-			this.txtQv = new System.Windows.Forms.TextBox();
-			this.txtQuv = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -80,6 +80,30 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Формулы расчета промежуточных значений";
+			// 
+			// txtQuv
+			// 
+			this.txtQuv.Location = new System.Drawing.Point(838, 186);
+			this.txtQuv.Name = "txtQuv";
+			this.txtQuv.ReadOnly = true;
+			this.txtQuv.Size = new System.Drawing.Size(100, 20);
+			this.txtQuv.TabIndex = 13;
+			// 
+			// txtQv
+			// 
+			this.txtQv.Location = new System.Drawing.Point(838, 116);
+			this.txtQv.Name = "txtQv";
+			this.txtQv.ReadOnly = true;
+			this.txtQv.Size = new System.Drawing.Size(100, 20);
+			this.txtQv.TabIndex = 12;
+			// 
+			// txtQu
+			// 
+			this.txtQu.Location = new System.Drawing.Point(838, 46);
+			this.txtQu.Name = "txtQu";
+			this.txtQu.ReadOnly = true;
+			this.txtQu.Size = new System.Drawing.Size(100, 20);
+			this.txtQu.TabIndex = 11;
 			// 
 			// pictureBox11
 			// 
@@ -191,30 +215,6 @@
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
-			// txtQu
-			// 
-			this.txtQu.Location = new System.Drawing.Point(838, 46);
-			this.txtQu.Name = "txtQu";
-			this.txtQu.ReadOnly = true;
-			this.txtQu.Size = new System.Drawing.Size(100, 20);
-			this.txtQu.TabIndex = 11;
-			// 
-			// txtQv
-			// 
-			this.txtQv.Location = new System.Drawing.Point(838, 116);
-			this.txtQv.Name = "txtQv";
-			this.txtQv.ReadOnly = true;
-			this.txtQv.Size = new System.Drawing.Size(100, 20);
-			this.txtQv.TabIndex = 12;
-			// 
-			// txtQuv
-			// 
-			this.txtQuv.Location = new System.Drawing.Point(838, 186);
-			this.txtQuv.Name = "txtQuv";
-			this.txtQuv.ReadOnly = true;
-			this.txtQuv.Size = new System.Drawing.Size(100, 20);
-			this.txtQuv.TabIndex = 13;
-			// 
 			// AdditionalValuesForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +224,7 @@
 			this.Controls.Add(this.groupBox1);
 			this.Name = "AdditionalValuesForm";
 			this.Text = "Таблица промежуточных значений";
+			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();

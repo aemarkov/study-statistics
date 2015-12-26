@@ -39,11 +39,6 @@ namespace Regression
 		public double By { get; private set; }
 
 
-		/// <summary>
-		/// Создание корреляционной таблицы заданного рамзера
-		/// </summary>
-		/// <param name="width"></param>
-		/// <param name="height"></param>
 		public CorrelationTable(int width, int height)
 		{
 			Width = width;
@@ -72,11 +67,22 @@ namespace Regression
 		/// Заполняет таблицу из списка пар значений СВ
 		/// </summary>
 		/// <param name="poit"></param>
-		public  CorrelationTable(List<PointD> data, double bx, double by)
+		public  CorrelationTable(List<PointD> data, double bx, double by, double? start_x = null, double? start_y = null)
 		{
-			double min_x = data.Min(x => x.X);
+			double min_x;// = 
+			double min_y;// = data.Min(x => x.Y);
+
+			if (start_x == null)
+				min_x = data.Min(x => x.X);
+			else
+				min_x = (double)start_x;
+
+			if (start_y == null)
+				min_y = data.Min(x => x.Y);
+			else
+				min_y = (double)start_y;
+
 			double max_x = data.Max(x => x.X);
-			double min_y = data.Min(x => x.Y);
 			double max_y = data.Max(x => x.Y);
 
 
@@ -123,6 +129,27 @@ namespace Regression
 			{
 				this[x.X, x.Y]++;
 			}
+		}
+
+		/// <summary>
+		/// Расчитывает интервалы, если они не были заданы
+		/// </summary>
+		public void CalculateIntervals()
+		{
+			double x_width=-1, y_width = -1;
+
+			//Говнокодненько, такое уже было в ... хм ... в парсере 
+			foreach (var x in XHeaders)
+				if (x_width == -1) x_width = x.Length;
+				else if (x_width != x.Length) throw new Exception("Интервалы должны быть равной длины");
+
+			//Очень говнокодненько, я там хоть в функцию вынес
+			foreach (var y in YHeaders)
+				if (y_width == -1) y_width = y.Length;
+				else if (y_width != y.Length) throw new Exception("Интервалы должны быть равной длины");
+
+			Bx = x_width;
+			By = y_width;
 		}
 
 		/// <summary>

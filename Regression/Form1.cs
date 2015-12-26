@@ -92,7 +92,7 @@ namespace Regression
 			{
 				 list = CsvParser.ReadSample(dlg.FileName);
 			}
-			catch (ParseException exp)
+			catch (Exception exp)
 			{
 				MessageBox.Show(exp.Message, "Ошибка при чтении корреляционной таблицы", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -118,7 +118,7 @@ namespace Regression
 			{
 				cor_table = CsvParser.ReadCorrelationTable(dlg.FileName);
 			}
-			catch(ParseException exp)
+			catch(Exception exp)
 			{
 				MessageBox.Show(exp.Message, "Ошибка при чтении корреляционной таблицы", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -155,6 +155,8 @@ namespace Regression
 		{
 			try
 			{
+				//КОСТЫЛЬНЕНЬКО
+
 				//Заполняем интервалы
 				for (int i = 1; i < gridCorrelationInput.Columns.Count; i++)
 					cor_table.SetX(i-1, Range.Parse((string)gridCorrelationInput[i, 0].Value));
@@ -172,8 +174,16 @@ namespace Regression
 			} catch (FormatException exp)
 			{
 				MessageBox.Show("Одно или несколько значений в таблице имели неверный формат", "Создание корреляционной таблицы", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+			catch(Exception exp)
+			{
+				//Неведомая хрень случилась
+				return;
 			}
 
+
+			cor_table.CalculateIntervals();
 			cortable_exists = true;
 			setup_gui();
 		}
@@ -182,10 +192,16 @@ namespace Regression
 		private void btnSeparate_Click_1(object sender, EventArgs e)
 		{
 			double bx, by;
+			double? start_x=null, start_y=null;
 			try
 			{
 				bx = double.Parse(txtBx.Text);
 				by = double.Parse(txtBy.Text);
+
+				if(txtStartX.Text.Length>0)
+					start_x = double.Parse(txtStartX.Text);
+				if(txtStartY.Text.Length>0)
+					start_y = double.Parse(txtStartY.Text);
 							}
 			catch(FormatException)
 			{
@@ -193,7 +209,7 @@ namespace Regression
 				return;
 			}
 
-			cor_table = new CorrelationTable(data.ToList(), bx, by);
+			cor_table = new CorrelationTable(data.ToList(), bx, by, start_x, start_y);
 			make_creation_table(cor_table);
 
 			cortable_exists = true;
@@ -249,7 +265,7 @@ namespace Regression
 			btnSeparate.Enabled = sample_exists;
 			btnInput.Enabled = cortable_empty_exists | cortable_exists;
 			menuCalc.Enabled = cortable_exists;
-			menuDrawDiagram.Enabled = calc_exists && sample_exists;
+			menuDrawDiagram.Enabled = calc_exists;// && sample_exists;
 			menuAdditionalValues.Enabled = calc_exists;
 		}
 
@@ -321,7 +337,7 @@ namespace Regression
 				for(int x = 0; x<table.Width; x++)
 				{
 					gridCorrelationInput[x+1, y+1].Style = normal_style;
-					gridCorrelationInput[x+1, y+1].Value = table[x, y];
+					gridCorrelationInput[x+1, y+1].Value = table[x, y].ToString();
 				}
 			}
 

@@ -28,7 +28,7 @@ namespace Regression
 			//Создание шапки
 			row = gen.AddRow();
 			row.AddCell("Границы и середины интервалов для y", 1, 4);
-			row.AddCell("Vi", 1, 4);
+			row.AddCell("Vj", 1, 3);
 			row.AddCell("Границы и середины интервалов для x", table.Width, 1);
 			row.AddCell("Nj", 1, 4);
 			row.AddCell("NjVj", 1, 4);
@@ -42,6 +42,7 @@ namespace Regression
 			//row.AddCell("Ui", table.Width, 1);
 
 			row = gen.AddRow();
+			row.AddCell("Ui ->");
 			foreach (var x in calc.Ui)
 				row.AddCell(x.ToString("N2"));
 
@@ -89,13 +90,13 @@ namespace Regression
 
 			row.AddCell("Сумма: " + calc.NiUi2.ToString("N2"));
 
-			var str = gen.GetHTML();
+			/*var str = gen.GetHTML();
 			using (var sw = new StreamWriter("D:\\index.html"))
 			{
 				sw.WriteLine(str);
-			}
+			}*/
 
-				htmlPanel.Text = str;
+			htmlPanel.Text = gen.GetHTML();
 			htmlPanel.Dock = DockStyle.Fill;
 			Controls.Add(htmlPanel);
 			htmlPanel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
